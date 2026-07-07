@@ -7,7 +7,10 @@ Checks, in order:
   3. every component.pct_of_parent (if given) matches value/parent_total*100
   4. every dataRef (executive_facts, external_events, section.supporting_data_refs)
      resolves to a real value in the document -- no dangling citations
-  5. provenance.unresolved_flags is empty, unless --allow-flags is passed
+  5. every external_event is actually incorporated into the narrative, not just
+     tagged to data and left silent (MEIP rule: "these must be linked directly
+     to the data" -- linked to data AND surfaced in the story, not one or the other)
+  6. provenance.unresolved_flags is empty, unless --allow-flags is passed
 
 Exits 0 only if every check passes. Exits 1 and prints every failure found
 (not just the first) otherwise -- nothing downstream should ever run against
@@ -89,6 +92,34 @@ def check_refs(doc, errors):
             )
 
 
+def check_events_incorporated(doc, errors):
+    """A supplied external_event isn't 'incorporated into the executive
+    narrative' just because it has linked_data_refs -- that only proves it's
+    tied to data. It also has to actually surface in the story: at least one
+    of its linked refs must also be cited by the executive_summary, an
+    executive_fact, or the bottom_insight. Otherwise it's data-tagged but the
+    narrative never actually talks about it, which is silent, not incorporated.
+    """
+    narrative_refs = set()
+    for section in doc.get("sections", []):
+        if section["type"] in ("executive_summary", "bottom_insight"):
+            narrative_refs.update(section.get("supporting_data_refs", []))
+        for fact in section.get("executive_facts", []):
+            narrative_refs.update(fact.get("supporting_data_refs", []))
+
+    for section in doc.get("sections", []):
+        for ev in section.get("external_events", []):
+            event_refs = set(ev.get("linked_data_refs", []))
+            if event_refs and not (event_refs & narrative_refs):
+                errors.append(
+                    f"[event-not-incorporated] section '{section['id']}' external_event "
+                    f"'{ev['name']}': linked to data ({', '.join(sorted(event_refs))}) but "
+                    f"none of those refs are cited by executive_summary, an executive_fact, "
+                    f"or bottom_insight -- the event is tagged but never actually shows up "
+                    f"in the story. Either write it into the narrative or remove it."
+                )
+
+
 def check_flags(doc, errors, allow_flags):
     flags = doc.get("provenance", {}).get("unresolved_flags", [])
     if flags and not allow_flags:
@@ -114,6 +145,7 @@ def main():
         # reconciliation/ref checks assume schema-valid shape; skip if schema failed
         check_reconciliation(doc, errors)
         check_refs(doc, errors)
+        check_events_incorporated(doc, errors)
     check_flags(doc, errors, args.allow_flags)
 
     if errors:

@@ -85,20 +85,54 @@ Ask yourself before finalizing: what happened, why did it happen, what's the
 business impact, what should leadership consider doing? If a section
 doesn't answer one of those, cut it.
 
+If the source supplied a business event (strike, courier restriction,
+holiday, promotion, outage, weather), it is not enough to record it in
+`external_events` with `linked_data_refs` — it must actually appear in the
+narrative (the summary, a fact, or the bottom insight), citing one of the
+same refs. An event that's tagged to data but never mentioned in the story
+hasn't been incorporated, it's been filed. `validate.py` now enforces this;
+don't let that be the thing that catches it.
+
+## Step 2.5 — Self-review against the Design Rules, before validating
+
+Before running anything, reread every narrative block you just wrote
+(executive_summary, each executive_fact, bottom_insight) against these,
+straight from the MEIP Design Rules:
+
+- **Never show the same insight twice.** If two sentences would surprise no
+  one by being adjacent, cut one.
+- **One visual per question.** Each section should answer a *different*
+  question (what happened / why / impact / action) — not the same question
+  from two angles.
+- **Interpret, don't restate.** "Monday = 210 late orders" is a fact lookup.
+  "Monday was the highest operational risk day" is analysis. If a sentence's
+  only content is a label and a number, rewrite it or cut it.
+- **The executive can understand the page in under 30 seconds.** If it takes
+  longer, something on the page is redundant with something else on the page.
+
+`pipeline/narrative_review.py` mechanically checks a subset of this (length
+limits, near-duplicate statements, sentences with no interpretive language) —
+run it, but don't treat a clean pass as proof the writing is good, and don't
+dismiss a warning just because you suspect it's a false positive without
+actually rereading the sentence it flagged.
+
 ## Step 3 — Validate, don't skip it
 
-Run, in order, and do not proceed past a failure:
+Run, in order, and do not proceed past a failure in the first two:
 
 ```
 python3 pipeline/validate.py path/to/report_brief.json
 python3 pipeline/citation_check.py path/to/report_brief.json
+python3 pipeline/narrative_review.py path/to/report_brief.json
 ```
 
-If either fails, the fix is almost always in the extraction step (Step 1),
-not in loosening the check. The one exception: `citation_check.py` is a
-heuristic and will occasionally flag a legitimate number it doesn't
-recognise (a year, a page count) — use judgment, but treat every flag as
-guilty until you've actually looked at the source and confirmed it's there.
+If either of the first two fails, the fix is almost always in the extraction
+step (Step 1), not in loosening the check. The one exception:
+`citation_check.py` is a heuristic and will occasionally flag a legitimate
+number it doesn't recognise (a year, a page count) — use judgment, but treat
+every flag as guilty until you've actually looked at the source and
+confirmed it's there. `narrative_review.py` prints warnings rather than
+failing by default (see Step 2.5) — read them, don't just check the exit code.
 
 ## Step 4 — Deliver
 

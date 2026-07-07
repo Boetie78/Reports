@@ -37,6 +37,12 @@ checkable on its own:
 3. **Citation check** (`pipeline/citation_check.py`) scans the narrative text
    itself and flags any number that doesn't trace back to the validated
    data — the direct fix for "the report says a number that isn't real."
+3b. **Narrative review** (`pipeline/narrative_review.py`) is a heuristic lint,
+   not a correctness gate: it checks the MEIP Design Rules that are judgment
+   calls rather than arithmetic — no duplicate insights, length limits on the
+   summary/bottom-insight, facts that read as interpretation rather than a
+   restated number. It warns by default; pass `--strict` to make it fail the
+   build.
 4. **Output** is either `pipeline/render.py` (renders the validated data into
    your house style as PDF + PNG, deterministically — no chart is ever
    "imagined") or `pipeline/blueprint.py` (exports the same validated data as
@@ -69,6 +75,9 @@ python3 pipeline/validate.py examples/otd_daily_impact_demo.json
 # 2. Check the narrative doesn't quote a number that isn't in the data
 python3 pipeline/citation_check.py examples/otd_daily_impact_demo.json
 
+# 2b. Lint the narrative against MEIP's Design Rules (duplicate insights, length, etc.)
+python3 pipeline/narrative_review.py examples/otd_daily_impact_demo.json
+
 # 3a. Render to your house style (PDF + one PNG per page, in output/)
 python3 pipeline/render.py examples/otd_daily_impact_demo.json
 
@@ -98,6 +107,7 @@ schema/report_brief.schema.json   the data contract — read this to see every f
 pipeline/refs.py                  resolves "sections[2].breakdown.components[0].value" style citations
 pipeline/validate.py              reconciliation gate — run first, always
 pipeline/citation_check.py        anti-fabrication scanner for narrative text
+pipeline/narrative_review.py      heuristic lint for MEIP Design Rules (duplication, length, interpretation)
 pipeline/render.py                report_brief.json → PDF + PNG (Playwright + Chromium)
 pipeline/blueprint.py             report_brief.json → Markdown spec for handoff to another tool
 templates/                        the navy/white/orange design system (Jinja2 + CSS + inline SVG charts)

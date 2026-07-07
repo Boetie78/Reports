@@ -7,7 +7,7 @@
       <div class="value {{ k.direction }}">{{ k.value }}{{ k.unit }}</div>
       {% if k.comparison_label %}
       <div class="compare">{{ k.comparison_label }}
-        <span class="delta {{ k.direction }}">{{ k.comparison_value }}</span>
+        <span class="delta {{ k.direction }}">{{ k.comparison_value }}{{ k.comparison_unit }}</span>
       </div>
       {% endif %}
     </div>

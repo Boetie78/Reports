@@ -52,7 +52,11 @@ def build_breakdown_table(section):
     components = []
     for c in bd["components"]:
         pct = c.get("pct_of_parent")
-        if pct is None and parent_value:
+        # Auto-deriving value/parent_total only makes sense in share mode
+        # (parts of one whole). In variance mode, a percentage is vs each
+        # component's own base and must be supplied explicitly, not derived
+        # against the aggregate total -- see validate.py for why.
+        if pct is None and parent_value and mode == "share":
             pct = c["value"] / parent_value * 100
         direction = direction_of(c["value"]) if mode == "variance" else "neutral"
         components.append({**c, "pct_of_parent": pct, "direction": direction})

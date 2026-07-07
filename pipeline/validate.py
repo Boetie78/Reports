@@ -48,8 +48,15 @@ def check_reconciliation(doc, errors):
                 f"'{bd['parent_total']['label']}' is {parent_value:g} "
                 f"(drift {drift:g} > tolerance {tolerance:g})"
             )
+        mode = bd.get("mode", "share")
         for c in bd["components"]:
-            if "pct_of_parent" in c and parent_value:
+            # pct_of_parent only means "share of the total" in share mode. In
+            # variance mode a stated percentage is variance-vs-that-component's-
+            # own-base (e.g. vs its own plan), which has nothing to do with the
+            # parent_total denominator -- dividing by a small/near-zero total
+            # variance produces meaningless blown-up percentages, so don't
+            # cross-check it there.
+            if "pct_of_parent" in c and parent_value and mode == "share":
                 expected_pct = c["value"] / parent_value * 100
                 if abs(expected_pct - c["pct_of_parent"]) > 0.1:
                     errors.append(

@@ -22,6 +22,7 @@
         "unit": {"type": "string"},
         "comparison_label": {"type": "string", "description": "e.g. 'vs Plan', 'vs LY', 'vs Week 25'"},
         "comparison_value": {"type": ["number", "string"]},
+        "comparison_unit": {"type": "string", "description": "Suffix for comparison_value, e.g. '%'. Keep comparison_value a real number (not a formatted string) whenever it's quoted in narrative text, so citation_check.py can trace it."},
         "direction": {"type": "string", "enum": ["favorable", "unfavorable", "neutral"]}
       }
     },

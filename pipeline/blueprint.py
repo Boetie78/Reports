@@ -43,17 +43,19 @@ def render_breakdown_table(section, out):
     parent_value = bd["parent_total"]["value"]
     for c in bd["components"]:
         pct = c.get("pct_of_parent")
-        if pct is None and parent_value:
+        # Only derive value/parent_total in share mode -- see validate.py's
+        # check_reconciliation for why that ratio is meaningless in variance mode.
+        if pct is None and parent_value and mode == "share":
             pct = c["value"] / parent_value * 100
         row = f"| {c['label']} | {c['value']:g} {bd['unit']} |"
         if mode == "variance":
             row += f" {c['value']:+g} {bd['unit']} |"
-        row += f" {pct:.2f}% |"
+        row += f" {pct:.2f}% |" if pct is not None else " — |"
         out.append(row)
     total_row = f"| **{bd['parent_total']['label']}** | **{parent_value:g} {bd['unit']}** |"
     if mode == "variance":
         total_row += f" **{parent_value:+g} {bd['unit']}** |"
-    total_row += " **100.00%** |"
+    total_row += " **100.00%** |" if mode == "share" else " — |"
     out.append(total_row)
     out.append("")
 

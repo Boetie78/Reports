@@ -1,0 +1,154 @@
+{
+  "report_meta": {
+    "title": "Banner Week Executive Summary",
+    "subtitle": "Makro Week 27 Performance View",
+    "organization": "Makro",
+    "period_label": "Week 27, 2026",
+    "report_type": "banner_week_executive_summary",
+    "generated_date": "2026-07-07"
+  },
+  "sections": [
+    {
+      "id": "exec_summary",
+      "type": "executive_summary",
+      "new_page": true,
+      "title": "Executive Summary",
+      "text": "Makro missed sales plan by R1.9m (0.31%) but finished R26.8m (4.43%) ahead of last year, while margin fell R15.8m (33.26%) short of plan — a rate problem far larger than the sales shortfall. The miss was concentrated in three regions: Western Cape (R5.5m), Eastern Cape (R3.8m) and Mpumalanga (R3.2m), while Gauteng, KwaZulu-Natal, Limpopo and Free State all traded ahead of plan. OTD stood at 90.7% for the period, with Omni Operations explicitly prioritising OTD recovery.",
+      "supporting_data_refs": ["sections[1].kpis[0].value", "sections[1].kpis[1].value", "sections[1].kpis[2].value", "sections[3].breakdown.components[0].value", "sections[3].breakdown.components[1].value", "sections[3].breakdown.components[2].value", "sections[7].kpis[0].value"]
+    },
+    {
+      "id": "finance_headline",
+      "type": "kpi_strip",
+      "title": "Finance Headline",
+      "kpis": [
+        {"id": "sales_vs_plan", "label": "Total Sales", "value": -1.9, "unit": " Rm", "comparison_label": "vs Plan", "comparison_value": -0.31, "comparison_unit": "%", "direction": "unfavorable"},
+        {"id": "sales_vs_ly", "label": "Total Sales", "value": 26.8, "unit": " Rm", "comparison_label": "vs LY", "comparison_value": 4.43, "comparison_unit": "%", "direction": "favorable"},
+        {"id": "margin_vs_plan", "label": "Total Margin", "value": -15.8, "unit": " Rm", "comparison_label": "vs Plan", "comparison_value": -33.26, "comparison_unit": "%", "direction": "unfavorable"},
+        {"id": "margin_vs_ly", "label": "Total Margin", "value": -6.4, "unit": " Rm", "comparison_label": "vs LY", "comparison_value": -16.70, "comparison_unit": "%", "direction": "unfavorable"}
+      ]
+    },
+    {
+      "id": "divisional_variance",
+      "type": "kpi_strip",
+      "title": "Divisional Sales Variance vs Plan (Weekly) — individually sourced, does not fully reconcile to total (see note)",
+      "kpis": [
+        {"id": "gm_vs_plan", "label": "General Merchandise", "value": -5.0, "unit": " Rm", "comparison_label": "vs Plan", "comparison_value": -2.93, "comparison_unit": "%", "direction": "unfavorable"},
+        {"id": "food_vs_plan", "label": "Food", "value": -4.9, "unit": " Rm", "comparison_label": "vs Plan", "comparison_value": -1.67, "comparison_unit": "%", "direction": "unfavorable"},
+        {"id": "liquor_vs_plan", "label": "Liquor", "value": 8.7, "unit": " Rm", "comparison_label": "vs Plan", "comparison_value": 5.26, "comparison_unit": "%", "direction": "favorable"}
+      ]
+    },
+    {
+      "id": "regional_breakdown",
+      "type": "breakdown_table",
+      "layout_width": "half",
+      "label_header": "Region",
+      "breakdown": {
+        "id": "regional_sales_variance",
+        "title": "Regional Sales Variance vs Plan",
+        "unit": "R million",
+        "mode": "variance",
+        "tolerance": 0.1,
+        "parent_total": {"label": "Total Sales Variance vs Plan", "value": -1.9},
+        "components": [
+          {"label": "Western Cape", "value": -5.5, "pct_of_parent": -6.89},
+          {"label": "Eastern Cape", "value": -3.8, "pct_of_parent": -11.10},
+          {"label": "Mpumalanga", "value": -3.2, "pct_of_parent": -9.57},
+          {"label": "Free State", "value": 0.022, "pct_of_parent": 0.12},
+          {"label": "Limpopo", "value": 0.336, "pct_of_parent": 1.16},
+          {"label": "KwaZulu-Natal", "value": 2.7, "pct_of_parent": 2.76},
+          {"label": "Gauteng", "value": 7.6, "pct_of_parent": 2.22}
+        ]
+      }
+    },
+    {
+      "id": "bottom_stores",
+      "type": "ranking",
+      "layout_width": "half",
+      "title": "Bottom 5 Stores vs Plan (Sales)",
+      "rankings": [
+        {
+          "id": "bottom5_stores",
+          "scope_label": "Sales Variance vs Plan (R million)",
+          "items": [
+            {"rank": 1, "label": "Ottery", "value": -4.7, "unit": " Rm"},
+            {"rank": 2, "label": "Crown Mines", "value": -3.3, "unit": " Rm"},
+            {"rank": 3, "label": "Mbombela", "value": -3.2, "unit": " Rm"},
+            {"rank": 4, "label": "Germiston", "value": -2.9, "unit": " Rm"},
+            {"rank": 5, "label": "Gonubie", "value": -2.4, "unit": " Rm"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "executive_facts",
+      "type": "executive_facts",
+      "layout_width": "full",
+      "title": "Executive Facts",
+      "executive_facts": [
+        {"statement": "Western Cape, Eastern Cape and Mpumalanga together drove the national plan miss, while Gauteng, KwaZulu-Natal, Limpopo and Free State all traded ahead of plan.", "supporting_data_refs": ["sections[3].breakdown.components[0].value", "sections[3].breakdown.components[1].value", "sections[3].breakdown.components[2].value"]},
+        {"statement": "Margin underperformance (R15.8m vs Plan) was roughly eight times the size of the sales miss (R1.9m vs Plan), pointing to a margin-rate problem rather than a volume problem this week.", "supporting_data_refs": ["sections[1].kpis[2].value", "sections[1].kpis[0].value"]},
+        {"statement": "Mbombela was Mpumalanga's only underperforming store and accounted for the region's entire R3.2m plan miss.", "supporting_data_refs": ["sections[3].breakdown.components[2].value", "sections[4].rankings[0].items[2].value"]},
+        {"statement": "The 5-day trading period (1–5 July) showed sales R47.5m (10.80%) ahead of last year across all three divisions, but margin fell R2.9m (10.68%) behind LY over the same period — the same margin-vs-sales divergence pattern as the weekly result.", "supporting_data_refs": ["sections[8].kpis[0].value", "sections[8].kpis[1].value"]},
+        {"statement": "OTD stood at 90.7% for the period, with Omni Operations explicitly prioritising OTD recovery alongside HWD execution and waybill cancellation process communication.", "supporting_data_refs": ["sections[7].kpis[0].value"]}
+      ]
+    },
+    {
+      "id": "bottom_insight",
+      "type": "bottom_insight",
+      "layout_width": "full",
+      "supporting_data_refs": ["sections[1].kpis[2].value", "sections[1].kpis[0].value", "sections[3].breakdown.components[0].value", "sections[3].breakdown.components[1].value", "sections[3].breakdown.components[2].value"],
+      "text": "Margin eroded roughly eight times faster than sales missed plan (R15.8m vs R1.9m), and virtually all of the national shortfall was concentrated in three regions — Western Cape, Eastern Cape and Mpumalanga — pointing to a pricing/promotional-execution issue rather than a broad demand problem."
+    },
+    {
+      "id": "key_priorities",
+      "type": "kpi_strip",
+      "new_page": true,
+      "title": "Key Priorities — E2E Omni Experience",
+      "kpis": [
+        {"id": "otd", "label": "OTD", "value": 90.7, "unit": "%", "direction": "neutral"},
+        {"id": "nps", "label": "NPS", "value": 88, "unit": "%", "direction": "neutral"},
+        {"id": "csat", "label": "CSAT", "value": 4.84, "unit": "", "direction": "neutral"}
+      ]
+    },
+    {
+      "id": "five_day_trading",
+      "type": "kpi_strip",
+      "title": "5-Day Trading (1–5 Jul 2026) vs Last Year",
+      "kpis": [
+        {"id": "five_day_sales_ly", "label": "5-Day Sales", "value": 47.5, "unit": " Rm", "comparison_label": "vs LY", "comparison_value": 10.80, "comparison_unit": "%", "direction": "favorable"},
+        {"id": "five_day_margin_ly", "label": "5-Day Margin", "value": -2.9, "unit": " Rm", "comparison_label": "vs LY", "comparison_value": -10.68, "comparison_unit": "%", "direction": "unfavorable"},
+        {"id": "five_day_food_ly", "label": "Food Growth", "value": 20.4, "unit": " Rm", "comparison_label": "vs LY", "comparison_value": 10.37, "comparison_unit": "%", "direction": "favorable"},
+        {"id": "five_day_liquor_ly", "label": "Liquor Growth", "value": 18.1, "unit": " Rm", "comparison_label": "vs LY", "comparison_value": 14.93, "comparison_unit": "%", "direction": "favorable"}
+      ]
+    },
+    {
+      "id": "customer_themes",
+      "type": "custom_html",
+      "layout_width": "half",
+      "title": "Customer Feedback Themes",
+      "text": "<ul style=\"margin:0;padding-left:18px;font-size:13px;line-height:1.6;\"><li><strong>Shopping experience</strong> — layout, navigation, parking, trolley condition, aisle congestion.</li><li><strong>Staff availability</strong> — customers want more visible, faster, more knowledgeable staff at peak times.</li><li><strong>Pricing</strong> — requests for lower prices, more promotions, clearer promotional communication, reward points.</li><li><strong>Stock availability</strong> — broader ranges, fuller shelves, better replenishment to reduce out-of-stocks.</li><li><strong>Checkout &amp; queues</strong> — more tills open, faster checkout, more self-checkout at peak times.</li></ul>"
+    },
+    {
+      "id": "associate",
+      "type": "kpi_strip",
+      "title": "Associate / Workforce",
+      "kpis": [
+        {"id": "total_vacancies", "label": "Total Vacancies", "value": 127, "unit": "", "direction": "unfavorable"},
+        {"id": "critical_vacancies", "label": "Critical Vacancies", "value": 104, "unit": "", "direction": "unfavorable"},
+        {"id": "management_vacancies", "label": "Management Vacancies", "value": 51, "unit": "", "direction": "neutral"}
+      ]
+    },
+    {
+      "id": "support_ops",
+      "type": "custom_html",
+      "layout_width": "full",
+      "title": "Support Needed & Operations Focus",
+      "text": "<div style=\"display:flex;gap:32px;font-size:13px;line-height:1.6;\"><div><strong>Support needed:</strong><ul style=\"margin:6px 0 0;padding-left:18px;\"><li>Food trade/commercial deals</li><li>Accounting for the Food margin deficit</li><li>General Merchandise BP drive</li></ul></div><div><strong>Operations focus:</strong><ul style=\"margin:6px 0 0;padding-left:18px;\"><li>Back to basics</li><li>Promotional execution — “Mega Savings”</li></ul></div></div>"
+    }
+  ],
+  "provenance": {
+    "source_files": ["Banner_W27.docx"],
+    "extraction_notes": "Scoped to executive-level headline, regional, and priority metrics from the Finance Update, Key Priorities, Customer, Associate, and Omni Operations sections. Store- and article-level long-tail detail (per-region bottom-5-article breakdowns, individual SKU variances) was intentionally excluded as sub-executive detail, per the source's own regional appendices — available on request if needed. The regional sales-variance-vs-plan breakdown reconciles to the stated total within R58k (rounding across 7 rounded regional figures). The divisional (Food/Liquor/General Merchandise) variance figures quoted in the source commentary do NOT reconcile to the stated total sales variance in either direction: they sum to -R1.2m vs a stated total of -R1.9m vs Plan (R0.7m gap), and to R46.9m vs a stated R47.5m vs LY for the 5-day period (R0.6m gap). This is a genuine gap in the source document, not a rounding artifact -- most likely trade outside the three core divisions (e.g. BP fuel, wholesale-only lines) that isn't broken out in this commentary. Per the reconciliation-first rule, these divisional figures are presented as individually-sourced KPIs rather than as a breakdown_table, since a breakdown_table would falsely assert they sum to the total. Recommend requesting the full divisional P&L extract if an exact reconciled divisional breakdown is needed.",
+    "unresolved_flags": []
+  }
+}

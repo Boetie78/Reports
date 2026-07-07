@@ -66,7 +66,10 @@ def main():
     for where, text in narrative_texts(doc):
         for raw, value in extract_numbers(text):
             magnitude = abs(value)
-            if not any(abs(magnitude - k) <= TOLERANCE for k in known_values):
+            # Compare magnitudes on both sides: narrative prose often signals
+            # direction with words ("fell", "down", "behind") rather than a
+            # literal minus sign, while the source value is stored signed.
+            if not any(abs(magnitude - abs(k)) <= TOLERANCE for k in known_values):
                 uncited.append((where, raw, text))
 
     if uncited:

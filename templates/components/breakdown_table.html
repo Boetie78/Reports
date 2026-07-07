@@ -6,7 +6,7 @@
         <th>{{ section.label_header }}</th>
         <th>Value</th>
         {% if section.mode == "variance" %}<th>Variance</th>{% endif %}
-        <th>%{% if section.mode == "share" %} of Total{% endif %}</th>
+        <th>{% if section.mode == "share" %}% of Total{% else %}Variance %{% endif %}</th>
       </tr>
     </thead>
     <tbody>
@@ -15,14 +15,20 @@
         <td>{{ c.label }}</td>
         <td>{{ "%.1f"|format(c.value) }}</td>
         {% if section.mode == "variance" %}<td class="val {{ c.direction }}">{{ "%+.1f"|format(c.value) }}</td>{% endif %}
-        <td class="pct {{ c.direction }}">{{ "%+.2f"|format(c.pct_of_parent) if section.mode == "variance" else "%.2f"|format(c.pct_of_parent) }}%</td>
+        <td class="pct {{ c.direction }}">
+          {%- if c.pct_of_parent is not none -%}
+            {{ "%+.2f"|format(c.pct_of_parent) if section.mode == "variance" else "%.2f"|format(c.pct_of_parent) }}%
+          {%- else -%}
+            &mdash;
+          {%- endif -%}
+        </td>
       </tr>
       {% endfor %}
       <tr class="total">
         <td>{{ section.parent_label }}</td>
         <td>{{ "%.1f"|format(section.parent_value) }}</td>
         {% if section.mode == "variance" %}<td>{{ "%+.1f"|format(section.parent_value) }}</td>{% endif %}
-        <td>100.00%</td>
+        <td>{% if section.mode == "share" %}100.00%{% else %}&mdash;{% endif %}</td>
       </tr>
     </tbody>
   </table>

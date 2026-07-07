@@ -1,0 +1,15 @@
+<div class="card {{ section.layout_class }}">
+  <div class="card-title">{{ section.title }}</div>
+  <div class="chart-caption">{{ section.unit }}</div>
+  <svg width="100%" height="260" viewBox="0 0 720 260">
+    <line x1="0" y1="{{ section.baseline_y }}" x2="720" y2="{{ section.baseline_y }}" stroke="#d7dae0" stroke-width="1"/>
+    {% for b in section.bars %}
+    <rect x="{{ b.x }}" y="{{ b.y }}" width="{{ b.width }}" height="{{ b.height }}" fill="{{ b.color }}" rx="3"/>
+    <text class="bar-label" x="{{ b.x + b.width/2 }}" y="{{ section.baseline_y + 18 }}" text-anchor="middle">{{ b.label }}</text>
+    <text class="bar-value" x="{{ b.x + b.width/2 }}" y="{{ b.y - 8 }}" text-anchor="middle" fill="{{ b.color }}">{{ b.value_label }}</text>
+    {% if b.annotation %}
+    <text class="axis-label" x="{{ b.x + b.width/2 }}" y="{{ section.baseline_y + 32 }}" text-anchor="middle" fill="{{ b.color }}" font-weight="700">{{ b.annotation }}</text>
+    {% endif %}
+    {% endfor %}
+  </svg>
+</div>

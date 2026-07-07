@@ -1,0 +1,147 @@
+{
+  "report_meta": {
+    "title": "OTD Daily Impact — ILLUSTRATIVE DEMO DATA",
+    "subtitle": "Makro OTD Performance View – Week 26 (sample numbers, not a real business result)",
+    "organization": "DEMO",
+    "period_label": "23–29 June 2025",
+    "report_type": "otd_daily_impact",
+    "generated_date": "2026-07-07"
+  },
+  "sections": [
+    {
+      "id": "exec_summary",
+      "type": "executive_summary",
+      "new_page": true,
+      "title": "Executive Summary",
+      "text": "OTD underperformance was concentrated at the start of the week. Limited courier collections on Monday, followed by a national strike on Tuesday, created a backlog that drove 51.48% of all late orders. Performance recovered steadily from Wednesday through Friday as the backlog cleared.",
+      "supporting_data_refs": ["sections[1].kpis[3].value"]
+    },
+    {
+      "id": "kpi_strip_1",
+      "type": "kpi_strip",
+      "title": "Executive KPIs",
+      "kpis": [
+        {"id": "total_late", "label": "Total Late Orders", "value": 742, "unit": " orders", "comparison_label": "vs Week 25", "comparison_value": "+8.5%", "direction": "unfavorable"},
+        {"id": "peak_day", "label": "Peak Day", "value": "Monday", "unit": "", "comparison_label": "Late Orders", "comparison_value": "210", "direction": "unfavorable"},
+        {"id": "top_driver", "label": "Top Driver", "value": "Drop-off Exception", "unit": "", "comparison_label": "", "comparison_value": "", "direction": "neutral"},
+        {"id": "mon_tue", "label": "Mon + Tue Contribution", "value": 51.48, "unit": "%", "comparison_label": "of all late orders", "comparison_value": "", "direction": "unfavorable"}
+      ]
+    },
+    {
+      "id": "daily_breakdown_table",
+      "type": "breakdown_table",
+      "layout_width": "half",
+      "label_header": "Day",
+      "breakdown": {
+        "id": "daily_late_orders",
+        "title": "Daily Late Orders Breakdown",
+        "unit": "orders",
+        "parent_total": {"label": "Total Late Orders (Week 26)", "value": 742},
+        "components": [
+          {"label": "Saturday", "value": 61},
+          {"label": "Sunday", "value": 38},
+          {"label": "Monday", "value": 210},
+          {"label": "Tuesday", "value": 172},
+          {"label": "Wednesday", "value": 104},
+          {"label": "Thursday", "value": 88},
+          {"label": "Friday", "value": 69}
+        ]
+      }
+    },
+    {
+      "id": "daily_bar_chart",
+      "type": "bar_chart",
+      "layout_width": "half",
+      "bar_chart": {
+        "id": "daily_late_orders_chart",
+        "title": "Daily Late Orders Impact",
+        "unit": "",
+        "categories": ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
+        "values": [61, 38, 210, 172, 104, 88, 69],
+        "annotations": [
+          {"category": "Mon", "label": "Peak Day", "emphasis": "peak"},
+          {"category": "Tue", "label": "Strike Impact", "emphasis": "peak"},
+          {"category": "Wed", "label": "Recovery Begins", "emphasis": "recovery"}
+        ]
+      }
+    },
+    {
+      "id": "concentration_table",
+      "type": "breakdown_table",
+      "layout_width": "half",
+      "label_header": "Segment",
+      "breakdown": {
+        "id": "concentration_split",
+        "title": "Concentration of Late Orders",
+        "unit": "orders",
+        "parent_total": {"label": "Total Late Orders (Week 26)", "value": 742},
+        "components": [
+          {"label": "Mon + Tue + Wed", "value": 486},
+          {"label": "Thu + Fri + Sat + Sun", "value": 256}
+        ]
+      }
+    },
+    {
+      "id": "top_drivers",
+      "type": "ranking",
+      "layout_width": "half",
+      "title": "Top Drivers by Day",
+      "rankings": [
+        {"id": "sat_drivers", "scope_label": "Saturday", "items": [{"rank": 1, "label": "Promise Issues"}, {"rank": 2, "label": "Weekend Impact"}]},
+        {"id": "sun_drivers", "scope_label": "Sunday", "items": [{"rank": 1, "label": "Weekend Impact"}, {"rank": 2, "label": "Promise Issues"}]},
+        {"id": "mon_drivers", "scope_label": "Monday", "items": [{"rank": 1, "label": "Drop-off Exception"}, {"rank": 2, "label": "Promise Issues"}]},
+        {"id": "tue_drivers", "scope_label": "Tuesday", "items": [{"rank": 1, "label": "Promise Issues"}, {"rank": 2, "label": "National Strike"}]},
+        {"id": "wed_drivers", "scope_label": "Wednesday", "items": [{"rank": 1, "label": "Promise Issues"}, {"rank": 2, "label": "Backlog Clearance"}]},
+        {"id": "thu_drivers", "scope_label": "Thursday", "items": [{"rank": 1, "label": "Promise Issues"}, {"rank": 2, "label": "Weekend Impact"}]},
+        {"id": "fri_drivers", "scope_label": "Friday", "items": [{"rank": 1, "label": "Promise Issues"}, {"rank": 2, "label": "Weekend Impact"}]}
+      ]
+    },
+    {
+      "id": "external_events",
+      "type": "external_events",
+      "layout_width": "full",
+      "title": "External Event Callouts",
+      "external_events": [
+        {
+          "name": "National Strike",
+          "type": "National Strike",
+          "date_or_period": "Tuesday, 24 June",
+          "description": "Nationwide logistics strike restricted courier operations, compounding Monday's backlog and holding Tuesday's late order count at 172.",
+          "linked_data_refs": ["sections[2].breakdown.components[3].value"]
+        },
+        {
+          "name": "Limited Courier Collections",
+          "type": "Courier Restriction",
+          "date_or_period": "Monday, 23 June",
+          "description": "Reduced courier collection windows on Monday were the primary driver of the week's peak day, with 210 late orders.",
+          "linked_data_refs": ["sections[2].breakdown.components[2].value"]
+        }
+      ]
+    },
+    {
+      "id": "executive_facts",
+      "type": "executive_facts",
+      "layout_width": "full",
+      "title": "Executive Facts",
+      "executive_facts": [
+        {"statement": "Monday was the highest operational risk day, accounting for 210 late orders (28.30% of the week total).", "supporting_data_refs": ["sections[2].breakdown.components[2].value"]},
+        {"statement": "Tuesday's backlog was amplified by the national strike, holding late orders at 172 (23.18% of the week total).", "supporting_data_refs": ["sections[2].breakdown.components[3].value"]},
+        {"statement": "Weekend impact was concentrated on Saturday, which recorded 61 late orders versus 38 on Sunday.", "supporting_data_refs": ["sections[2].breakdown.components[0].value", "sections[2].breakdown.components[1].value"]},
+        {"statement": "Performance progressively recovered from Wednesday (104) through Friday (69) as the collection backlog cleared.", "supporting_data_refs": ["sections[2].breakdown.components[4].value", "sections[2].breakdown.components[6].value"]},
+        {"statement": "Monday and Tuesday together accounted for 51.48% of all late orders, indicating a concentrated capacity failure rather than a sustained week-long issue.", "supporting_data_refs": ["sections[1].kpis[3].value"]}
+      ]
+    },
+    {
+      "id": "bottom_insight",
+      "type": "bottom_insight",
+      "layout_width": "full",
+      "supporting_data_refs": ["sections[4].breakdown.components[0].value"],
+      "text": "65.50% of all late orders occurred on just three trading days — Monday, Tuesday and Wednesday — indicating a concentrated operational capacity challenge rather than a sustained week-long performance issue."
+    }
+  ],
+  "provenance": {
+    "source_files": ["DEMO — no source file, hand-authored to smoke-test the pipeline"],
+    "extraction_notes": "This is illustrative demo data created to validate the reconciliation/render pipeline end-to-end. It is not a real business result and must not be treated as one.",
+    "unresolved_flags": []
+  }
+}

@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{{ meta.title }}</title>
+<style>{{ css }}</style>
+</head>
+<body>
+{% for page in pages %}
+<div class="page">
+  <div class="header">
+    <div class="titles">
+      <div class="title">{{ meta.title }}</div>
+      <div class="subtitle">{{ meta.subtitle }} &mdash; {{ meta.period_label }}</div>
+    </div>
+    <div class="badge">
+      <span>{{ meta.organization }}</span>
+      <span class="page-num">{{ "%02d"|format(loop.index) }}</span>
+    </div>
+  </div>
+  <div class="grid">
+    {% for section in page %}
+      {% include "components/" + section.type + ".html" %}
+    {% endfor %}
+  </div>
+</div>
+{% endfor %}
+</body>
+</html>

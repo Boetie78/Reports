@@ -1,0 +1,16 @@
+<div class="card {{ section.layout_class }}">
+  <div class="card-title">{{ section.title or "Key Metrics" }}</div>
+  <div class="kpi-strip">
+    {% for k in section.kpis %}
+    <div class="kpi-tile">
+      <div class="label">{{ k.label }}</div>
+      <div class="value {{ k.direction }}">{{ k.value }}{{ k.unit }}</div>
+      {% if k.comparison_label %}
+      <div class="compare">{{ k.comparison_label }}
+        <span class="delta {{ k.direction }}">{{ k.comparison_value }}</span>
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</div>

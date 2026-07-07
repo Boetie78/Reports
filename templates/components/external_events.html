@@ -1,0 +1,13 @@
+<div class="card {{ section.layout_class }}">
+  <div class="card-title">{{ section.title or "External Event Callouts" }}</div>
+  {% for e in section.events %}
+  <div class="event-card">
+    <div class="dot"></div>
+    <div>
+      <div class="etype">{{ e.type }}{% if e.date_or_period %} &middot; {{ e.date_or_period }}{% endif %}</div>
+      <div class="ename">{{ e.name }}</div>
+      <div class="edesc">{{ e.description }}</div>
+    </div>
+  </div>
+  {% endfor %}
+</div>

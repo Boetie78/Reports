@@ -1,0 +1,8 @@
+<div class="card {{ section.layout_class }}">
+  <div class="card-title">{{ section.title or "Executive Facts" }}</div>
+  <ul class="fact-list">
+    {% for f in section.facts %}
+    <li>{{ f }}</li>
+    {% endfor %}
+  </ul>
+</div>

@@ -1,0 +1,18 @@
+<div class="card {{ section.layout_class }}">
+  <div class="card-title">{{ section.title }}</div>
+  {% for r in section.rankings %}
+  <div style="margin-bottom:14px;">
+    <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:6px;">{{ r.scope_label }}</div>
+    {% for item in r.entries %}
+    <div class="ranking-row">
+      <div class="rank-badge">{{ item.rank }}</div>
+      <div class="rank-label">{{ item.label }}</div>
+      {% if item.value is defined and item.value is not none %}
+      <div class="rank-bar-track"><div class="rank-bar-fill" style="width:{{ item.pct_width }}%;"></div></div>
+      <div class="rank-value">{{ item.value }}{{ item.unit }}</div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+  {% endfor %}
+</div>

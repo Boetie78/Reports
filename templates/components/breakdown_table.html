@@ -1,0 +1,29 @@
+<div class="card {{ section.layout_class }}">
+  <div class="card-title">{{ section.title }} <span style="color:#9aa1ac;font-weight:400;text-transform:none;">({{ section.unit }})</span></div>
+  <table class="breakdown">
+    <thead>
+      <tr>
+        <th>{{ section.label_header }}</th>
+        <th>Value</th>
+        {% if section.mode == "variance" %}<th>Variance</th>{% endif %}
+        <th>%{% if section.mode == "share" %} of Total{% endif %}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in section.components %}
+      <tr>
+        <td>{{ c.label }}</td>
+        <td>{{ "%.1f"|format(c.value) }}</td>
+        {% if section.mode == "variance" %}<td class="val {{ c.direction }}">{{ "%+.1f"|format(c.value) }}</td>{% endif %}
+        <td class="pct {{ c.direction }}">{{ "%+.2f"|format(c.pct_of_parent) if section.mode == "variance" else "%.2f"|format(c.pct_of_parent) }}%</td>
+      </tr>
+      {% endfor %}
+      <tr class="total">
+        <td>{{ section.parent_label }}</td>
+        <td>{{ "%.1f"|format(section.parent_value) }}</td>
+        {% if section.mode == "variance" %}<td>{{ "%+.1f"|format(section.parent_value) }}</td>{% endif %}
+        <td>100.00%</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

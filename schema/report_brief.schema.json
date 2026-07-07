@@ -1,0 +1,263 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "report_brief.schema.json",
+  "title": "Executive Report Brief",
+  "description": "The single structured contract between raw source data and the rendered report. Nothing may be rendered or narrated except what exists in a document that conforms to this schema. New report types add new 'sections' entries rather than changing this schema, which keeps the system adaptable week to week.",
+  "type": "object",
+  "required": ["report_meta", "sections", "provenance"],
+  "additionalProperties": false,
+  "definitions": {
+    "dataRef": {
+      "type": "string",
+      "description": "A JSONPath-like pointer into this same document, e.g. 'sections[0].breakdown.components[2].value'. Every number quoted in narrative text must resolve to one of these."
+    },
+    "kpi": {
+      "type": "object",
+      "required": ["id", "label", "value"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string"},
+        "label": {"type": "string"},
+        "value": {"type": ["number", "string"]},
+        "unit": {"type": "string"},
+        "comparison_label": {"type": "string", "description": "e.g. 'vs Plan', 'vs LY', 'vs Week 25'"},
+        "comparison_value": {"type": ["number", "string"]},
+        "direction": {"type": "string", "enum": ["favorable", "unfavorable", "neutral"]}
+      }
+    },
+    "breakdownComponent": {
+      "type": "object",
+      "required": ["label", "value"],
+      "additionalProperties": false,
+      "properties": {
+        "label": {"type": "string"},
+        "value": {"type": "number"},
+        "pct_of_parent": {"type": "number", "description": "Optional. If present, validate.py checks value/parent_total*100 matches within tolerance."}
+      }
+    },
+    "breakdown": {
+      "type": "object",
+      "required": ["id", "title", "unit", "parent_total", "components"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string"},
+        "title": {"type": "string"},
+        "unit": {"type": "string"},
+        "mode": {
+          "type": "string",
+          "enum": ["share", "variance"],
+          "default": "share",
+          "description": "'share': components are parts of a whole (e.g. orders per day) -- shown neutrally, no favorable/unfavorable coloring, no +/- sign. 'variance': components are deltas vs a plan/prior-period baseline -- shown with Variance column and favorable(green)/unfavorable(red) coloring by sign."
+        },
+        "parent_total": {
+          "type": "object",
+          "required": ["label", "value"],
+          "additionalProperties": false,
+          "properties": {
+            "label": {"type": "string"},
+            "value": {"type": "number"}
+          }
+        },
+        "components": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/definitions/breakdownComponent"}
+        },
+        "tolerance": {"type": "number", "default": 0.05, "description": "Absolute allowed reconciliation drift (rounding only), in the same unit as values."}
+      }
+    },
+    "timeSeries": {
+      "type": "object",
+      "required": ["id", "title", "categories", "series"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string"},
+        "title": {"type": "string"},
+        "unit": {"type": "string"},
+        "categories": {"type": "array", "items": {"type": "string"}},
+        "series": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "values"],
+            "additionalProperties": false,
+            "properties": {
+              "name": {"type": "string"},
+              "values": {"type": "array", "items": {"type": ["number", "null"]}}
+            }
+          }
+        },
+        "annotations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["category", "label"],
+            "additionalProperties": false,
+            "properties": {
+              "category": {"type": "string"},
+              "label": {"type": "string"},
+              "emphasis": {"type": "string", "enum": ["peak", "recovery", "note"]}
+            }
+          }
+        }
+      }
+    },
+    "barChart": {
+      "type": "object",
+      "required": ["id", "title", "categories", "values"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string"},
+        "title": {"type": "string"},
+        "unit": {"type": "string"},
+        "categories": {"type": "array", "items": {"type": "string"}},
+        "values": {"type": "array", "items": {"type": "number"}},
+        "annotations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["category", "label"],
+            "additionalProperties": false,
+            "properties": {
+              "category": {"type": "string"},
+              "label": {"type": "string"},
+              "emphasis": {"type": "string", "enum": ["peak", "recovery", "note"]}
+            }
+          }
+        }
+      }
+    },
+    "ranking": {
+      "type": "object",
+      "required": ["id", "scope_label", "items"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string"},
+        "scope_label": {"type": "string", "description": "e.g. a day name, region, or category the ranking applies to"},
+        "items": {
+          "type": "array",
+          "maxItems": 5,
+          "items": {
+            "type": "object",
+            "required": ["rank", "label"],
+            "additionalProperties": false,
+            "properties": {
+              "rank": {"type": "integer"},
+              "label": {"type": "string"},
+              "value": {"type": ["number", "string"]},
+              "unit": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "externalEvent": {
+      "type": "object",
+      "required": ["name", "type", "description"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {"type": "string"},
+        "type": {"type": "string", "description": "e.g. National Strike, Courier Restriction, Public Holiday, Promotion, Weather, System Outage"},
+        "date_or_period": {"type": "string"},
+        "description": {"type": "string"},
+        "linked_data_refs": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/dataRef"},
+          "description": "The event must be linked to concrete data points it affected, not asserted in the abstract."
+        }
+      }
+    },
+    "executiveFact": {
+      "type": "object",
+      "required": ["statement", "supporting_data_refs"],
+      "additionalProperties": false,
+      "properties": {
+        "statement": {"type": "string"},
+        "supporting_data_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/definitions/dataRef"}
+        }
+      }
+    },
+    "section": {
+      "type": "object",
+      "description": "One page/module of the report. type determines which template component renders it, so new report types are assembled by combining/reordering sections rather than inventing new schema.",
+      "required": ["id", "type"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string"},
+        "type": {
+          "type": "string",
+          "enum": [
+            "executive_summary",
+            "kpi_strip",
+            "breakdown_table",
+            "waterfall",
+            "time_series_chart",
+            "ranking",
+            "external_events",
+            "executive_facts",
+            "bottom_insight",
+            "custom_html",
+            "bar_chart"
+          ]
+        },
+        "new_page": {"type": "boolean", "description": "Start a new report page before this section."},
+        "layout_width": {
+          "type": "string",
+          "enum": ["full", "half", "third"],
+          "description": "Card width on the page grid. executive_summary/kpi_strip/bottom_insight are always full regardless of this value. Defaults to half."
+        },
+        "title": {"type": "string"},
+        "label_header": {"type": "string", "description": "Used by breakdown_table for the first column header, e.g. 'Day' or 'Division'. Defaults to 'Item'."},
+        "text": {"type": "string", "description": "Used by executive_summary / bottom_insight / custom_html"},
+        "supporting_data_refs": {"type": "array", "items": {"$ref": "#/definitions/dataRef"}},
+        "kpis": {"type": "array", "items": {"$ref": "#/definitions/kpi"}},
+        "breakdown": {"$ref": "#/definitions/breakdown"},
+        "time_series": {"$ref": "#/definitions/timeSeries"},
+        "bar_chart": {"$ref": "#/definitions/barChart"},
+        "rankings": {"type": "array", "items": {"$ref": "#/definitions/ranking"}},
+        "external_events": {"type": "array", "items": {"$ref": "#/definitions/externalEvent"}},
+        "executive_facts": {"type": "array", "items": {"$ref": "#/definitions/executiveFact"}, "maxItems": 5}
+      }
+    }
+  },
+  "properties": {
+    "report_meta": {
+      "type": "object",
+      "required": ["title", "subtitle", "period_label", "report_type", "generated_date"],
+      "additionalProperties": false,
+      "properties": {
+        "title": {"type": "string"},
+        "subtitle": {"type": "string"},
+        "organization": {"type": "string"},
+        "period_label": {"type": "string"},
+        "report_type": {"type": "string", "description": "Free-form slug, e.g. 'otd_daily_impact', 'commercial_review'. Drives no logic, just labeling/traceability."},
+        "generated_date": {"type": "string", "format": "date"}
+      }
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/definitions/section"}
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["source_files", "extraction_notes"],
+      "additionalProperties": false,
+      "properties": {
+        "source_files": {"type": "array", "items": {"type": "string"}},
+        "extraction_notes": {
+          "type": "string",
+          "description": "Any values that could not be sourced, ambiguities, or assumptions the extractor had to flag. Empty string means nothing to flag."
+        },
+        "unresolved_flags": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Explicit list of open reconciliation or data-gap issues. validate.py fails the build if this is non-empty and --allow-flags is not passed."
+        }
+      }
+    }
+  }
+}

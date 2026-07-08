@@ -190,10 +190,24 @@ def build_time_series_chart(section):
 def build_bar_chart(section):
     bc = section["bar_chart"]
     values = bc["values"]
-    max_val = max(values) or 1.0
-    plot_h = 160
-    baseline_y = 200
-    scale = plot_h / max_val
+    max_abs = max((abs(v) for v in values), default=1.0) or 1.0
+    has_negative = any(v < 0 for v in values)
+
+    # Bars can go either direction (variance-style data), not just up from a
+    # floor (count-style data) -- baseline sits in the middle when there are
+    # negative values so both directions have their own room within the 260
+    # viewBox, and scale is driven by the largest magnitude in either
+    # direction, not just max(values), or a large negative value would be
+    # invisible (see comment history for why this changed).
+    if has_negative:
+        plot_h = 80          # max bar extent from baseline, either direction
+        baseline_y = 120     # leaves room above for +value labels, below for -bars + their labels + category row
+        category_label_y = 235
+    else:
+        plot_h = 160
+        baseline_y = 200
+        category_label_y = baseline_y + 18
+    scale = plot_h / max_abs
 
     n = len(values)
     col_w = CHART_W / n
@@ -204,20 +218,24 @@ def build_bar_chart(section):
 
     bars = []
     for i, (cat, val) in enumerate(zip(bc["categories"], values)):
-        h = val * scale
+        h = abs(val) * scale
         x = i * col_w + (col_w - bar_w) / 2
+        y = baseline_y - h if val >= 0 else baseline_y
+        value_y = (y - 8) if val >= 0 else (y + h + 16)
         ann = ann_by_cat.get(cat)
-        color = colors.get(ann["emphasis"], NAVY) if ann else NAVY
+        color = colors.get(ann["emphasis"], NAVY) if ann else (UNFAVORABLE if val < 0 else NAVY)
         bars.append({
-            "x": x, "y": baseline_y - h, "width": bar_w, "height": max(h, 2),
+            "x": x, "y": y, "width": bar_w, "height": max(h, 2),
             "color": color, "label": cat,
             "value_label": f"{val:g}{bc.get('unit', '')}",
+            "value_y": value_y,
             "annotation": ann["label"] if ann else None,
         })
 
     return {
         **section,
         "layout_class": section.get("layout_width", "half"),
+        "category_label_y": category_label_y,
         "title": bc["title"],
         "unit": bc.get("unit", ""),
         "baseline_y": baseline_y,

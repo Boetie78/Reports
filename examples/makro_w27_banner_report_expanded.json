@@ -1,0 +1,1506 @@
+{
+  "report_meta": {
+    "title": "Banner Week Executive Summary",
+    "subtitle": "Makro Week 27 Performance View",
+    "organization": "Makro",
+    "period_label": "Week 27, 2026",
+    "report_type": "banner_week_executive_summary_expanded",
+    "generated_date": "2026-07-07"
+  },
+  "sections": [
+    {
+      "id": "exec_summary",
+      "type": "executive_summary",
+      "new_page": true,
+      "title": "Executive Summary",
+      "text": "Makro missed sales plan by R1.9m (0.31%) but finished R26.8m (4.43%) ahead of last year, while margin fell R15.8m (33.26%) short of plan \u2014 a rate problem far larger than the sales shortfall. Western Cape, Eastern Cape and Mpumalanga drove the sales miss, but Gauteng, despite trading R7.6m ahead of plan on sales, was the single largest regional contributor to the margin miss at R8.0m \u2014 a promotional-intensity problem specific to that region. OTD stood at 90.7% for the period, with Omni Operations explicitly prioritising OTD recovery.",
+      "supporting_data_refs": [
+        "sections[1].kpis[0].value",
+        "sections[1].kpis[1].value",
+        "sections[1].kpis[2].value",
+        "sections[5].breakdown.components[6].value",
+        "sections[6].breakdown.components[6].value",
+        "sections[41].kpis[0].value"
+      ]
+    },
+    {
+      "id": "finance_headline",
+      "type": "kpi_strip",
+      "title": "Finance Headline",
+      "kpis": [
+        {
+          "id": "sales_vs_plan",
+          "label": "Total Sales",
+          "value": -1.9,
+          "unit": " Rm",
+          "comparison_label": "vs Plan",
+          "comparison_value": -0.31,
+          "comparison_unit": "%",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "sales_vs_ly",
+          "label": "Total Sales",
+          "value": 26.8,
+          "unit": " Rm",
+          "comparison_label": "vs LY",
+          "comparison_value": 4.43,
+          "comparison_unit": "%",
+          "direction": "favorable"
+        },
+        {
+          "id": "margin_vs_plan",
+          "label": "Total Margin",
+          "value": -15.8,
+          "unit": " Rm",
+          "comparison_label": "vs Plan",
+          "comparison_value": -33.26,
+          "comparison_unit": "%",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "margin_vs_ly",
+          "label": "Total Margin",
+          "value": -6.4,
+          "unit": " Rm",
+          "comparison_label": "vs LY",
+          "comparison_value": -16.7,
+          "comparison_unit": "%",
+          "direction": "unfavorable"
+        }
+      ]
+    },
+    {
+      "id": "divisional_variance",
+      "type": "kpi_strip",
+      "title": "Divisional Sales Variance vs Plan (Weekly) \u2014 individually sourced, does not fully reconcile to total (see provenance note)",
+      "kpis": [
+        {
+          "id": "gm_vs_plan",
+          "label": "General Merchandise",
+          "value": -5.0,
+          "unit": " Rm",
+          "comparison_label": "vs Plan",
+          "comparison_value": -2.93,
+          "comparison_unit": "%",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "food_vs_plan",
+          "label": "Food",
+          "value": -4.9,
+          "unit": " Rm",
+          "comparison_label": "vs Plan",
+          "comparison_value": -1.67,
+          "comparison_unit": "%",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "liquor_vs_plan",
+          "label": "Liquor",
+          "value": 8.7,
+          "unit": " Rm",
+          "comparison_label": "vs Plan",
+          "comparison_value": 5.26,
+          "comparison_unit": "%",
+          "direction": "favorable"
+        }
+      ]
+    },
+    {
+      "id": "dashboard_facts",
+      "type": "executive_facts",
+      "layout_width": "full",
+      "title": "What Happened / Why",
+      "executive_facts": [
+        {
+          "statement": "Western Cape, Eastern Cape and Mpumalanga together drove the national sales miss, while Gauteng, KwaZulu-Natal, Limpopo and Free State all traded ahead of plan.",
+          "supporting_data_refs": [
+            "sections[5].breakdown.components[0].value",
+            "sections[5].breakdown.components[1].value",
+            "sections[5].breakdown.components[2].value"
+          ]
+        },
+        {
+          "statement": "Margin underperformance (R15.8m vs Plan) was roughly eight times the size of the sales miss (R1.9m vs Plan), indicating a margin-rate problem rather than a volume problem this week.",
+          "supporting_data_refs": [
+            "sections[1].kpis[2].value",
+            "sections[1].kpis[0].value"
+          ]
+        },
+        {
+          "statement": "Gauteng traded R7.6m ahead of plan on sales but was the single largest regional contributor to the margin miss at R8.0m \u2014 the clearest sign of margin being traded away for volume.",
+          "supporting_data_refs": [
+            "sections[5].breakdown.components[6].value",
+            "sections[6].breakdown.components[6].value"
+          ]
+        },
+        {
+          "statement": "Liquor was the only division ahead of plan on sales, R8.7m (5.26%) ahead, partially offsetting the Food and General Merchandise shortfalls.",
+          "supporting_data_refs": [
+            "sections[2].kpis[2].value"
+          ]
+        },
+        {
+          "statement": "OTD stood at 90.7% for the period, with Omni Operations explicitly prioritising OTD recovery \u2014 a relevant operational backdrop given the margin pressure from promotional intensity.",
+          "supporting_data_refs": [
+            "sections[41].kpis[0].value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dashboard_bottom",
+      "type": "bottom_insight",
+      "layout_width": "full",
+      "supporting_data_refs": [
+        "sections[1].kpis[2].value",
+        "sections[1].kpis[0].value",
+        "sections[5].breakdown.components[6].value",
+        "sections[6].breakdown.components[6].value"
+      ],
+      "text": "Margin eroded roughly eight times faster than sales missed plan (R15.8m vs R1.9m), and the two problems are geographically different: the sales miss is concentrated in Western Cape, Eastern Cape and Mpumalanga, while the margin miss is led by Gauteng \u2014 a region that is actually ahead of plan on sales."
+    },
+    {
+      "id": "regional_sales",
+      "type": "breakdown_table",
+      "new_page": true,
+      "layout_width": "half",
+      "label_header": "Region",
+      "breakdown": {
+        "id": "regional_sales_variance",
+        "title": "Regional Sales Variance vs Plan",
+        "unit": "R million",
+        "mode": "variance",
+        "tolerance": 0.1,
+        "parent_total": {
+          "label": "Total Sales Variance vs Plan",
+          "value": -1.9
+        },
+        "components": [
+          {
+            "label": "Western Cape",
+            "value": -5.5,
+            "pct_of_parent": -6.89
+          },
+          {
+            "label": "Eastern Cape",
+            "value": -3.8,
+            "pct_of_parent": -11.1
+          },
+          {
+            "label": "Mpumalanga",
+            "value": -3.2,
+            "pct_of_parent": -9.57
+          },
+          {
+            "label": "Free State",
+            "value": 0.022,
+            "pct_of_parent": 0.12
+          },
+          {
+            "label": "Limpopo",
+            "value": 0.336,
+            "pct_of_parent": 1.16
+          },
+          {
+            "label": "KwaZulu-Natal",
+            "value": 2.7,
+            "pct_of_parent": 2.76
+          },
+          {
+            "label": "Gauteng",
+            "value": 7.6,
+            "pct_of_parent": 2.22
+          }
+        ]
+      }
+    },
+    {
+      "id": "regional_margin",
+      "type": "breakdown_table",
+      "layout_width": "half",
+      "label_header": "Region",
+      "breakdown": {
+        "id": "regional_margin_variance",
+        "title": "Regional Margin Variance vs Plan",
+        "unit": "R million",
+        "mode": "variance",
+        "tolerance": 0.1,
+        "parent_total": {
+          "label": "Total Margin Variance vs Plan",
+          "value": -15.8
+        },
+        "components": [
+          {
+            "label": "Western Cape",
+            "value": -2.6,
+            "pct_of_parent": -42.45
+          },
+          {
+            "label": "Eastern Cape",
+            "value": -0.96,
+            "pct_of_parent": -36.97
+          },
+          {
+            "label": "Mpumalanga",
+            "value": -1.0,
+            "pct_of_parent": -39.17
+          },
+          {
+            "label": "Free State",
+            "value": -0.331,
+            "pct_of_parent": -23.85
+          },
+          {
+            "label": "Limpopo",
+            "value": -0.523,
+            "pct_of_parent": -24.72
+          },
+          {
+            "label": "KwaZulu-Natal",
+            "value": -2.4,
+            "pct_of_parent": -35.8
+          },
+          {
+            "label": "Gauteng",
+            "value": -8.0,
+            "pct_of_parent": -30.7
+          }
+        ]
+      }
+    },
+    {
+      "id": "bottom_stores",
+      "type": "ranking",
+      "layout_width": "half",
+      "title": "Bottom 5 Stores vs Plan (Sales)",
+      "rankings": [
+        {
+          "id": "bottom5_stores",
+          "scope_label": "Sales Variance vs Plan (R million)",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Ottery",
+              "value": -4.7,
+              "unit": " Rm"
+            },
+            {
+              "rank": 2,
+              "label": "Crown Mines",
+              "value": -3.3,
+              "unit": " Rm"
+            },
+            {
+              "rank": 3,
+              "label": "Mbombela",
+              "value": -3.2,
+              "unit": " Rm"
+            },
+            {
+              "rank": 4,
+              "label": "Germiston",
+              "value": -2.9,
+              "unit": " Rm"
+            },
+            {
+              "rank": 5,
+              "label": "Gonubie",
+              "value": -2.4,
+              "unit": " Rm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "regional_bar",
+      "type": "bar_chart",
+      "layout_width": "half",
+      "bar_chart": {
+        "id": "regional_sales_chart",
+        "title": "Regional Sales Variance vs Plan",
+        "unit": "",
+        "categories": [
+          "W.Cape",
+          "E.Cape",
+          "Mpuma",
+          "Free St",
+          "Limpopo",
+          "KZN",
+          "Gauteng"
+        ],
+        "values": [
+          -5.5,
+          -3.8,
+          -3.2,
+          0.022,
+          0.336,
+          2.7,
+          7.6
+        ],
+        "annotations": [
+          {
+            "category": "W.Cape",
+            "label": "Largest miss",
+            "emphasis": "peak"
+          },
+          {
+            "category": "Gauteng",
+            "label": "Margin worst",
+            "emphasis": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": "commercial_facts",
+      "type": "executive_facts",
+      "layout_width": "full",
+      "title": "Commercial Executive Facts",
+      "executive_facts": [
+        {
+          "statement": "Western Cape recorded both the largest regional sales miss (R5.5m) and the largest regional margin miss (R2.6m) \u2014 the region needing the most attention this week.",
+          "supporting_data_refs": [
+            "sections[5].breakdown.components[0].value",
+            "sections[6].breakdown.components[0].value"
+          ]
+        },
+        {
+          "statement": "Gauteng and KwaZulu-Natal both traded ahead of plan on sales (R7.6m and R2.7m respectively), yet both were still among the largest margin misses nationally (R8.0m and R2.4m) \u2014 margin pressure is broader than just the regions with a sales problem.",
+          "supporting_data_refs": [
+            "sections[5].breakdown.components[6].value",
+            "sections[5].breakdown.components[5].value",
+            "sections[6].breakdown.components[6].value",
+            "sections[6].breakdown.components[5].value"
+          ]
+        },
+        {
+          "statement": "Ottery was the single worst-performing store nationally (R4.7m vs Plan) and sits within Western Cape, reinforcing that region as the top store-level intervention priority.",
+          "supporting_data_refs": [
+            "sections[7].rankings[0].items[0].value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "divisional_variance_2",
+      "type": "kpi_strip",
+      "new_page": true,
+      "title": "Divisional Sales Variance vs Plan (Weekly)",
+      "kpis": [
+        {
+          "id": "gm_vs_plan_2",
+          "label": "General Merchandise",
+          "value": -5.0,
+          "unit": " Rm",
+          "comparison_label": "vs Plan",
+          "comparison_value": -2.93,
+          "comparison_unit": "%",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "food_vs_plan_2",
+          "label": "Food",
+          "value": -4.9,
+          "unit": " Rm",
+          "comparison_label": "vs Plan",
+          "comparison_value": -1.67,
+          "comparison_unit": "%",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "liquor_vs_plan_2",
+          "label": "Liquor",
+          "value": 8.7,
+          "unit": " Rm",
+          "comparison_label": "vs Plan",
+          "comparison_value": 5.26,
+          "comparison_unit": "%",
+          "direction": "favorable"
+        }
+      ]
+    },
+    {
+      "id": "gm_drivers",
+      "type": "ranking",
+      "layout_width": "half",
+      "title": "General Merchandise \u2014 Top 5 Category Drivers (vs Plan)",
+      "rankings": [
+        {
+          "id": "gm_driver_ranking",
+          "scope_label": "Sales Variance (R million)",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Home Maintenance",
+              "value": -2.0,
+              "unit": " Rm"
+            },
+            {
+              "rank": 2,
+              "label": "Stationery",
+              "value": -1.9,
+              "unit": " Rm"
+            },
+            {
+              "rank": 3,
+              "label": "Homewares",
+              "value": -1.7,
+              "unit": " Rm"
+            },
+            {
+              "rank": 4,
+              "label": "Outdoor",
+              "value": -1.3,
+              "unit": " Rm"
+            },
+            {
+              "rank": 5,
+              "label": "Home Appliances",
+              "value": -0.75,
+              "unit": " Rm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "food_drivers",
+      "type": "ranking",
+      "layout_width": "half",
+      "title": "Food \u2014 Top 5 Category Drivers (vs Plan)",
+      "rankings": [
+        {
+          "id": "food_driver_ranking",
+          "scope_label": "Sales Variance (R million)",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Commodities",
+              "value": -6.1,
+              "unit": " Rm"
+            },
+            {
+              "rank": 2,
+              "label": "Confectionery",
+              "value": -5.4,
+              "unit": " Rm"
+            },
+            {
+              "rank": 3,
+              "label": "Non-Edible Groceries",
+              "value": -2.3,
+              "unit": " Rm"
+            },
+            {
+              "rank": 4,
+              "label": "Hot Beverages",
+              "value": -1.7,
+              "unit": " Rm"
+            },
+            {
+              "rank": 5,
+              "label": "Toiletries",
+              "value": -0.475,
+              "unit": " Rm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "food_margin_drivers",
+      "type": "ranking",
+      "layout_width": "half",
+      "title": "Food \u2014 Top 5 Margin Miss Contributors (vs Plan)",
+      "rankings": [
+        {
+          "id": "food_margin_ranking",
+          "scope_label": "Margin Variance (R million)",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Non-Edible Groceries",
+              "value": -2.0,
+              "unit": " Rm"
+            },
+            {
+              "rank": 2,
+              "label": "Hot Beverages",
+              "value": -1.9,
+              "unit": " Rm"
+            },
+            {
+              "rank": 3,
+              "label": "Perishables",
+              "value": -1.8,
+              "unit": " Rm"
+            },
+            {
+              "rank": 4,
+              "label": "Edible Groceries",
+              "value": -1.5,
+              "unit": " Rm"
+            },
+            {
+              "rank": 5,
+              "label": "Cold Beverages",
+              "value": -1.5,
+              "unit": " Rm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "category_facts",
+      "type": "executive_facts",
+      "layout_width": "half",
+      "title": "Category Executive Facts",
+      "executive_facts": [
+        {
+          "statement": "Home Maintenance and Stationery both missed sales plan by wide margins (R2.0m and R1.9m) but their margins were actually ahead of plan \u2014 General Merchandise is protecting margin at the expense of volume in these categories, the opposite pattern to Gauteng's region-wide problem.",
+          "supporting_data_refs": [
+            "sections[11].rankings[0].items[0].value",
+            "sections[11].rankings[0].items[1].value"
+          ]
+        },
+        {
+          "statement": "Commodities was Food's single largest category drag (R6.1m below plan) despite carrying a margin surplus \u2014 this miss is pure volume, not a price or promotion problem.",
+          "supporting_data_refs": [
+            "sections[12].rankings[0].items[0].value"
+          ]
+        },
+        {
+          "statement": "Non-Edible Groceries and Hot Beverages appear on both Food's sales-driver and margin-driver top-5 lists, making them the two categories most responsible for compounding both problems at once.",
+          "supporting_data_refs": [
+            "sections[12].rankings[0].items[2].value",
+            "sections[13].rankings[0].items[0].value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wc_kpi",
+      "type": "kpi_strip",
+      "new_page": true,
+      "title": "Western Cape \u2014 Region Overview",
+      "kpis": [
+        {
+          "id": "wc_sales",
+          "label": "Region Sales",
+          "value": -5.5,
+          "unit": " Rm",
+          "comparison_label": "vs Plan",
+          "comparison_value": -6.89,
+          "comparison_unit": "%",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "wc_margin",
+          "label": "Region Margin",
+          "value": -2.6,
+          "unit": " Rm",
+          "comparison_label": "vs Plan",
+          "comparison_value": -42.45,
+          "comparison_unit": "%",
+          "direction": "unfavorable"
+        }
+      ]
+    },
+    {
+      "id": "wc_div",
+      "type": "breakdown_table",
+      "layout_width": "half",
+      "label_header": "Division",
+      "breakdown": {
+        "id": "wc_div_split",
+        "title": "Western Cape \u2014 Divisional Split vs Plan",
+        "unit": "R million",
+        "mode": "variance",
+        "tolerance": 0.1,
+        "parent_total": {
+          "label": "Western Cape Total Sales Variance",
+          "value": -5.5
+        },
+        "components": [
+          {
+            "label": "Food",
+            "value": -5.3,
+            "pct_of_parent": -13.85
+          },
+          {
+            "label": "General Merchandise",
+            "value": -2.8,
+            "pct_of_parent": -11.78
+          },
+          {
+            "label": "Liquor",
+            "value": 2.6,
+            "pct_of_parent": 14.36
+          }
+        ]
+      }
+    },
+    {
+      "id": "wc_stores",
+      "type": "ranking",
+      "layout_width": "half",
+      "title": "Western Cape \u2014 Store Performance vs Plan",
+      "rankings": [
+        {
+          "id": "wc_store_ranking",
+          "scope_label": "Sales Variance (R million)",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Ottery",
+              "value": -4.7,
+              "unit": " Rm"
+            },
+            {
+              "rank": 2,
+              "label": "Montague Gardens",
+              "value": -0.508,
+              "unit": " Rm"
+            },
+            {
+              "rank": 3,
+              "label": "Cape Gate",
+              "value": -0.364,
+              "unit": " Rm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wc_groups",
+      "type": "ranking",
+      "layout_width": "half",
+      "title": "Western Cape \u2014 Bottom 5 Group Deficit (R6.2m, 112.82% of region's sales miss)",
+      "rankings": [
+        {
+          "id": "wc_group_ranking",
+          "scope_label": "Group (top SKU driver) \u2014 Sales Variance (R million)",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Home Appliances (Bennett Read 8Kg Condenser Dryer)",
+              "value": -2.3,
+              "unit": " Rm"
+            },
+            {
+              "rank": 2,
+              "label": "Commodities (Illovo White Sugar 2.5kg)",
+              "value": -2.0,
+              "unit": " Rm"
+            },
+            {
+              "rank": 3,
+              "label": "Hot Beverages (Nescafe Ricoffy 1.5kg)",
+              "value": -1.0,
+              "unit": " Rm"
+            },
+            {
+              "rank": 4,
+              "label": "Confectionery (Nestle Tex Large 40g)",
+              "value": -0.506,
+              "unit": " Rm"
+            },
+            {
+              "rank": 5,
+              "label": "Perishables (Rainbow IQF Mixed Portions 2kg)",
+              "value": -0.399,
+              "unit": " Rm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wc_articles",
+      "type": "ranking",
+      "layout_width": "half",
+      "title": "Western Cape \u2014 Bottom 5 Article Deficit vs LY (R3m combined)",
+      "rankings": [
+        {
+          "id": "wc_article_ranking",
+          "scope_label": "Article \u2014 Sales Variance vs LY (R million)",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Nescafe Ricoffy 1.5kg",
+              "value": -0.726,
+              "unit": " Rm"
+            },
+            {
+              "rank": 2,
+              "label": "Coca-Cola Returnable Plastic 1.5lt",
+              "value": -0.664,
+              "unit": " Rm"
+            },
+            {
+              "rank": 3,
+              "label": "Monster Energy Drink 500ml",
+              "value": -0.599,
+              "unit": " Rm"
+            },
+            {
+              "rank": 4,
+              "label": "Rainbow IQF Mixed Portions 2kg",
+              "value": -0.544,
+              "unit": " Rm"
+            },
+            {
+              "rank": 5,
+              "label": "Illovo White Sugar 2.5kg",
+              "value": -0.484,
+              "unit": " Rm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wc_facts",
+      "type": "executive_facts",
+      "layout_width": "full",
+      "title": "Western Cape Executive Facts",
+      "executive_facts": [
+        {
+          "statement": "Liquor was Western Cape's only division ahead of plan (+R2.6m); Food alone (-R5.3m) accounted for nearly all of the region's miss.",
+          "supporting_data_refs": [
+            "sections[16].breakdown.components[2].value",
+            "sections[16].breakdown.components[0].value"
+          ]
+        },
+        {
+          "statement": "A single SKU, the Bennett Read 8Kg Condenser Dryer, was the top driver behind Home Appliances' R2.3m miss \u2014 the region's single largest category deficit, suggesting a stock or listing issue worth checking directly rather than a broad demand problem.",
+          "supporting_data_refs": [
+            "sections[18].rankings[0].items[0].value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ec_kpi",
+      "type": "kpi_strip",
+      "new_page": true,
+      "title": "Eastern Cape \u2014 Region Overview",
+      "kpis": [
+        {
+          "id": "ec_sales",
+          "label": "Region Sales",
+          "value": -3.8,
+          "unit": " Rm",
+          "comparison_label": "vs Plan",
+          "comparison_value": -11.1,
+          "comparison_unit": "%",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "ec_margin",
+          "label": "Region Margin",
+          "value": -0.96,
+          "unit": " Rm",
+          "comparison_label": "vs Plan",
+          "comparison_value": -36.97,
+          "comparison_unit": "%",
+          "direction": "unfavorable"
+        }
+      ]
+    },
+    {
+      "id": "ec_div",
+      "type": "breakdown_table",
+      "layout_width": "half",
+      "label_header": "Division",
+      "breakdown": {
+        "id": "ec_div_split",
+        "title": "Eastern Cape \u2014 Divisional Split vs Plan",
+        "unit": "R million",
+        "mode": "variance",
+        "tolerance": 0.1,
+        "parent_total": {
+          "label": "Eastern Cape Total Sales Variance",
+          "value": -3.8
+        },
+        "components": [
+          {
+            "label": "Food",
+            "value": -3.4,
+            "pct_of_parent": -20.21
+          },
+          {
+            "label": "General Merchandise",
+            "value": -0.458,
+            "pct_of_parent": -4.57
+          },
+          {
+            "label": "Liquor",
+            "value": 0.075,
+            "pct_of_parent": 1.11
+          }
+        ]
+      }
+    },
+    {
+      "id": "ec_stores",
+      "type": "ranking",
+      "layout_width": "half",
+      "title": "Eastern Cape \u2014 Store Performance vs Plan",
+      "rankings": [
+        {
+          "id": "ec_store_ranking",
+          "scope_label": "Sales Variance (R million)",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Gonubie",
+              "value": -2.4,
+              "unit": " Rm"
+            },
+            {
+              "rank": 2,
+              "label": "Gqeberha",
+              "value": -1.4,
+              "unit": " Rm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ec_groups",
+      "type": "ranking",
+      "layout_width": "half",
+      "title": "Eastern Cape \u2014 Bottom 5 Group Deficit (R3.8m, 99.68% of region's sales miss)",
+      "rankings": [
+        {
+          "id": "ec_group_ranking",
+          "scope_label": "Group (top SKU driver) \u2014 Sales Variance (R million)",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Commodities (Illovo White Sugar 2.5kg)",
+              "value": -1.1,
+              "unit": " Rm"
+            },
+            {
+              "rank": 2,
+              "label": "Cold Beverages (Coca Cola Bottle 300ml)",
+              "value": -0.763,
+              "unit": " Rm"
+            },
+            {
+              "rank": 3,
+              "label": "Wines (Sedgwicks Old Brown 750ml)",
+              "value": -0.759,
+              "unit": " Rm"
+            },
+            {
+              "rank": 4,
+              "label": "Confectionery (Nestle Kit Kat 2 Finger 20g)",
+              "value": -0.686,
+              "unit": " Rm"
+            },
+            {
+              "rank": 5,
+              "label": "Edible Groceries (Lucky Star Pilchards 400g)",
+              "value": -0.48,
+              "unit": " Rm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ec_articles",
+      "type": "ranking",
+      "layout_width": "half",
+      "title": "Eastern Cape \u2014 Bottom 5 Article Deficit vs LY (R1.3m combined)",
+      "rankings": [
+        {
+          "id": "ec_article_ranking",
+          "scope_label": "Article \u2014 Sales Variance vs LY (R million)",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Coca Cola Bottle 300ml",
+              "value": -0.522,
+              "unit": " Rm"
+            },
+            {
+              "rank": 2,
+              "label": "Illovo White Sugar 2.5kg",
+              "value": -0.23,
+              "unit": " Rm"
+            },
+            {
+              "rank": 3,
+              "label": "Sedgwicks Old Brown 750ml",
+              "value": -0.224,
+              "unit": " Rm"
+            },
+            {
+              "rank": 4,
+              "label": "Econo Sugar White 10kg",
+              "value": -0.191,
+              "unit": " Rm"
+            },
+            {
+              "rank": 5,
+              "label": "Klipdrift Export Brandy 750ml",
+              "value": -0.162,
+              "unit": " Rm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ec_facts",
+      "type": "executive_facts",
+      "layout_width": "full",
+      "title": "Eastern Cape Executive Facts",
+      "executive_facts": [
+        {
+          "statement": "Food (-R3.4m) was responsible for the large majority of Eastern Cape's R3.8m miss, with General Merchandise a much smaller contributor (-R0.46m) and Liquor slightly ahead of plan.",
+          "supporting_data_refs": [
+            "sections[22].breakdown.components[0].value",
+            "sections[22].breakdown.components[1].value"
+          ]
+        },
+        {
+          "statement": "Gonubie and Gqeberha were the only two stores flagged in Eastern Cape, with Gonubie's miss (-R2.4m) alone accounting for nearly two-thirds of the region's total.",
+          "supporting_data_refs": [
+            "sections[23].rankings[0].items[0].value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mp_kpi",
+      "type": "kpi_strip",
+      "new_page": true,
+      "title": "Mpumalanga \u2014 Region Overview",
+      "kpis": [
+        {
+          "id": "mp_sales",
+          "label": "Region Sales",
+          "value": -3.2,
+          "unit": " Rm",
+          "comparison_label": "vs Plan",
+          "comparison_value": -9.57,
+          "comparison_unit": "%",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "mp_margin",
+          "label": "Region Margin",
+          "value": -1.0,
+          "unit": " Rm",
+          "comparison_label": "vs Plan",
+          "comparison_value": -39.17,
+          "comparison_unit": "%",
+          "direction": "unfavorable"
+        }
+      ]
+    },
+    {
+      "id": "mp_div",
+      "type": "breakdown_table",
+      "layout_width": "half",
+      "label_header": "Division",
+      "breakdown": {
+        "id": "mp_div_split",
+        "title": "Mpumalanga \u2014 Divisional Split vs Plan",
+        "unit": "R million",
+        "mode": "variance",
+        "tolerance": 0.1,
+        "parent_total": {
+          "label": "Mpumalanga Total Sales Variance",
+          "value": -3.2
+        },
+        "components": [
+          {
+            "label": "Food",
+            "value": -1.8,
+            "pct_of_parent": -12.49
+          },
+          {
+            "label": "General Merchandise",
+            "value": -1.2,
+            "pct_of_parent": -14.41
+          },
+          {
+            "label": "Liquor",
+            "value": -0.142,
+            "pct_of_parent": -1.4
+          }
+        ]
+      }
+    },
+    {
+      "id": "mp_stores",
+      "type": "ranking",
+      "layout_width": "half",
+      "title": "Mpumalanga \u2014 Store Performance vs Plan",
+      "rankings": [
+        {
+          "id": "mp_store_ranking",
+          "scope_label": "Sales Variance (R million)",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Mbombela",
+              "value": -3.2,
+              "unit": " Rm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mp_groups",
+      "type": "ranking",
+      "layout_width": "half",
+      "title": "Mpumalanga \u2014 Bottom 5 Group Deficit (R2.3m, 72.34% of region's sales miss)",
+      "rankings": [
+        {
+          "id": "mp_group_ranking",
+          "scope_label": "Group (top SKU driver) \u2014 Sales Variance (R million)",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Confectionery (Simba Niknak Balers 20gx50 Cheese)",
+              "value": -0.576,
+              "unit": " Rm"
+            },
+            {
+              "rank": 2,
+              "label": "Beer (Carling Black Label Quart 750ml)",
+              "value": -0.52,
+              "unit": " Rm"
+            },
+            {
+              "rank": 3,
+              "label": "Home Appliances (Defy 247L Bottom Fridge Freezer)",
+              "value": -0.494,
+              "unit": " Rm"
+            },
+            {
+              "rank": 4,
+              "label": "Perishables (M Long-Life Milk 1lt Full Cream)",
+              "value": -0.388,
+              "unit": " Rm"
+            },
+            {
+              "rank": 5,
+              "label": "Commodities (Tastic Rice 10kg)",
+              "value": -0.337,
+              "unit": " Rm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mp_articles",
+      "type": "ranking",
+      "layout_width": "half",
+      "title": "Mpumalanga \u2014 Bottom 5 Article Deficit vs LY (R1m combined)",
+      "rankings": [
+        {
+          "id": "mp_article_ranking",
+          "scope_label": "Article \u2014 Sales Variance vs LY (R million)",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Carling Black Label Quart 750ml",
+              "value": -0.239,
+              "unit": " Rm"
+            },
+            {
+              "rank": 2,
+              "label": "Typek Office Paper A4 80GSM",
+              "value": -0.228,
+              "unit": " Rm"
+            },
+            {
+              "rank": 3,
+              "label": "Samsung 55\" Smart QLED TV",
+              "value": -0.209,
+              "unit": " Rm"
+            },
+            {
+              "rank": 4,
+              "label": "Simba Niknak Balers 20gx50 Cheese",
+              "value": -0.185,
+              "unit": " Rm"
+            },
+            {
+              "rank": 5,
+              "label": "Castle Milk Stout Quart 750ml",
+              "value": -0.169,
+              "unit": " Rm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mp_facts",
+      "type": "executive_facts",
+      "layout_width": "full",
+      "title": "Mpumalanga Executive Facts",
+      "executive_facts": [
+        {
+          "statement": "Mpumalanga is the only region of the three underperformers where every division \u2014 Food, General Merchandise and Liquor \u2014 missed plan, rather than one division offsetting another.",
+          "supporting_data_refs": [
+            "sections[28].breakdown.components[0].value",
+            "sections[28].breakdown.components[1].value",
+            "sections[28].breakdown.components[2].value"
+          ]
+        },
+        {
+          "statement": "Mbombela is Mpumalanga's only trading store, so the region's entire R3.2m miss is a single-store problem, not a spread-out regional one.",
+          "supporting_data_refs": [
+            "sections[27].kpis[0].value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "five_day_kpi",
+      "type": "kpi_strip",
+      "new_page": true,
+      "title": "5-Day Trading (1\u20135 Jul) vs Last Year",
+      "kpis": [
+        {
+          "id": "five_day_sales_ly",
+          "label": "5-Day Sales",
+          "value": 47.5,
+          "unit": " Rm",
+          "comparison_label": "vs LY",
+          "comparison_value": 10.8,
+          "comparison_unit": "%",
+          "direction": "favorable"
+        },
+        {
+          "id": "five_day_margin_ly",
+          "label": "5-Day Margin",
+          "value": -2.9,
+          "unit": " Rm",
+          "comparison_label": "vs LY",
+          "comparison_value": -10.68,
+          "comparison_unit": "%",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "five_day_food_ly",
+          "label": "Food Growth",
+          "value": 20.4,
+          "unit": " Rm",
+          "comparison_label": "vs LY",
+          "comparison_value": 10.37,
+          "comparison_unit": "%",
+          "direction": "favorable"
+        },
+        {
+          "id": "five_day_liquor_ly",
+          "label": "Liquor Growth",
+          "value": 18.1,
+          "unit": " Rm",
+          "comparison_label": "vs LY",
+          "comparison_value": 14.93,
+          "comparison_unit": "%",
+          "direction": "favorable"
+        },
+        {
+          "id": "five_day_gm_ly",
+          "label": "GM Growth",
+          "value": 8.4,
+          "unit": " Rm",
+          "comparison_label": "vs LY",
+          "comparison_value": 7.15,
+          "comparison_unit": "%",
+          "direction": "favorable"
+        }
+      ]
+    },
+    {
+      "id": "five_day_margin_div",
+      "type": "breakdown_table",
+      "layout_width": "half",
+      "label_header": "Division",
+      "breakdown": {
+        "id": "five_day_margin_split",
+        "title": "5-Day Margin Variance vs LY by Division",
+        "unit": "R million",
+        "mode": "variance",
+        "tolerance": 0.1,
+        "parent_total": {
+          "label": "Total 5-Day Margin Variance vs LY",
+          "value": -2.9
+        },
+        "components": [
+          {
+            "label": "Food",
+            "value": -1.8,
+            "pct_of_parent": -28.16
+          },
+          {
+            "label": "Liquor",
+            "value": -1.5,
+            "pct_of_parent": -36.55
+          },
+          {
+            "label": "General Merchandise",
+            "value": 0.36,
+            "pct_of_parent": 2.19
+          }
+        ]
+      }
+    },
+    {
+      "id": "stores_below_ly",
+      "type": "ranking",
+      "layout_width": "half",
+      "title": "Stores Below Last Year (5-Day Period)",
+      "rankings": [
+        {
+          "id": "stores_below_ly_ranking",
+          "scope_label": "Sales Variance vs LY (R million)",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Ottery",
+              "value": -2.7,
+              "unit": " Rm"
+            },
+            {
+              "rank": 2,
+              "label": "Mbombela",
+              "value": -1.5,
+              "unit": " Rm"
+            },
+            {
+              "rank": 3,
+              "label": "Germiston",
+              "value": -0.084,
+              "unit": " Rm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "food_growth_drivers",
+      "type": "ranking",
+      "layout_width": "half",
+      "title": "Food \u2014 Top 5 Growth Drivers vs LY (5-Day)",
+      "rankings": [
+        {
+          "id": "food_growth_ranking",
+          "scope_label": "Sales Growth vs LY (R million)",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Cold Beverages",
+              "value": 7.5,
+              "unit": " Rm"
+            },
+            {
+              "rank": 2,
+              "label": "Edible Groceries",
+              "value": 4.0,
+              "unit": " Rm"
+            },
+            {
+              "rank": 3,
+              "label": "Perishables",
+              "value": 3.5,
+              "unit": " Rm"
+            },
+            {
+              "rank": 4,
+              "label": "Tobacco",
+              "value": 2.0,
+              "unit": " Rm"
+            },
+            {
+              "rank": 5,
+              "label": "Toiletries",
+              "value": 1.2,
+              "unit": " Rm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gm_growth_drivers",
+      "type": "ranking",
+      "layout_width": "half",
+      "title": "General Merchandise \u2014 Top 5 Growth Drivers vs LY (5-Day)",
+      "rankings": [
+        {
+          "id": "gm_growth_ranking",
+          "scope_label": "Sales Growth vs LY (R million)",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Home Appliances",
+              "value": 3.5,
+              "unit": " Rm"
+            },
+            {
+              "rank": 2,
+              "label": "Home Entertainment",
+              "value": 3.5,
+              "unit": " Rm"
+            },
+            {
+              "rank": 3,
+              "label": "Multimedia",
+              "value": 1.9,
+              "unit": " Rm"
+            },
+            {
+              "rank": 4,
+              "label": "Furniture",
+              "value": 0.787,
+              "unit": " Rm"
+            },
+            {
+              "rank": 5,
+              "label": "Sports",
+              "value": 0.526,
+              "unit": " Rm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "five_day_facts",
+      "type": "executive_facts",
+      "layout_width": "full",
+      "title": "5-Day Trading Executive Facts",
+      "executive_facts": [
+        {
+          "statement": "The 5-day trading period (1\u20135 July) mirrors the weekly pattern exactly: sales R47.5m (10.80%) ahead of last year across all three divisions, but margin fell R2.9m (10.68%) behind LY over the same period \u2014 this is a structural pattern, not a one-week anomaly.",
+          "supporting_data_refs": [
+            "sections[33].kpis[0].value",
+            "sections[33].kpis[1].value"
+          ]
+        },
+        {
+          "statement": "General Merchandise was the only division with margin ahead of LY (+R0.36m) over the 5-day period, while Food and Liquor margin both fell behind \u2014 consistent with the weekly result where GM protected margin better than the other two divisions.",
+          "supporting_data_refs": [
+            "sections[34].breakdown.components[2].value"
+          ]
+        },
+        {
+          "statement": "Only 3 stores traded below last year over the 5-day period \u2014 Ottery, Mbombela and Germiston \u2014 the same stores already flagged as this week's weakest performers vs Plan, reinforcing they need attention beyond just this week.",
+          "supporting_data_refs": [
+            "sections[35].rankings[0].items[0].value",
+            "sections[35].rankings[0].items[1].value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "customer_themes",
+      "type": "custom_html",
+      "new_page": true,
+      "layout_width": "half",
+      "title": "Customer Feedback Themes",
+      "text": "<ul style=\"margin:0;padding-left:18px;font-size:13px;line-height:1.6;\"><li><strong>Shopping experience</strong> \u2014 layout, navigation, parking, trolley condition, aisle congestion.</li><li><strong>Staff availability</strong> \u2014 customers want more visible, faster, more knowledgeable staff at peak times.</li><li><strong>Pricing</strong> \u2014 requests for lower prices, more promotions, clearer promotional communication, reward points.</li><li><strong>Stock availability</strong> \u2014 broader ranges, fuller shelves, better replenishment to reduce out-of-stocks.</li><li><strong>Checkout &amp; queues</strong> \u2014 more tills open, faster checkout, more self-checkout at peak times.</li></ul>"
+    },
+    {
+      "id": "associate",
+      "type": "kpi_strip",
+      "title": "Associate / Workforce",
+      "kpis": [
+        {
+          "id": "total_vacancies",
+          "label": "Total Vacancies",
+          "value": 127,
+          "unit": "",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "critical_vacancies",
+          "label": "Critical Vacancies",
+          "value": 104,
+          "unit": "",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "management_vacancies",
+          "label": "Management Vacancies",
+          "value": 51,
+          "unit": "",
+          "direction": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "key_priorities",
+      "type": "kpi_strip",
+      "title": "Key Priorities \u2014 E2E Omni Experience",
+      "kpis": [
+        {
+          "id": "otd",
+          "label": "OTD",
+          "value": 90.7,
+          "unit": "%",
+          "direction": "neutral"
+        },
+        {
+          "id": "nps",
+          "label": "NPS",
+          "value": 88,
+          "unit": "%",
+          "direction": "neutral"
+        },
+        {
+          "id": "csat",
+          "label": "CSAT",
+          "value": 4.84,
+          "unit": "",
+          "direction": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "support_ops",
+      "type": "custom_html",
+      "layout_width": "full",
+      "title": "Support Needed & Operations Focus",
+      "text": "<div style=\"display:flex;gap:32px;font-size:13px;line-height:1.6;\"><div><strong>Support needed:</strong><ul style=\"margin:6px 0 0;padding-left:18px;\"><li>Food trade/commercial deals</li><li>Accounting for the Food margin deficit</li><li>General Merchandise BP drive</li></ul></div><div><strong>Operations focus:</strong><ul style=\"margin:6px 0 0;padding-left:18px;\"><li>Back to basics</li><li>Promotional execution \u2014 \u201cMega Savings\u201d</li></ul></div></div>"
+    },
+    {
+      "id": "final_bottom",
+      "type": "bottom_insight",
+      "layout_width": "full",
+      "supporting_data_refs": [
+        "sections[5].breakdown.components[6].value",
+        "sections[6].breakdown.components[6].value"
+      ],
+      "text": "Sales recovery and margin recovery need two different regional interventions: the sales miss is concentrated in Western Cape (R5.5m), Eastern Cape (R3.8m) and Mpumalanga (R3.2m), while Gauteng \u2014 already R7.6m ahead of plan on sales \u2014 is independently the single largest driver of the margin miss at R8.0m."
+    }
+  ],
+  "provenance": {
+    "source_files": [
+      "Banner_W27.docx"
+    ],
+    "extraction_notes": "Expanded, function-organized version covering Executive Dashboard, Commercial/Regional Performance, Divisional & Category Drivers, dedicated deep-dive pages for the three underperforming regions (Western Cape, Eastern Cape, Mpumalanga) with group- and SKU-level detail, 5-Day Trading Momentum, Customer & People, and Operations & Priorities. Regions trading ahead of plan (Free State, Limpopo, KwaZulu-Natal, Gauteng) are represented at summary level (regional sales/margin tables, bar chart) rather than with dedicated deep-dive pages, since the source document does not provide group/article-level detail for them and dedicating full pages to on-plan regions would not be a proportionate use of executive attention. Real Estate, Governance/Risk/Compliance, and Commercial Planning sections in the source document were empty placeholder headers with no content supplied, so nothing was extracted for them. The divisional (Food/Liquor/GM) headline variance vs Plan and vs LY does NOT reconcile to the stated company totals in the source commentary itself (a R0.7m and R0.6m gap respectively, most likely BP fuel/wholesale-only trade not broken out here) and is presented as individually-sourced KPIs, not a reconciled breakdown, per the reconciliation-first rule. By contrast, the regional sales breakdown, regional margin breakdown, each underperforming region's own divisional split, and the 5-day margin-by-division breakdown all reconcile cleanly to their stated totals and are presented as validated breakdown tables.",
+    "unresolved_flags": []
+  }
+}

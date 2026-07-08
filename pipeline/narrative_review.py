@@ -25,10 +25,13 @@ from pathlib import Path
 DUPLICATE_THRESHOLD = 0.6
 
 INTERPRETIVE_MARKERS = [
-    "because", "driven by", "indicat", "suggest", "point", "signal", "reflect",
+    "because", "driven by", "drove", "indicat", "suggest", "point", "signal", "reflect",
     "concentrat", "rather than", "which means", "risk", "pressure", "recover",
     "pattern", "problem", "opportunit", "requir", "consider", "should",
-    "recommend", "underperform", "outpac", "divergence",
+    "recommend", "underperform", "outpac", "divergence", "single largest",
+    "accounted for", "responsible for", "reinforc", "attention", "priorit",
+    "consistent with", "offsett", "protect", "worth checking", "nearly all",
+    "nearly two-thirds", "clearest sign",
 ]
 
 

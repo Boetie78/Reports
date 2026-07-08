@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "executive_qa.schema.json",
+  "title": "MEIP Executive QA Review",
+  "description": "Challenges decision-plan placements before report publication by checking evidence strength, confidence, wording risk, ownership and actionability.",
+  "type": "object",
+  "required": ["qa_meta", "reviews"],
+  "additionalProperties": false,
+  "properties": {
+    "qa_meta": {
+      "type": "object",
+      "required": ["source_decision_plan", "source_report_title", "source_report_type"],
+      "additionalProperties": false,
+      "properties": {
+        "source_decision_plan": {"type": "string"},
+        "source_report_title": {"type": "string"},
+        "source_report_type": {"type": "string"}
+      }
+    },
+    "reviews": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["executive_object_id", "title", "status", "risk_level", "checks", "recommendation"],
+        "additionalProperties": false,
+        "properties": {
+          "executive_object_id": {"type": "string"},
+          "title": {"type": "string"},
+          "status": {"type": "string", "enum": ["Approved", "Revise", "Hold"]},
+          "risk_level": {"type": "string", "enum": ["Low", "Medium", "High"]},
+          "checks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["name", "passed", "message"],
+              "additionalProperties": false,
+              "properties": {
+                "name": {"type": "string"},
+                "passed": {"type": "boolean"},
+                "message": {"type": "string"}
+              }
+            }
+          },
+          "recommendation": {"type": "string"}
+        }
+      }
+    }
+  }
+}

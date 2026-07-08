@@ -1,0 +1,34 @@
+report_type: otd_daily_impact
+name: OTD / Final Mile Performance
+primary_kpis:
+  - OTD
+  - On Time Delivery
+  - SLA
+  - Late Orders
+executive_thresholds:
+  otd_target_pct: 95
+  concentration_watch_pct: 35
+  concentration_critical_pct: 50
+  executive_score_page_one: 70
+preferred_visuals:
+  target_miss: Hero KPI
+  daily_impact: Bar Chart
+  driver_breakdown: Driver Breakdown
+  external_event: Risk Callout
+standard_questions:
+  - Is OTD below the 95% target?
+  - Which day contributed the most late orders?
+  - Which courier or store is the largest driver?
+  - Is the issue event-driven or operationally controllable?
+  - Has recovery been proven in the next cycle?
+  - Who owns the action?
+ownership_defaults:
+  courier: Final Mile / Courier Management
+  store_operations: Regional Operations
+  system: Technology / IT
+  digital_ops: Digital Operations
+language_rules:
+  - Do not call an external event the cause unless source evidence proves causality.
+  - Use linked to or associated with when causality is not proven.
+  - Do not excuse missed OTD; separate explanation from recovery action.
+  - Always compare OTD to the 95% executive threshold when supplied.

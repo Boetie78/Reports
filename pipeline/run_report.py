@@ -13,6 +13,7 @@ Default flow:
   6. intelligence/audit_analysis.py
   7. intelligence/export_analysis.py
   8. intelligence/prioritisation_engine.py
+  9. intelligence/decision_engine.py
 
 Optional flags can also render and/or export a Markdown blueprint after all gates
 pass.
@@ -43,6 +44,7 @@ def main() -> int:
     parser.add_argument("--blueprint", action="store_true", help="Export Markdown blueprint after all gates pass")
     parser.add_argument("--no-analysis-md", action="store_true", help="Skip human-readable executive analysis Markdown export")
     parser.add_argument("--no-prioritisation", action="store_true", help="Skip executive object prioritisation")
+    parser.add_argument("--no-decision", action="store_true", help="Skip decision plan generation")
     parser.add_argument("--strict-narrative", action="store_true", help="Make narrative_review.py warnings fail the run")
     args = parser.parse_args()
 
@@ -52,6 +54,7 @@ def main() -> int:
 
     analysis_path = ROOT / "output" / f"{report_brief.stem}_executive_analysis.json"
     prioritised_path = ROOT / "output" / f"{report_brief.stem}_prioritised_analysis.json"
+    decision_path = ROOT / "output" / f"{report_brief.stem}_decision_plan.json"
 
     py = sys.executable
     run_step("Validate report brief", [py, "pipeline/validate.py", str(report_brief)])
@@ -70,12 +73,14 @@ def main() -> int:
         run_step("Export executive analysis review pack", [py, "intelligence/export_analysis.py", str(analysis_path)])
     if not args.no_prioritisation:
         run_step("Prioritise executive decision objects", [py, "intelligence/prioritisation_engine.py", str(analysis_path), "--output", str(prioritised_path)])
+        if not args.no_decision:
+            run_step("Create executive decision plan", [py, "intelligence/decision_engine.py", str(prioritised_path), "--output", str(decision_path)])
     if args.render:
         run_step("Render report", [py, "pipeline/render.py", str(report_brief)])
     if args.blueprint:
         run_step("Export blueprint", [py, "pipeline/blueprint.py", str(report_brief)])
 
-    print("\nMEIP PIPELINE PASSED — report is validated, cited, analysed, prioritised and ready for executive use.")
+    print("\nMEIP PIPELINE PASSED — report is validated, cited, analysed, prioritised and decisioned for executive use.")
     return 0
 
 

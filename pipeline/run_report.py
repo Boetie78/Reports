@@ -11,6 +11,7 @@ Default flow:
   4. intelligence/analyse.py
   5. intelligence/validate_analysis.py
   6. intelligence/audit_analysis.py
+  7. intelligence/export_analysis.py
 
 Optional flags can also render and/or export a Markdown blueprint after all gates
 pass.
@@ -39,6 +40,7 @@ def main() -> int:
     parser.add_argument("report_brief", type=Path, help="Path to report_brief.json")
     parser.add_argument("--render", action="store_true", help="Render PDF/PNG after all validation and intelligence gates pass")
     parser.add_argument("--blueprint", action="store_true", help="Export Markdown blueprint after all gates pass")
+    parser.add_argument("--no-analysis-md", action="store_true", help="Skip human-readable executive analysis Markdown export")
     parser.add_argument("--strict-narrative", action="store_true", help="Make narrative_review.py warnings fail the run")
     args = parser.parse_args()
 
@@ -61,6 +63,8 @@ def main() -> int:
     run_step("Validate executive analysis schema", [py, "intelligence/validate_analysis.py", str(analysis_path)])
     run_step("Audit executive analysis traceability", [py, "intelligence/audit_analysis.py", str(report_brief), str(analysis_path)])
 
+    if not args.no_analysis_md:
+        run_step("Export executive analysis review pack", [py, "intelligence/export_analysis.py", str(analysis_path)])
     if args.render:
         run_step("Render report", [py, "pipeline/render.py", str(report_brief)])
     if args.blueprint:

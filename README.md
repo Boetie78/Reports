@@ -48,7 +48,10 @@ steps, each checkable on its own:
 5. **Intelligence audit** (`intelligence/audit_analysis.py`) verifies that
    every evidence reference in `executive_analysis.json` resolves back to the
    source `report_brief.json` and that explicit evidence values match.
-6. **Output** is either `pipeline/render.py` (renders the validated data into
+6. **Executive analysis export** (`intelligence/export_analysis.py`) writes a
+   human-readable Markdown review pack so you can inspect the AI/business logic
+   before rendering.
+7. **Output** is either `pipeline/render.py` (renders the validated data into
    your house style as PDF + PNG, deterministically — no chart is ever
    "imagined") or `pipeline/blueprint.py` (exports the same validated data as
    a plain-language Markdown spec you can hand to ChatGPT image generation,
@@ -74,7 +77,7 @@ something that should happen per-report.
 ```bash
 pip install -r requirements.txt
 
-# Full quality-gated run: validate → cite → review → analyse → audit
+# Full quality-gated run: validate → cite → review → analyse → audit → Markdown review pack
 python3 pipeline/run_report.py examples/otd_daily_impact_demo.json
 
 # Full run plus rendered PDF/PNG and Markdown blueprint
@@ -87,6 +90,7 @@ python3 pipeline/narrative_review.py examples/otd_daily_impact_demo.json
 python3 intelligence/analyse.py examples/otd_daily_impact_demo.json
 python3 intelligence/validate_analysis.py output/otd_daily_impact_demo_executive_analysis.json
 python3 intelligence/audit_analysis.py examples/otd_daily_impact_demo.json output/otd_daily_impact_demo_executive_analysis.json
+python3 intelligence/export_analysis.py output/otd_daily_impact_demo_executive_analysis.json
 python3 pipeline/render.py examples/otd_daily_impact_demo.json
 python3 pipeline/blueprint.py examples/otd_daily_impact_demo.json
 ```
@@ -104,7 +108,9 @@ real numbers.
 2. Claude extracts into a new `report_brief.json` — nothing rendered yet.
 3. Run `pipeline/run_report.py <report_brief.json>`. Any failure means going
    back to the extraction/source data, not adjusting numbers to force a pass.
-4. When all gates pass, render or export a blueprint.
+4. Review the generated `output/*_executive_analysis.md` to confirm the story,
+   risks, actions and presentation plan make business sense.
+5. When all gates pass, render or export a blueprint.
 
 ## Repo layout
 
@@ -119,6 +125,7 @@ pipeline/run_report.py                 full quality-gated run coordinator
 pipeline/render.py                     report_brief.json → PDF + PNG (Playwright + Chromium)
 pipeline/blueprint.py                  report_brief.json → Markdown spec for handoff to another tool
 intelligence/analyse.py                report_brief.json → executive_analysis.json
+intelligence/export_analysis.py        executive_analysis.json → Markdown review pack
 intelligence/insight_rules.py          deterministic executive rules for target misses, concentration, peaks and events
 intelligence/blueprint_planner.py      decides which sections deserve executive attention and why
 intelligence/validate_analysis.py      validates executive_analysis.json against schema

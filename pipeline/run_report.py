@@ -12,6 +12,7 @@ Default flow:
   5. intelligence/validate_analysis.py
   6. intelligence/audit_analysis.py
   7. intelligence/export_analysis.py
+  8. intelligence/prioritisation_engine.py
 
 Optional flags can also render and/or export a Markdown blueprint after all gates
 pass.
@@ -41,6 +42,7 @@ def main() -> int:
     parser.add_argument("--render", action="store_true", help="Render PDF/PNG after all validation and intelligence gates pass")
     parser.add_argument("--blueprint", action="store_true", help="Export Markdown blueprint after all gates pass")
     parser.add_argument("--no-analysis-md", action="store_true", help="Skip human-readable executive analysis Markdown export")
+    parser.add_argument("--no-prioritisation", action="store_true", help="Skip executive object prioritisation")
     parser.add_argument("--strict-narrative", action="store_true", help="Make narrative_review.py warnings fail the run")
     args = parser.parse_args()
 
@@ -49,6 +51,7 @@ def main() -> int:
         report_brief = Path.cwd() / report_brief
 
     analysis_path = ROOT / "output" / f"{report_brief.stem}_executive_analysis.json"
+    prioritised_path = ROOT / "output" / f"{report_brief.stem}_prioritised_analysis.json"
 
     py = sys.executable
     run_step("Validate report brief", [py, "pipeline/validate.py", str(report_brief)])
@@ -65,12 +68,14 @@ def main() -> int:
 
     if not args.no_analysis_md:
         run_step("Export executive analysis review pack", [py, "intelligence/export_analysis.py", str(analysis_path)])
+    if not args.no_prioritisation:
+        run_step("Prioritise executive decision objects", [py, "intelligence/prioritisation_engine.py", str(analysis_path), "--output", str(prioritised_path)])
     if args.render:
         run_step("Render report", [py, "pipeline/render.py", str(report_brief)])
     if args.blueprint:
         run_step("Export blueprint", [py, "pipeline/blueprint.py", str(report_brief)])
 
-    print("\nMEIP PIPELINE PASSED — report is validated, cited, analysed and ready for executive use.")
+    print("\nMEIP PIPELINE PASSED — report is validated, cited, analysed, prioritised and ready for executive use.")
     return 0
 
 

@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "executive_object.schema.json",
+  "title": "MEIP Executive Decision Object",
+  "description": "A prioritised, traceable executive object derived from validated findings, risks, opportunities or actions. This is the common object consumed by later decision, QA, page planning and learning engines.",
+  "type": "object",
+  "required": ["id", "source_id", "source_type", "title", "category", "executive_score", "priority", "urgency", "owner", "confidence", "recommended_visual", "recommended_action", "scoring", "supporting_evidence"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {"type": "string"},
+    "source_id": {"type": "string"},
+    "source_type": {"type": "string", "enum": ["finding", "risk", "opportunity", "action"]},
+    "title": {"type": "string"},
+    "category": {"type": "string"},
+    "executive_score": {"type": "integer", "minimum": 0, "maximum": 100},
+    "priority": {"type": "integer", "minimum": 1},
+    "urgency": {"type": "string", "enum": ["Immediate", "This Week", "This Month", "Monitor", "Ignore"]},
+    "owner": {"type": "string"},
+    "confidence": {"type": "integer", "minimum": 0, "maximum": 100},
+    "recommended_visual": {"type": "string"},
+    "recommended_action": {"type": "string"},
+    "business_impact": {"type": "string"},
+    "interpretation": {"type": "string"},
+    "scoring": {
+      "type": "object",
+      "required": ["kpi_threshold", "customer_impact", "financial_impact", "executive_interest", "trend_or_concentration", "external_event", "evidence_confidence", "total"],
+      "additionalProperties": false,
+      "properties": {
+        "kpi_threshold": {"type": "integer", "minimum": 0, "maximum": 30},
+        "customer_impact": {"type": "integer", "minimum": 0, "maximum": 20},
+        "financial_impact": {"type": "integer", "minimum": 0, "maximum": 15},
+        "executive_interest": {"type": "integer", "minimum": 0, "maximum": 10},
+        "trend_or_concentration": {"type": "integer", "minimum": 0, "maximum": 10},
+        "external_event": {"type": "integer", "minimum": 0, "maximum": 5},
+        "evidence_confidence": {"type": "integer", "minimum": 0, "maximum": 10},
+        "total": {"type": "integer", "minimum": 0, "maximum": 100}
+      }
+    },
+    "supporting_evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["data_ref", "label", "value"],
+        "additionalProperties": false,
+        "properties": {
+          "data_ref": {"type": "string"},
+          "label": {"type": "string"},
+          "value": {"type": ["number", "string", "null"]},
+          "unit": {"type": "string"}
+        }
+      }
+    }
+  }
+}

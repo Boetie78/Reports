@@ -6,15 +6,12 @@ navy/white/orange design, without the two failure modes that motivated it:
 data that doesn't reconcile, and numbers that get invented to fill a
 placeholder.
 
-It does this by splitting the job into four stages that never blur back
-together:
+It does this by splitting the job into stages that never blur back together:
 
 ```
-raw files  ─────▶  report_brief.json  ─────▶  validated & cited  ─────▶  rendered output
-(anything)         (extraction, done          (validate.py +          (render.py → PDF/PNG,
-                    by Claude following         citation_check.py)      or blueprint.py → .md
-                    prompts/master_system_                              for a different tool)
-                    prompt.md)
+raw files ─▶ report_brief.json ─▶ validated & cited ─▶ executive_analysis.json ─▶ rendered output
+(anything)   extraction by AI      validate.py +       intelligence/analyse.py     render.py → PDF/PNG,
+             following prompt      citation_check.py   decides what matters        or blueprint.py → .md
 ```
 
 ## Why it's structured this way
@@ -24,8 +21,8 @@ both, on inspection, a single flat AI-generated image per slide with no data
 binding at all — that's structurally why numbers drifted and placeholders
 showed up. An image model can't enforce "the parts add up to the total"; it
 paints something that looks right. This system fixes that by making the
-data layer, the narrative, and the drawing three separate steps, each
-checkable on its own:
+data layer, the narrative, the intelligence layer, and the drawing separate
+steps, each checkable on its own:
 
 1. **Extraction** turns messy source files into one structured document
    (`schema/report_brief.schema.json`). This is the only step that needs
@@ -43,7 +40,12 @@ checkable on its own:
    summary/bottom-insight, facts that read as interpretation rather than a
    restated number. It warns by default; pass `--strict` to make it fail the
    build.
-4. **Output** is either `pipeline/render.py` (renders the validated data into
+4. **Executive Intelligence** (`intelligence/analyse.py`) reads only the
+   validated brief and produces `executive_analysis.json`: prioritized
+   findings, risks, recommended actions and a presentation plan. It does not
+   invent numbers; every insight carries supporting evidence back to the
+   originating `report_brief.json` data refs.
+5. **Output** is either `pipeline/render.py` (renders the validated data into
    your house style as PDF + PNG, deterministically — no chart is ever
    "imagined") or `pipeline/blueprint.py` (exports the same validated data as
    a plain-language Markdown spec you can hand to ChatGPT image generation,
@@ -78,10 +80,14 @@ python3 pipeline/citation_check.py examples/otd_daily_impact_demo.json
 # 2b. Lint the narrative against MEIP's Design Rules (duplicate insights, length, etc.)
 python3 pipeline/narrative_review.py examples/otd_daily_impact_demo.json
 
-# 3a. Render to your house style (PDF + one PNG per page, in output/)
+# 3. Generate the executive intelligence layer
+python3 intelligence/analyse.py examples/otd_daily_impact_demo.json
+python3 intelligence/validate_analysis.py output/otd_daily_impact_demo_executive_analysis.json
+
+# 4a. Render to your house style (PDF + one PNG per page, in output/)
 python3 pipeline/render.py examples/otd_daily_impact_demo.json
 
-# 3b. ...or export a Markdown blueprint to hand to another tool instead
+# 4b. ...or export a Markdown blueprint to hand to another tool instead
 python3 pipeline/blueprint.py examples/otd_daily_impact_demo.json
 ```
 
@@ -98,20 +104,27 @@ real numbers.
 2. Claude extracts into a new `report_brief.json` — nothing rendered yet.
 3. Run `validate.py` and `citation_check.py`. Any failure means going back to
    step 2, not adjusting numbers to force a pass.
-4. Render or export a blueprint.
+4. Run `intelligence/analyse.py` to decide what matters and what should be
+   presented.
+5. Render or export a blueprint.
 
 ## Repo layout
 
 ```
-schema/report_brief.schema.json   the data contract — read this to see every field a report can use
-pipeline/refs.py                  resolves "sections[2].breakdown.components[0].value" style citations
-pipeline/validate.py              reconciliation gate — run first, always
-pipeline/citation_check.py        anti-fabrication scanner for narrative text
-pipeline/narrative_review.py      heuristic lint for MEIP Design Rules (duplication, length, interpretation)
-pipeline/render.py                report_brief.json → PDF + PNG (Playwright + Chromium)
-pipeline/blueprint.py             report_brief.json → Markdown spec for handoff to another tool
-templates/                        the navy/white/orange design system (Jinja2 + CSS + inline SVG charts)
-prompts/master_system_prompt.md   the instructions that govern extraction + narrative
-examples/                         sample report_brief.json (illustrative demo data only)
-output/                           generated PDFs/PNGs/blueprints land here
+schema/report_brief.schema.json        the data contract — read this to see every field a report can use
+schema/executive_analysis.schema.json  the intelligence-layer contract for findings, risks, actions and presentation plan
+pipeline/refs.py                       resolves "sections[2].breakdown.components[0].value" style citations
+pipeline/validate.py                   reconciliation gate — run first, always
+pipeline/citation_check.py             anti-fabrication scanner for narrative text
+pipeline/narrative_review.py           heuristic lint for MEIP Design Rules (duplication, length, interpretation)
+pipeline/render.py                     report_brief.json → PDF + PNG (Playwright + Chromium)
+pipeline/blueprint.py                  report_brief.json → Markdown spec for handoff to another tool
+intelligence/analyse.py                report_brief.json → executive_analysis.json
+intelligence/insight_rules.py          deterministic executive rules for target misses, concentration, peaks and events
+intelligence/blueprint_planner.py      decides which sections deserve executive attention and why
+intelligence/validate_analysis.py      validates executive_analysis.json against schema
+templates/                             the navy/white/orange design system (Jinja2 + CSS + inline SVG charts)
+prompts/master_system_prompt.md        the instructions that govern extraction + narrative
+examples/                              sample report_brief.json (illustrative demo data only)
+output/                                generated PDFs/PNGs/blueprints/analysis land here
 ```

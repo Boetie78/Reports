@@ -251,9 +251,17 @@ def build_ranking(section):
         items = []
         for it in r["items"]:
             pct_width = 100.0
+            bar_class = "unfavorable"
             if isinstance(it.get("value"), (int, float)):
                 pct_width = max(abs(it["value"]) / max_val * 100, 4)
-            items.append({**it, "pct_width": pct_width})
+                # Rankings are usually magnitude-only (top drivers), where red
+                # is the right default. But a delta-style ranking (e.g. change
+                # vs a prior period) mixes signs, and a negative value there
+                # is an improvement, not a problem -- coloring it the same
+                # alarm-red as a positive regression would misread as bad news.
+                if it["value"] < 0:
+                    bar_class = "favorable"
+            items.append({**it, "pct_width": pct_width, "bar_class": bar_class})
         # note: template uses r.entries, not r.items -- Jinja's dot-access on a
         # plain dict resolves to dict.items() (the builtin method) before it
         # falls back to key lookup, so a key literally named "items" is unreachable.

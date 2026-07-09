@@ -1,0 +1,276 @@
+{
+  "report_meta": {
+    "title": "Packing Time & Motion Study \u2014 LV vs HV Comparison",
+    "subtitle": "Week 24 Baseline vs Halfway Day Sale",
+    "organization": "Makro Ecommerce",
+    "period_label": "Week 24 (8\u201314 Jun) vs Halfway Day Sale (25 Jun\u20131 Jul) 2026",
+    "report_type": "tnm_lv_hv_comparison",
+    "generated_date": "2026-07-08"
+  },
+  "sections": [
+    {
+      "id": "exec_summary",
+      "type": "executive_summary",
+      "new_page": true,
+      "title": "Executive Summary",
+      "text": "Under roughly 2x the order volume of the Low Volume baseline, banner-wide pack execution held up: the true High Volume average (5.7 min, excluding Cornubia's genuine bulk-order outlier) is close to the 6.95-minute Low Volume banner average, and several stores got faster under load, not slower. The real story is dispersion, not a banner-wide decline -- Carnival improved by almost 13 minutes while Cornubia and Bloemfontein each got dramatically slower, for different and specific reasons at each site.",
+      "supporting_data_refs": [
+        "sections[1].kpis[0].value",
+        "sections[1].kpis[2].value",
+        "sections[4].rankings[0].items[10].value"
+      ]
+    },
+    {
+      "id": "banner_kpi",
+      "type": "kpi_strip",
+      "title": "Banner Average Pack Time \u2014 LV Baseline vs HV (Halfway Day Sale)",
+      "kpis": [
+        {
+          "id": "lv_banner",
+          "label": "LV Banner Avg (Week 24)",
+          "value": 6.95,
+          "unit": " min",
+          "comparison_label": "17 stores, excl. Gqeberha outlier",
+          "comparison_value": "",
+          "comparison_unit": "",
+          "direction": "neutral"
+        },
+        {
+          "id": "hv_banner_incl",
+          "label": "HV Banner Avg (incl. Cornubia)",
+          "value": 7.883,
+          "unit": " min",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "hv_banner_excl",
+          "label": "HV Banner Avg (excl. Cornubia)",
+          "value": 5.733,
+          "unit": " min",
+          "direction": "favorable"
+        }
+      ]
+    },
+    {
+      "id": "dashboard_facts",
+      "type": "executive_facts",
+      "layout_width": "full",
+      "title": "What Changed / Why",
+      "executive_facts": [
+        {
+          "statement": "The true banner average pack time under Sale volume (5.7 min, excluding Cornubia's bulk-order outlier) is barely above the 6.95-minute Low Volume baseline -- packing execution scaled with volume better than the headline HV KPI (7.9 min) suggests.",
+          "supporting_data_refs": [
+            "sections[1].kpis[2].value",
+            "sections[1].kpis[0].value"
+          ]
+        },
+        {
+          "statement": "Carnival's almost 13-minute improvement suggests whatever changed there -- staffing, layout, or process -- is worth checking as a repeatable practice for the slower stores, not just a one-off result.",
+          "supporting_data_refs": [
+            "sections[4].rankings[0].items[10].value"
+          ]
+        },
+        {
+          "statement": "Cornubia went from the fastest store in the Low Volume baseline to the slowest in absolute terms under Sale volume -- but this is order-mix driven (genuine large Sale orders), not a process regression, and should not be read alongside the other deltas as if it were comparable.",
+          "supporting_data_refs": [
+            "sections[4].rankings[0].items[0].value"
+          ]
+        },
+        {
+          "statement": "Bloemfontein and Woodmead both got materially slower under volume, and both changes are attached to thin or partial samples in at least one period -- these deltas are directionally useful but should not be treated with the same confidence as stores with full samples in both periods.",
+          "supporting_data_refs": [
+            "sections[4].rankings[0].items[1].value",
+            "sections[4].rankings[0].items[2].value"
+          ]
+        },
+        {
+          "statement": "Aggregate dwell risk is not directly comparable across periods with the data supplied: the Low Volume figure reported is a WARNING-band rate, while the High Volume figure available is a CRITICAL-band rate -- a stricter, higher-severity threshold. These use different severity definitions, and the missing LV critical-only rate should be sourced before treating them as equivalent.",
+          "supporting_data_refs": [
+            "sections[1].kpis[0].value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dashboard_bottom",
+      "type": "bottom_insight",
+      "layout_width": "full",
+      "supporting_data_refs": [
+        "sections[4].rankings[0].items[0].value",
+        "sections[4].rankings[0].items[10].value"
+      ],
+      "text": "This is not a banner-wide 'volume broke the process' story but 11 individual store stories -- the two largest movements (Cornubia, up; Carnival, down) both have specific, identified causes and neither should be allowed to set the narrative for the other nine stores."
+    },
+    {
+      "id": "delta_ranking",
+      "type": "ranking",
+      "new_page": true,
+      "layout_width": "full",
+      "title": "Pack Time Change, LV to HV \u2014 Stores With Data in Both Periods (worst regression to best improvement)",
+      "rankings": [
+        {
+          "id": "delta_ranking_items",
+          "scope_label": "Change in average pack time, minutes (positive = slower under volume)",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Cornubia",
+              "value": 37.466,
+              "unit": " min"
+            },
+            {
+              "rank": 2,
+              "label": "Bloemfontein",
+              "value": 9.883,
+              "unit": " min"
+            },
+            {
+              "rank": 3,
+              "label": "Woodmead",
+              "value": 4.95,
+              "unit": " min"
+            },
+            {
+              "rank": 4,
+              "label": "Gonubie",
+              "value": 0.666,
+              "unit": " min"
+            },
+            {
+              "rank": 5,
+              "label": "Springfield",
+              "value": -0.533,
+              "unit": " min"
+            },
+            {
+              "rank": 6,
+              "label": "Amanzimtoti",
+              "value": -1.2,
+              "unit": " min"
+            },
+            {
+              "rank": 7,
+              "label": "Cape Gate",
+              "value": -1.95,
+              "unit": " min"
+            },
+            {
+              "rank": 8,
+              "label": "Alberton",
+              "value": -2.084,
+              "unit": " min"
+            },
+            {
+              "rank": 9,
+              "label": "Crown Mines",
+              "value": -2.267,
+              "unit": " min"
+            },
+            {
+              "rank": 10,
+              "label": "Gqeberha",
+              "value": -4.617,
+              "unit": " min"
+            },
+            {
+              "rank": 11,
+              "label": "Carnival",
+              "value": -12.966,
+              "unit": " min"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "delta_facts",
+      "type": "executive_facts",
+      "layout_width": "full",
+      "title": "Store-Level Change Executive Facts",
+      "executive_facts": [
+        {
+          "statement": "Amanzimtoti and Springfield both got faster under Sale volume (-1.20 and -0.53 min respectively) -- consistent with the separate High Volume finding that both stores' real constraint is trolley dwell, not pack speed, so packers had no reason to slow down.",
+          "supporting_data_refs": [
+            "sections[4].rankings[0].items[5].value",
+            "sections[4].rankings[0].items[4].value"
+          ]
+        },
+        {
+          "statement": "Gqeberha's apparent 4.6-minute improvement should be treated with real caution -- both its LV and HV samples were affected by data-quality issues (LV bulk outlier exclusion, HV contamination strip leaving only 3 genuine observations), so this delta may reflect sample composition as much as a genuine process change.",
+          "supporting_data_refs": [
+            "sections[4].rankings[0].items[9].value"
+          ]
+        },
+        {
+          "statement": "Cape Gate, Crown Mines and Alberton all improved by roughly two minutes each under volume, a consistent enough pattern across three unrelated stores to suggest a genuine banner-level readiness improvement between the two study periods, not three isolated coincidences.",
+          "supporting_data_refs": [
+            "sections[4].rankings[0].items[6].value",
+            "sections[4].rankings[0].items[8].value",
+            "sections[4].rankings[0].items[7].value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lv_only",
+      "type": "custom_html",
+      "new_page": true,
+      "layout_width": "half",
+      "title": "Stores With LV Pack Data, No HV Pack Data",
+      "text": "<ul style=\"margin:0;padding-left:18px;font-size:13px;line-height:1.7;\"><li><strong>Ottery</strong> &mdash; HV Observation Log completely blank.</li><li><strong>Pietermaritzburg</strong> &mdash; No HV submission received.</li><li><strong>Vaal</strong> &mdash; No HV submission received.</li><li><strong>Mbombela</strong> &mdash; LV was a partial submission (3 obs); no HV submission received.</li></ul>"
+    },
+    {
+      "id": "hv_only",
+      "type": "custom_html",
+      "layout_width": "half",
+      "title": "Stores With HV Pack Data, No LV Pack Data",
+      "text": "<ul style=\"margin:0;padding-left:18px;font-size:13px;line-height:1.7;\"><li><strong>Silverlakes</strong> &mdash; First-ever submission for this store; observation dates fall outside the stated Sale window -- see data quality flags.</li><li><strong>Strubens Valley</strong> &mdash; LV had dwell data only, no pack observations.</li><li><strong>Riversands</strong> &mdash; LV had dwell data only, no pack observations.</li><li><strong>Montague Gardens</strong> &mdash; LV had dwell data only, no pack observations.</li><li><strong>Germiston</strong> &mdash; LV file was submitted blank; this is the first real pack-time data for this store.</li></ul>"
+    },
+    {
+      "id": "coverage_facts",
+      "type": "executive_facts",
+      "layout_width": "full",
+      "title": "Coverage Executive Facts",
+      "executive_facts": [
+        {
+          "statement": "Four stores with Low Volume pack data submitted nothing usable for the High Volume period (Ottery, Pietermaritzburg, Vaal, Mbombela) -- this is a bigger visibility gap during the period that matters most operationally, and closing it should outrank most other follow-up items.",
+          "supporting_data_refs": [
+            "sections[4].rankings[0].items[5].value"
+          ]
+        },
+        {
+          "statement": "Three stores (Strubens Valley, Riversands, Montague Gardens) had dwell data but no pack observations in the Low Volume period, and only gained pack-time visibility in the High Volume study -- their HV figures are a first baseline, not a trend, and should not be described as an improvement or decline until a second data point exists.",
+          "supporting_data_refs": [
+            "sections[4].rankings[0].items[5].value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "data_quality",
+      "type": "custom_html",
+      "new_page": true,
+      "layout_width": "full",
+      "title": "Data Quality & Comparability Flags",
+      "text": "<ul style=\"margin:0;padding-left:18px;font-size:13px;line-height:1.7;\"><li><strong>LV figures not independently re-verified this session</strong> &mdash; the Low Volume figures used in this comparison come from the project's own stated 'key verified figures' rather than a raw LV workbook supplied and re-checked in this analysis. The High Volume figures were independently cross-checked against the source management report and consolidated workbook.</li><li><strong>Dwell severity bands are not directly comparable</strong> &mdash; the only aggregate LV dwell statistic available is a WARNING-band rate; the only aggregate HV figure available is a CRITICAL-band rate, a stricter, higher-severity threshold. A true apples-to-apples comparison requires the LV critical-only rate, which was not supplied.</li><li><strong>Cornubia and Woodmead deltas are not process signals</strong> &mdash; Cornubia's increase is bulk order-mix driven; Woodmead's LV baseline was a partial 5-observation submission. Both are included for completeness but should not be read as packer performance changes.</li><li><strong>Silverlakes has no LV baseline at all</strong> &mdash; it is a first-time HV submission with an unresolved observation-date anomaly (see the High Volume data quality note); its figures should not be treated as a stable comparison point yet.</li></ul>"
+    },
+    {
+      "id": "dq_bottom",
+      "type": "bottom_insight",
+      "layout_width": "full",
+      "supporting_data_refs": [
+        "sections[4].rankings[0].items[0].value"
+      ],
+      "text": "Before this comparison is used in a management deck: source the missing LV critical-band dwell rate so the dwell comparison can be made honestly, and treat the Cornubia and Gqeberha deltas as annotated exceptions rather than banner-representative figures."
+    }
+  ],
+  "provenance": {
+    "source_files": [
+      "Project context brief (LV figures \u2014 not independently re-verified against a raw LV file this session)",
+      "Makro_TnM_HighVolume_Management_Report.docx",
+      "Makro_Packing_TnM_HighVolume_Consolidated.xlsx"
+    ],
+    "extraction_notes": "LV figures are taken from the project's own stated 'key verified figures' in the supplied context brief, not from a raw LV workbook uploaded and independently checked in this session -- flagged throughout as a lower-confidence source than the HV figures, which were cross-checked against the actual HV docx/xlsx. Only stores with real pack-time observations in both periods are shown as deltas; stores with data in only one period are listed separately rather than assigned a fabricated 0 or blank delta. The LV dwell WARNING rate (38%) and HV dwell CRITICAL rate (37.5%) use different severity thresholds and are not blended into a single comparable figure.",
+    "unresolved_flags": []
+  }
+}

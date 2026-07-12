@@ -41,6 +41,15 @@ def build_executive_object(item: dict[str, Any], sequence: int) -> dict[str, Any
     }
 
 
+def merge_action_into_object(obj: dict[str, Any], action_item: dict[str, Any]) -> dict[str, Any]:
+    """Record a derived action against its parent object instead of letting it
+    become a second, independently-ranked object about the same underlying
+    finding/risk (see prioritisation_engine.py for why this matters)."""
+
+    obj["paired_action_id"] = action_item.get("id")
+    return obj
+
+
 def reprioritise(objects: list[dict[str, Any]]) -> list[dict[str, Any]]:
     """Sort objects by executive score and assign final priority numbers."""
 

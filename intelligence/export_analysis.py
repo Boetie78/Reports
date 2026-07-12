@@ -93,7 +93,7 @@ def main() -> int:
     parser.add_argument("--output", type=Path, default=None)
     args = parser.parse_args()
 
-    analysis = json.loads(args.executive_analysis.read_text())
+    analysis = json.loads(args.executive_analysis.read_text(encoding="utf-8"))
     output = args.output or args.executive_analysis.with_suffix(".md")
     output.write_text(to_markdown(analysis), encoding="utf-8")
     print(f"EXECUTIVE ANALYSIS MARKDOWN WRITTEN — {output}")

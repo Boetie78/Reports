@@ -51,7 +51,7 @@ def main() -> int:
     parser.add_argument("--output", type=Path, default=None)
     args = parser.parse_args()
 
-    analysis = json.loads(args.executive_analysis.read_text())
+    analysis = json.loads(args.executive_analysis.read_text(encoding="utf-8"))
     output = build_output(analysis, args.executive_analysis)
     output_path = args.output or args.executive_analysis.with_name(args.executive_analysis.stem.replace("_executive_analysis", "") + "_prioritised_analysis.json")
     output_path.write_text(json.dumps(output, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")

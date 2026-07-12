@@ -22,8 +22,8 @@ def main() -> int:
     parser.add_argument("executive_analysis", type=Path)
     args = parser.parse_args()
 
-    doc = json.loads(args.executive_analysis.read_text())
-    schema = json.loads(SCHEMA_PATH.read_text())
+    doc = json.loads(args.executive_analysis.read_text(encoding="utf-8"))
+    schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
     validator = jsonschema.Draft7Validator(schema)
     errors = sorted(validator.iter_errors(doc), key=lambda e: list(e.path))
 

@@ -317,7 +317,7 @@ def paginate(sections):
 def render_html(doc):
     env = jinja2.Environment(loader=jinja2.FileSystemLoader(str(TEMPLATES)))
     template = env.get_template("report.html")
-    css = (TEMPLATES / "assets" / "style.css").read_text()
+    css = (TEMPLATES / "assets" / "style.css").read_text(encoding="utf-8")
     pages = paginate(doc["sections"])
     return template.render(meta=doc["report_meta"], pages=pages, css=css)
 
@@ -325,7 +325,7 @@ def render_html(doc):
 def export(html, out_dir, base_name):
     out_dir.mkdir(parents=True, exist_ok=True)
     html_path = (out_dir / f"{base_name}.html").resolve()
-    html_path.write_text(html)
+    html_path.write_text(html, encoding="utf-8")
 
     with sync_playwright() as p:
         browser = p.chromium.launch(executable_path=CHROMIUM_PATH)
@@ -351,7 +351,7 @@ def main():
     parser.add_argument("--out", type=Path, default=ROOT / "output")
     args = parser.parse_args()
 
-    doc = json.loads(args.report_brief.read_text())
+    doc = json.loads(args.report_brief.read_text(encoding="utf-8"))
     html = render_html(doc)
     base_name = args.report_brief.stem
     pdf_path, png_paths = export(html, args.out, base_name)

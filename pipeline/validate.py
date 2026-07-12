@@ -29,7 +29,7 @@ SCHEMA_PATH = Path(__file__).parent.parent / "schema" / "report_brief.schema.jso
 
 
 def check_schema(doc, errors):
-    schema = json.loads(SCHEMA_PATH.read_text())
+    schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
     validator = jsonschema.Draft7Validator(schema)
     for e in validator.iter_errors(doc):
         errors.append(f"[schema] {'/'.join(str(p) for p in e.path) or '<root>'}: {e.message}")
@@ -137,7 +137,7 @@ def main():
     )
     args = parser.parse_args()
 
-    doc = json.loads(args.report_brief.read_text())
+    doc = json.loads(args.report_brief.read_text(encoding="utf-8"))
     errors = []
 
     check_schema(doc, errors)

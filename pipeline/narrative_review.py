@@ -91,7 +91,7 @@ def main():
     parser.add_argument("--strict", action="store_true", help="Exit 1 if any warning fires, instead of just printing them")
     args = parser.parse_args()
 
-    doc = json.loads(args.report_brief.read_text())
+    doc = json.loads(args.report_brief.read_text(encoding="utf-8"))
     warnings = []
     check_length_limits(doc, warnings)
     check_duplicates(doc, warnings)

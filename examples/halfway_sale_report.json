@@ -1,0 +1,306 @@
+{
+  "report_meta": {
+    "title": "Half Way Sale \u2014 Volumes, Performance & Store Execution",
+    "subtitle": "Half Way Sale Review",
+    "organization": "Makro",
+    "period_label": "23 June \u2013 2 July 2026",
+    "report_type": "halfway_sale_review",
+    "generated_date": "2026-07-08"
+  },
+  "sections": [
+    {
+      "id": "exec_summary",
+      "type": "executive_summary",
+      "new_page": true,
+      "title": "Executive Summary",
+      "text": "Half Way Sale volumes processed grew 112.8% year-on-year to 788,798 orders, and the fulfilment funnel held up under that load \u2014 Dispatch was still up 101.8% vs LY even after the normal funnel narrowing. Service quality improved against last year during the Promo Week itself (OTD +7.9pp, Pick SLA +2.0pp), but Pick SLA fell 3.5pp below LY in the Following Week. A national shutdown disrupted courier collections over the same period, and RDO store visits flagged system downtime at 30 of the 47 stores visited.",
+      "supporting_data_refs": [
+        "sections[1].kpis[0].value",
+        "sections[1].kpis[0].comparison_value",
+        "sections[1].kpis[4].comparison_value",
+        "sections[2].kpis[0].comparison_value",
+        "sections[2].kpis[2].comparison_value",
+        "sections[2].kpis[3].comparison_value",
+        "sections[5].kpis[0].value",
+        "sections[5].kpis[1].value"
+      ]
+    },
+    {
+      "id": "volume_headline",
+      "type": "kpi_strip",
+      "title": "Volume Processed \u2014 Half Way Sale (25\u201330 Jun) TY vs LY",
+      "kpis": [
+        {
+          "id": "ordered",
+          "label": "Ordered",
+          "value": 788798,
+          "unit": "",
+          "comparison_label": "vs LY",
+          "comparison_value": 112.77,
+          "comparison_unit": "%",
+          "direction": "favorable"
+        },
+        {
+          "id": "picking",
+          "label": "Picking",
+          "value": 738678,
+          "unit": "",
+          "comparison_label": "vs LY",
+          "comparison_value": 105.07,
+          "comparison_unit": "%",
+          "direction": "favorable"
+        },
+        {
+          "id": "packing",
+          "label": "Packing",
+          "value": 692314,
+          "unit": "",
+          "comparison_label": "vs LY",
+          "comparison_value": 103.24,
+          "comparison_unit": "%",
+          "direction": "favorable"
+        },
+        {
+          "id": "staging",
+          "label": "Staging",
+          "value": 683106,
+          "unit": "",
+          "comparison_label": "vs LY",
+          "comparison_value": 102.85,
+          "comparison_unit": "%",
+          "direction": "favorable"
+        },
+        {
+          "id": "dispatch",
+          "label": "Dispatch",
+          "value": 640402,
+          "unit": "",
+          "comparison_label": "vs LY",
+          "comparison_value": 101.76,
+          "comparison_unit": "%",
+          "direction": "favorable"
+        }
+      ]
+    },
+    {
+      "id": "service_headline",
+      "type": "kpi_strip",
+      "title": "Service Performance \u2014 Promo Week vs Following Week, TY vs LY",
+      "kpis": [
+        {
+          "id": "otd_promo",
+          "label": "OTD \u2014 Promo Week",
+          "value": 94.7,
+          "unit": "%",
+          "comparison_label": "vs LY",
+          "comparison_value": 7.94,
+          "comparison_unit": "pp",
+          "direction": "favorable"
+        },
+        {
+          "id": "otd_following",
+          "label": "OTD \u2014 Following Week",
+          "value": 89.87,
+          "unit": "%",
+          "comparison_label": "vs LY",
+          "comparison_value": 3.28,
+          "comparison_unit": "pp",
+          "direction": "favorable"
+        },
+        {
+          "id": "pick_sla_promo",
+          "label": "Pick SLA \u2014 Promo Week",
+          "value": 98.47,
+          "unit": "%",
+          "comparison_label": "vs LY",
+          "comparison_value": 2.01,
+          "comparison_unit": "pp",
+          "direction": "favorable"
+        },
+        {
+          "id": "pick_sla_following",
+          "label": "Pick SLA \u2014 Following Week",
+          "value": 94.29,
+          "unit": "%",
+          "comparison_label": "vs LY",
+          "comparison_value": -3.54,
+          "comparison_unit": "pp",
+          "direction": "unfavorable"
+        }
+      ]
+    },
+    {
+      "id": "dashboard_facts",
+      "type": "executive_facts",
+      "layout_width": "full",
+      "title": "What Happened / Why",
+      "executive_facts": [
+        {
+          "statement": "Volumes processed grew 112.8% year-on-year to 788,798 orders, and every downstream stage kept pace within a tight band (Picking +105.1%, Packing +103.2%, Staging +102.9%, Dispatch +101.8%) \u2014 a normal, modest funnel narrowing under materially higher load, not a sign of the operation falling behind.",
+          "supporting_data_refs": [
+            "sections[1].kpis[0].value",
+            "sections[1].kpis[0].comparison_value",
+            "sections[1].kpis[1].comparison_value",
+            "sections[1].kpis[2].comparison_value",
+            "sections[1].kpis[3].comparison_value",
+            "sections[1].kpis[4].comparison_value"
+          ]
+        },
+        {
+          "statement": "Pick SLA and OTD both improved against last year during the Promo Week itself (Pick SLA +2.0pp, OTD +7.9pp), but Pick SLA fell 3.5pp behind LY in the Following Week \u2014 the strain showed up after the peak, not during it.",
+          "supporting_data_refs": [
+            "sections[2].kpis[2].comparison_value",
+            "sections[2].kpis[0].comparison_value",
+            "sections[2].kpis[3].comparison_value"
+          ]
+        },
+        {
+          "statement": "30 of the 47 stores visited by RDOs reported system downtime, with Western Cape (9 reports) and JHB South (6 reports) the most affected regions.",
+          "supporting_data_refs": [
+            "sections[5].kpis[1].value",
+            "sections[5].kpis[0].value",
+            "sections[6].rankings[0].items[0].value",
+            "sections[6].rankings[0].items[1].value"
+          ]
+        },
+        {
+          "statement": "The national shutdown that disrupted courier deliveries and collections coincided directly with the Following Week's Pick SLA decline, making it the most likely single explanation for that dip rather than a broad operational failure.",
+          "supporting_data_refs": [
+            "sections[2].kpis[3].comparison_value"
+          ]
+        },
+        {
+          "statement": "Site-specific incidents \u2014 a Crown Mines power outage, generator testing, and a Silverlakes staffing gap \u2014 show the downtime problem was not purely systemic; some of it was local and preventable rather than tied to the national event.",
+          "supporting_data_refs": [
+            "sections[5].kpis[1].value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dashboard_bottom",
+      "type": "bottom_insight",
+      "layout_width": "full",
+      "supporting_data_refs": [
+        "sections[1].kpis[0].comparison_value",
+        "sections[2].kpis[3].comparison_value"
+      ],
+      "text": "The Half Way Sale processed more than double last year's volume without the fulfilment funnel breaking down, but service performance softened after the promotional peak, compounded by a national shutdown and scattered site-level system and staffing incidents \u2014 the risk to manage next time is sustaining Following Week execution, not Promo Week volume."
+    },
+    {
+      "id": "execution_kpi",
+      "type": "kpi_strip",
+      "new_page": true,
+      "title": "Store Execution \u2014 RDO Visit Consolidation (23 Jun \u2013 2 Jul)",
+      "kpis": [
+        {
+          "id": "stores_visited",
+          "label": "Stores Visited",
+          "value": 47,
+          "unit": "",
+          "direction": "neutral"
+        },
+        {
+          "id": "stores_downtime",
+          "label": "Stores Reporting System Downtime",
+          "value": 30,
+          "unit": "",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "total_records",
+          "label": "Total Visit Records Logged",
+          "value": 54,
+          "unit": "",
+          "direction": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "downtime_by_region",
+      "type": "ranking",
+      "layout_width": "half",
+      "title": "System Downtime Reports by Region",
+      "rankings": [
+        {
+          "id": "downtime_region_ranking",
+          "scope_label": "Reports flagging system downtime",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Western Cape",
+              "value": 9,
+              "unit": ""
+            },
+            {
+              "rank": 2,
+              "label": "JHB South",
+              "value": 6,
+              "unit": ""
+            },
+            {
+              "rank": 3,
+              "label": "Eastern Cape",
+              "value": 4,
+              "unit": ""
+            },
+            {
+              "rank": 4,
+              "label": "Pretoria",
+              "value": 4,
+              "unit": ""
+            },
+            {
+              "rank": 5,
+              "label": "Freestate",
+              "value": 1,
+              "unit": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "root_causes",
+      "type": "custom_html",
+      "layout_width": "half",
+      "title": "Root Cause Themes Reported by RDOs",
+      "text": "<ul style=\"margin:0;padding-left:18px;font-size:13px;line-height:1.7;\"><li><strong>National shutdown / courier disruption</strong> \u2014 courier partners did not deliver, and in most cases did not collect, on the Monday/Tuesday shutdown days (raised by RDOs across Eastern Cape, Western Cape, JHB South, KZN).</li><li><strong>GIF / scanner outages</strong> \u2014 scanner connectivity and image-view failures reported at multiple sites, including a national network issue causing downtime overnight.</li><li><strong>Site-level power/equipment incidents</strong> \u2014 a power outage at Crown Mines halted picking/packing/staging for several hours overnight; generator testing at the same site separately cost further productive time.</li><li><strong>Staffing and scheduling</strong> \u2014 Makro Silverlakes reported low productivity from absenteeism and no Acting GSM; Cape Gate had a night-shift scheduling mismatch between the correct and printed schedules.</li></ul>"
+    },
+    {
+      "id": "execution_facts",
+      "type": "executive_facts",
+      "layout_width": "full",
+      "title": "Store Execution Executive Facts",
+      "executive_facts": [
+        {
+          "statement": "Reconciliation note: this consolidation's own Summary tab does not match a direct recount of the 54 visit records for three metrics (Order Drop, Dispatch Issues, Staging Issues), and two further cells (Stores Requiring Follow-up, High Priority Issues) contain broken #REF! formulas. Only Stores Visited (47) and System Downtime (30) reconcile cleanly and are reported here as hard KPIs; the other categories are described qualitatively until the source workbook is corrected.",
+          "supporting_data_refs": [
+            "sections[5].kpis[0].value",
+            "sections[5].kpis[1].value"
+          ]
+        },
+        {
+          "statement": "Six of the 54 visit records have no Region recorded and two have no RDO recorded \u2014 mostly the entries describing the overnight national network/scanner outage \u2014 worth tightening the reporting template so every future entry is attributable to a region.",
+          "supporting_data_refs": [
+            "sections[5].kpis[2].value"
+          ]
+        },
+        {
+          "statement": "The Mbombela and Cornubia national network outage appears only in free-text comments, not in the structured Y/N columns, so it isn't counted in the System Downtime total above \u2014 the true downtime footprint is at least as large as reported.",
+          "supporting_data_refs": [
+            "sections[5].kpis[1].value"
+          ]
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "source_files": [
+      "Halfway_Sale_RDO_Feedback_Consolidation.xlsx",
+      "HWD_Volumes_and_Performance.pptx"
+    ],
+    "extraction_notes": "A third uploaded file (data__20260708T104016.894.xlsx, a raw cancelled-orders export) was excluded entirely: its date range is 6-7 July 2026, over a week after this report's period (23 June - 2 July) and after the Half Way Sale itself -- it does not describe this event and including it would misattribute unrelated data to the sale. Recommend confirming whether a cancelled-orders export covering the actual sale week exists if that detail is wanted. Separately, the Feedback Consolidation workbook's own 'Summary' tab does not reconcile against a direct recount of its 54 raw visit rows for three of its five metrics: it states 9 stores with Order Drop Issues (recount: 18), 23 with Dispatch Issues (recount: 18), and 23 with Staging Issues (recount: 19). Two further Summary cells ('Stores Requiring Follow-up', 'High Priority Issues') contain #REF! errors and could not be used at all. Only 'Total Stores Visited' (47) and 'Stores with System Downtime' (30) matched the recount exactly and are used as hard KPIs here; recommend the business correct and re-verify the Summary tab's formulas before those three other metrics are quoted in any executive-facing material.",
+    "unresolved_flags": []
+  }
+}

@@ -46,10 +46,19 @@ def extract_numbers(text):
     return found
 
 
+_TAG_RE = re.compile(r"<[^>]+>")
+
+
 def narrative_texts(doc):
     for section in doc.get("sections", []):
-        if section.get("text"):
-            yield f"section '{section['id']}' ({section['type']})", section["text"]
+        text = section.get("text")
+        if text:
+            if section.get("type") == "custom_html":
+                # Strip markup first -- otherwise numbers inside HTML attributes
+                # (style="line-height:1.7", widths, etc.) get scanned as if they
+                # were prose claims, which they aren't.
+                text = _TAG_RE.sub(" ", text)
+            yield f"section '{section['id']}' ({section['type']})", text
         for fact in section.get("executive_facts", []):
             yield f"section '{section['id']}' executive_fact", fact["statement"]
 

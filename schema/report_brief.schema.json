@@ -137,7 +137,8 @@
         "scope_label": {"type": "string", "description": "e.g. a day name, region, or category the ranking applies to"},
         "items": {
           "type": "array",
-          "maxItems": 5,
+          "maxItems": 30,
+          "description": "5 is the usual size for a 'top drivers' style ranking; higher counts are for full-roster rankings (e.g. all stores in a banner) -- keep it to what fits legibly on one card.",
           "items": {
             "type": "object",
             "required": ["rank", "label"],

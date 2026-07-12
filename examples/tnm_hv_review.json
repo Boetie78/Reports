@@ -1,0 +1,446 @@
+{
+  "report_meta": {
+    "title": "Packing Time & Motion Study \u2014 High Volume",
+    "subtitle": "Halfway Day Sale Period Review",
+    "organization": "Makro Ecommerce",
+    "period_label": "25 June \u2013 1 July 2026",
+    "report_type": "tnm_high_volume_review",
+    "generated_date": "2026-07-08"
+  },
+  "sections": [
+    {
+      "id": "exec_summary",
+      "type": "executive_summary",
+      "new_page": true,
+      "title": "Executive Summary",
+      "text": "Halfway Day Sale packing volume was observed across 17 of 23 Makro stores (77 orders total), with dwell time -- not pack speed -- the dominant execution risk: 36 of 96 dwell records were CRITICAL. Amanzimtoti and Springfield posted the fastest pack times in the banner yet still had 4 of 5 dwell records CRITICAL each, confirming the bottleneck is trolley assignment, not packer performance. Cornubia's 38.7-minute average reflects genuine bulk Sale orders, not a process failure, but it inflates the stated banner average pack time to 7.9 minutes -- roughly 2 minutes above what the other 15 stores actually achieved.",
+      "supporting_data_refs": [
+        "sections[1].kpis[0].value",
+        "sections[1].kpis[0].comparison_value",
+        "sections[1].kpis[1].value",
+        "sections[1].kpis[3].value",
+        "sections[1].kpis[3].comparison_value",
+        "sections[4].rankings[0].items[15].value",
+        "sections[5].kpis[0].value",
+        "sections[5].kpis[1].value"
+      ]
+    },
+    {
+      "id": "headline_kpi",
+      "type": "kpi_strip",
+      "title": "High Volume Period Headline \u2014 Halfway Day Sale (25 Jun \u2013 1 Jul 2026)",
+      "kpis": [
+        {
+          "id": "stores_submitted",
+          "label": "Stores Submitted",
+          "value": 17,
+          "unit": "",
+          "comparison_label": "of Makro stores",
+          "comparison_value": 23,
+          "comparison_unit": "",
+          "direction": "neutral"
+        },
+        {
+          "id": "orders_observed",
+          "label": "Orders Observed",
+          "value": 77,
+          "unit": "",
+          "direction": "neutral"
+        },
+        {
+          "id": "banner_pack",
+          "label": "Banner Avg Pack Time",
+          "value": 7.883,
+          "unit": " min",
+          "comparison_label": "incl. Cornubia bulk outlier",
+          "comparison_value": "",
+          "comparison_unit": "",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "dwell_critical",
+          "label": "Dwell Records Critical (of 96, >31 min)",
+          "value": 36,
+          "unit": "",
+          "comparison_label": "",
+          "comparison_value": 96,
+          "comparison_unit": "",
+          "direction": "unfavorable"
+        }
+      ]
+    },
+    {
+      "id": "dashboard_facts",
+      "type": "executive_facts",
+      "layout_width": "full",
+      "title": "What Happened / Why",
+      "executive_facts": [
+        {
+          "statement": "Dwell time, not pack speed, is the dominant Sale-period risk: 36 of 96 dwell records were CRITICAL, while pack times across the 15 non-Cornubia stores stayed within a defensible range.",
+          "supporting_data_refs": [
+            "sections[1].kpis[3].value",
+            "sections[1].kpis[3].comparison_value"
+          ]
+        },
+        {
+          "statement": "Amanzimtoti (1.27 min) and Springfield (2.90 min) recorded two of the three fastest pack times in the banner, yet both had 4 of 5 dwell records CRITICAL -- proving the constraint is trolley assignment turnaround, not packer speed.",
+          "supporting_data_refs": [
+            "sections[4].rankings[0].items[0].value",
+            "sections[4].rankings[0].items[2].value"
+          ]
+        },
+        {
+          "statement": "Carnival and Silverlakes had the worst dwell profiles in the banner -- 5 of 5 and 4 of 4 records CRITICAL respectively, both averaging well over two hours -- indicating packers were not being assigned to trolleys promptly during peak volume at these two stores specifically.",
+          "supporting_data_refs": [
+            "sections[7].rankings[0].items[0].value",
+            "sections[7].rankings[0].items[1].value"
+          ]
+        },
+        {
+          "statement": "Cornubia's 38.7-minute average pack time is driven by genuine large Halfway Sale bulk orders -- three of five orders showed Product Packing & Scan times far above the banner norm, already confirmed as real bulk transactions rather than data entry errors -- so it should not be reported as a process regression.",
+          "supporting_data_refs": [
+            "sections[4].rankings[0].items[15].value"
+          ]
+        },
+        {
+          "statement": "The banner average pack time of 7.9 minutes includes Cornubia's bulk-order outlier; excluding it, the other 15 stores averaged 5.7 minutes -- a materially different headline number, and the one that should be used when comparing packer performance rather than order mix.",
+          "supporting_data_refs": [
+            "sections[5].kpis[0].value",
+            "sections[5].kpis[1].value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dashboard_bottom",
+      "type": "bottom_insight",
+      "layout_width": "full",
+      "supporting_data_refs": [
+        "sections[1].kpis[3].value",
+        "sections[1].kpis[3].comparison_value"
+      ],
+      "text": "Packing itself held up well under Sale-period load, but trolley dwell -- driven by assignment delays, not packer speed -- is the dominant execution risk this period, concentrated at Carnival, Silverlakes, Bloemfontein, Amanzimtoti and Springfield specifically rather than banner-wide."
+    },
+    {
+      "id": "pack_ranking",
+      "type": "ranking",
+      "new_page": true,
+      "layout_width": "full",
+      "title": "Pack Time Ranking \u2014 All Stores, Fastest to Slowest",
+      "rankings": [
+        {
+          "id": "pack_time_ranking",
+          "scope_label": "Average Pack Time (minutes)",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Amanzimtoti",
+              "value": 1.267,
+              "unit": " min"
+            },
+            {
+              "rank": 2,
+              "label": "Gqeberha",
+              "value": 2.65,
+              "unit": " min"
+            },
+            {
+              "rank": 3,
+              "label": "Springfield",
+              "value": 2.9,
+              "unit": " min"
+            },
+            {
+              "rank": 4,
+              "label": "Strubens Valley",
+              "value": 2.917,
+              "unit": " min"
+            },
+            {
+              "rank": 5,
+              "label": "Gonubie",
+              "value": 3.833,
+              "unit": " min"
+            },
+            {
+              "rank": 6,
+              "label": "Riversands",
+              "value": 3.833,
+              "unit": " min"
+            },
+            {
+              "rank": 7,
+              "label": "Cape Gate",
+              "value": 4.633,
+              "unit": " min"
+            },
+            {
+              "rank": 8,
+              "label": "Crown Mines",
+              "value": 6.533,
+              "unit": " min"
+            },
+            {
+              "rank": 9,
+              "label": "Woodmead",
+              "value": 6.8,
+              "unit": " min"
+            },
+            {
+              "rank": 10,
+              "label": "Alberton",
+              "value": 6.883,
+              "unit": " min"
+            },
+            {
+              "rank": 11,
+              "label": "Silverlakes",
+              "value": 7.433,
+              "unit": " min"
+            },
+            {
+              "rank": 12,
+              "label": "Carnival",
+              "value": 7.467,
+              "unit": " min"
+            },
+            {
+              "rank": 13,
+              "label": "Montague Gardens",
+              "value": 8.133,
+              "unit": " min"
+            },
+            {
+              "rank": 14,
+              "label": "Germiston",
+              "value": 9.3,
+              "unit": " min"
+            },
+            {
+              "rank": 15,
+              "label": "Bloemfontein",
+              "value": 15.133,
+              "unit": " min"
+            },
+            {
+              "rank": 16,
+              "label": "Cornubia",
+              "value": 38.733,
+              "unit": " min"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "banner_compare",
+      "type": "kpi_strip",
+      "layout_width": "full",
+      "title": "Banner Average \u2014 Methodology Check",
+      "kpis": [
+        {
+          "id": "banner_incl",
+          "label": "Banner Avg (incl. Cornubia)",
+          "value": 7.883,
+          "unit": " min",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "banner_excl",
+          "label": "Banner Avg (excl. Cornubia)",
+          "value": 5.733,
+          "unit": " min",
+          "direction": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "pack_facts",
+      "type": "executive_facts",
+      "layout_width": "full",
+      "title": "Pack Time Executive Facts",
+      "executive_facts": [
+        {
+          "statement": "The 7 fastest-packing stores all averaged under five minutes per order, while Montague Gardens, Germiston and Bloemfontein (excluding the Cornubia bulk outlier) were the only stores averaging over eight minutes -- a real spread across the banner, not noise.",
+          "supporting_data_refs": [
+            "sections[4].rankings[0].items[0].value",
+            "sections[4].rankings[0].items[6].value",
+            "sections[4].rankings[0].items[12].value",
+            "sections[4].rankings[0].items[13].value",
+            "sections[4].rankings[0].items[14].value"
+          ]
+        },
+        {
+          "statement": "Strubens Valley and Riversands both improved materially versus the Low Volume baseline while still carrying real dwell risk (25% of records CRITICAL at each) -- pack execution recovered under volume, dwell oversight did not.",
+          "supporting_data_refs": [
+            "sections[4].rankings[0].items[3].value",
+            "sections[4].rankings[0].items[5].value",
+            "sections[7].rankings[0].items[8].value",
+            "sections[7].rankings[0].items[9].value"
+          ]
+        },
+        {
+          "statement": "Excluding Cornubia's bulk-order outlier, the true banner average pack time is 5.7 minutes, not the 7.9 minutes shown on the headline KPI -- this workbook's own recommendations already call for Cornubia to be reported separately, and the Executive Summary tile should follow that guidance.",
+          "supporting_data_refs": [
+            "sections[5].kpis[1].value",
+            "sections[5].kpis[0].value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dwell_ranking",
+      "type": "ranking",
+      "new_page": true,
+      "layout_width": "full",
+      "title": "Dwell Critical Rate \u2014 All Stores, Worst to Best",
+      "rankings": [
+        {
+          "id": "dwell_critical_ranking",
+          "scope_label": "Share of dwell records CRITICAL (>31 min)",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Silverlakes",
+              "value": 100.0,
+              "unit": "%"
+            },
+            {
+              "rank": 2,
+              "label": "Carnival",
+              "value": 100.0,
+              "unit": "%"
+            },
+            {
+              "rank": 3,
+              "label": "Bloemfontein",
+              "value": 100.0,
+              "unit": "%"
+            },
+            {
+              "rank": 4,
+              "label": "Amanzimtoti",
+              "value": 80.0,
+              "unit": "%"
+            },
+            {
+              "rank": 5,
+              "label": "Springfield",
+              "value": 80.0,
+              "unit": "%"
+            },
+            {
+              "rank": 6,
+              "label": "Woodmead",
+              "value": 60.0,
+              "unit": "%"
+            },
+            {
+              "rank": 7,
+              "label": "Montague Gardens",
+              "value": 50.0,
+              "unit": "%"
+            },
+            {
+              "rank": 8,
+              "label": "Gqeberha",
+              "value": 44.44,
+              "unit": "%"
+            },
+            {
+              "rank": 9,
+              "label": "Strubens Valley",
+              "value": 25.0,
+              "unit": "%"
+            },
+            {
+              "rank": 10,
+              "label": "Riversands",
+              "value": 25.0,
+              "unit": "%"
+            },
+            {
+              "rank": 11,
+              "label": "Gonubie",
+              "value": 18.18,
+              "unit": "%"
+            },
+            {
+              "rank": 12,
+              "label": "Cape Gate",
+              "value": 0.0,
+              "unit": "%"
+            },
+            {
+              "rank": 13,
+              "label": "Crown Mines",
+              "value": 0.0,
+              "unit": "%"
+            },
+            {
+              "rank": 14,
+              "label": "Alberton",
+              "value": 0.0,
+              "unit": "%"
+            },
+            {
+              "rank": 15,
+              "label": "Germiston",
+              "value": 0.0,
+              "unit": "%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dwell_facts",
+      "type": "executive_facts",
+      "layout_width": "full",
+      "title": "Dwell Time Executive Facts",
+      "executive_facts": [
+        {
+          "statement": "Four stores -- Silverlakes, Carnival, Bloemfontein and (post-strip) Gqeberha -- had zero dwell records in the OK band; every logged trolley at these stores sat in WARNING or CRITICAL territory at least once, pointing to a systemic assignment gap rather than isolated incidents.",
+          "supporting_data_refs": [
+            "sections[7].rankings[0].items[0].value",
+            "sections[7].rankings[0].items[1].value",
+            "sections[7].rankings[0].items[2].value"
+          ]
+        },
+        {
+          "statement": "Crown Mines, Alberton, Cape Gate and Germiston recorded zero CRITICAL dwell records despite all being mid-to-slow on pack time -- proof that pack speed and dwell discipline are managed independently at store level, not the same underlying skill.",
+          "supporting_data_refs": [
+            "sections[7].rankings[0].items[12].value",
+            "sections[4].rankings[0].items[7].value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "data_quality",
+      "type": "custom_html",
+      "new_page": true,
+      "layout_width": "full",
+      "title": "Data Quality & Methodology Flags",
+      "text": "<ul style=\"margin:0;padding-left:18px;font-size:13px;line-height:1.7;\"><li><strong>Silverlakes observation date anomaly</strong> &mdash; all 4 observations are dated the day after the stated Sale window ends. This has not been previously flagged. Recommend confirming with the store whether this is a genuine late-tail observation or a default/incorrect timestamp before treating Silverlakes' figures as representative of peak Sale conditions.</li><li><strong>Missing OTD Late-Pick Cross-Check sheet</strong> &mdash; the consolidated workbook supplied for this analysis contains 7 of the expected 8 sheets; the OTD Late-Pick Cross-Check sheet (validating the TnM sample against the real, full-population HV OTD export) is absent. This may not be the final v2 workbook referenced in the deliverables list.</li><li><strong>Contaminated source files corrected</strong> &mdash; Gqeberha, Riversands and Strubens Valley originally contained rows dated within the prior Low Volume period, plus order references duplicated identically across all three files. Contaminated rows were stripped before analysis; Gqeberha is left with only 3 genuine HV observations, so its figures should be treated with caution.</li><li><strong>Bloemfontein artifact excluded</strong> &mdash; one dwell reading in the thousands of minutes was identified as a date-rollover data error and excluded from the average.</li><li><strong>Ottery blank submission</strong> &mdash; no Observation Log data for the HV period; dwell, exception and behavioural/readiness data exists but there is no pack-time visibility for this store during the Sale.</li></ul>"
+    },
+    {
+      "id": "dq_bottom",
+      "type": "bottom_insight",
+      "layout_width": "full",
+      "supporting_data_refs": [
+        "sections[5].kpis[0].value",
+        "sections[5].kpis[1].value"
+      ],
+      "text": "Before this analysis is finalised into a management report: confirm the Silverlakes observation date, source the missing OTD Late-Pick Cross-Check data, and correct the Executive Summary's banner average to either exclude Cornubia or clearly label it as bulk-order-inclusive -- none of these are process failures, but reporting them uncorrected risks the headline KPI being read as worse than the true packing performance."
+    }
+  ],
+  "provenance": {
+    "source_files": [
+      "Makro_TnM_HighVolume_Management_Report.docx",
+      "Makro_Packing_TnM_HighVolume_Consolidated.xlsx"
+    ],
+    "extraction_notes": "Pack times converted from the source mm:ss format to decimal minutes for consistency with this system's numeric citation checks; original mm:ss values are preserved in the source documents. The 8-sheet consolidated workbook convention described in the project context brief was not fully present in the uploaded file -- 'OTD Late-Pick Cross-Check' is missing (7 of 8 sheets present) -- so no OTD validation figures are included in this analysis; recommend re-running once the complete workbook is available. Silverlakes' observation dates (all 2026-07-02) fall one day outside the stated Sale window and were not flagged in the source docx or context brief; surfaced here as a new finding. The banner average pack time KPI in the source workbook's Executive Summary sheet (7:53 / 7.883 min) includes Cornubia's bulk-order outlier despite the source docx's own Recommendation 6 stating Cornubia should be 'reported separately from banner averages to avoid skewing the headline KPI' -- both the inclusive and exclusive figures are shown here rather than silently picking one.",
+    "unresolved_flags": []
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "decision_plan.schema.json",
+  "title": "MEIP Decision Plan",
+  "description": "Classifies prioritised executive objects into report placement decisions: Page 1, Page 2, Appendix, Monitor, or Ignore.",
+  "type": "object",
+  "required": ["decision_meta", "decisions"],
+  "additionalProperties": false,
+  "properties": {
+    "decision_meta": {
+      "type": "object",
+      "required": ["source_prioritised_analysis", "source_report_title", "source_report_type"],
+      "additionalProperties": false,
+      "properties": {
+        "source_prioritised_analysis": {"type": "string"},
+        "source_report_title": {"type": "string"},
+        "source_report_type": {"type": "string"}
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["executive_object_id", "title", "decision", "page", "reason", "executive_score", "confidence", "owner", "urgency", "recommended_visual"],
+        "additionalProperties": false,
+        "properties": {
+          "executive_object_id": {"type": "string"},
+          "title": {"type": "string"},
+          "decision": {"type": "string", "enum": ["Page 1", "Page 2", "Appendix", "Monitor", "Ignore"]},
+          "page": {"type": ["integer", "null"], "minimum": 1},
+          "reason": {"type": "string"},
+          "executive_score": {"type": "integer", "minimum": 0, "maximum": 100},
+          "confidence": {"type": "integer", "minimum": 0, "maximum": 100},
+          "owner": {"type": "string"},
+          "urgency": {"type": "string"},
+          "recommended_visual": {"type": "string"}
+        }
+      }
+    }
+  }
+}

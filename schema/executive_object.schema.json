@@ -21,18 +21,28 @@
     "recommended_action": {"type": "string"},
     "business_impact": {"type": "string"},
     "interpretation": {"type": "string"},
+    "paired_action_id": {
+      "type": "string",
+      "description": "id of a recommended_action item that was derived from this object's source finding/risk and folded in here instead of being ranked as a separate competing object."
+    },
     "scoring": {
       "type": "object",
-      "required": ["kpi_threshold", "customer_impact", "financial_impact", "executive_interest", "trend_or_concentration", "external_event", "evidence_confidence", "total"],
+      "required": ["kpi_threshold", "customer_impact", "financial_impact", "executive_interest", "trend_or_concentration", "external_event", "evidence_confidence", "magnitude", "total"],
       "additionalProperties": false,
       "properties": {
-        "kpi_threshold": {"type": "integer", "minimum": 0, "maximum": 30},
-        "customer_impact": {"type": "integer", "minimum": 0, "maximum": 20},
-        "financial_impact": {"type": "integer", "minimum": 0, "maximum": 15},
-        "executive_interest": {"type": "integer", "minimum": 0, "maximum": 10},
-        "trend_or_concentration": {"type": "integer", "minimum": 0, "maximum": 10},
+        "kpi_threshold": {"type": "integer", "minimum": 0, "maximum": 20},
+        "customer_impact": {"type": "integer", "minimum": 0, "maximum": 15},
+        "financial_impact": {"type": "integer", "minimum": 0, "maximum": 10},
+        "executive_interest": {"type": "integer", "minimum": 0, "maximum": 8},
+        "trend_or_concentration": {"type": "integer", "minimum": 0, "maximum": 7},
         "external_event": {"type": "integer", "minimum": 0, "maximum": 5},
         "evidence_confidence": {"type": "integer", "minimum": 0, "maximum": 10},
+        "magnitude": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 25,
+          "description": "Derived from the source insight's magnitude_pct (real computed severity: target deviation, concentration share, or peak share). 0 when no magnitude signal was available, not when severity is actually zero."
+        },
         "total": {"type": "integer", "minimum": 0, "maximum": 100}
       }
     },

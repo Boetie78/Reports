@@ -16,19 +16,39 @@ from typing import Any
 # Allow running as `python3 intelligence/prioritisation_engine.py ...` from repo root.
 sys.path.append(str(Path(__file__).parent))
 
-from executive_object import build_executive_object, reprioritise
+from executive_object import build_executive_object, merge_action_into_object, reprioritise
 
 
-SOURCE_GROUPS = ("findings", "risks", "opportunities", "recommended_actions")
+SOURCE_GROUPS = ("findings", "risks", "opportunities")
 
 
 def build_prioritised_objects(executive_analysis: dict[str, Any]) -> list[dict[str, Any]]:
     objects: list[dict[str, Any]] = []
+    objects_by_source_id: dict[str, dict[str, Any]] = {}
     sequence = 1
     for group_name in SOURCE_GROUPS:
         for item in executive_analysis.get(group_name, []):
-            objects.append(build_executive_object(item, sequence))
+            obj = build_executive_object(item, sequence)
+            objects.append(obj)
+            objects_by_source_id[item.get("id")] = obj
             sequence += 1
+
+    # recommended_actions are handled separately: an action derived from a
+    # finding/risk (via derived_from_id) describes the same underlying issue,
+    # not a new one, so it must not become a second independently-ranked
+    # object -- that would let the same issue occupy two leadership-deck
+    # slots at once. Fold it into its parent instead. Only an action with no
+    # traceable parent (or whose parent didn't produce an object) becomes its
+    # own object, so nothing is silently dropped.
+    for item in executive_analysis.get("recommended_actions", []):
+        parent = objects_by_source_id.get(item.get("derived_from_id"))
+        if parent is not None:
+            merge_action_into_object(parent, item)
+            continue
+        obj = build_executive_object(item, sequence)
+        objects.append(obj)
+        sequence += 1
+
     return reprioritise(objects)
 
 

@@ -59,7 +59,7 @@ def main():
     parser.add_argument("report_brief", type=Path)
     args = parser.parse_args()
 
-    doc = json.loads(args.report_brief.read_text())
+    doc = json.loads(args.report_brief.read_text(encoding="utf-8"))
     known_values = collect_numeric_leaves(doc)
 
     uncited = []

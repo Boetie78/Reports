@@ -188,12 +188,12 @@ def main():
     parser.add_argument("--out", type=Path, default=None)
     args = parser.parse_args()
 
-    doc = json.loads(args.report_brief.read_text())
+    doc = json.loads(args.report_brief.read_text(encoding="utf-8"))
     blueprint = build_blueprint(doc)
 
     out_path = args.out or (ROOT / "output" / f"{args.report_brief.stem}_blueprint.md")
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(blueprint)
+    out_path.write_text(blueprint, encoding="utf-8")
     print(f"Wrote {out_path}")
 
 

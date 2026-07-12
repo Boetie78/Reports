@@ -116,12 +116,12 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    doc = json.loads(args.report_brief.read_text())
+    doc = json.loads(args.report_brief.read_text(encoding="utf-8"))
     analysis = build_executive_analysis(doc, args.report_brief)
 
     output_path = args.output or Path("output") / f"{args.report_brief.stem}_executive_analysis.json"
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(json.dumps(analysis, indent=2, ensure_ascii=False) + "\n")
+    output_path.write_text(json.dumps(analysis, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"EXECUTIVE ANALYSIS WRITTEN — {output_path}")
     print(f"Primary message: {analysis['primary_message']['headline']}")
     return 0

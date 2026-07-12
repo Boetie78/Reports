@@ -77,7 +77,7 @@ def main() -> int:
     parser.add_argument("--output", type=Path, default=None)
     args = parser.parse_args()
 
-    prioritised = json.loads(args.prioritised_analysis.read_text())
+    prioritised = json.loads(args.prioritised_analysis.read_text(encoding="utf-8"))
     output = build_decision_plan(prioritised, args.prioritised_analysis)
     output_path = args.output or args.prioritised_analysis.with_name(
         args.prioritised_analysis.stem.replace("_prioritised_analysis", "") + "_decision_plan.json"

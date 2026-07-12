@@ -72,8 +72,8 @@ def main() -> int:
     parser.add_argument("executive_analysis", type=Path)
     args = parser.parse_args()
 
-    report_brief = json.loads(args.report_brief.read_text())
-    executive_analysis = json.loads(args.executive_analysis.read_text())
+    report_brief = json.loads(args.report_brief.read_text(encoding="utf-8"))
+    executive_analysis = json.loads(args.executive_analysis.read_text(encoding="utf-8"))
     errors = audit(report_brief, executive_analysis)
 
     if errors:

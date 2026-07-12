@@ -44,6 +44,22 @@ def _insight(
     return insight
 
 
+def _scope_from_title(title: str, max_len: int = 20) -> str | None:
+    """Extract a short entity/scope prefix from a section title that follows
+    the 'Scope — Descriptor' convention (e.g. 'Western Cape — Region
+    Overview' -> 'Western Cape'). Returns None when the title doesn't follow
+    that convention or the segment is too long to be a clean scope label --
+    callers must not use this speculatively, only to disambiguate a real,
+    already-detected headline collision (see detect_target_misses)."""
+
+    if " — " not in title:
+        return None
+    scope = title.split(" — ", 1)[0].strip()
+    if not scope or len(scope) > max_len:
+        return None
+    return scope
+
+
 def detect_target_misses(doc: dict[str, Any]) -> list[dict[str, Any]]:
     """Flag KPIs where the reported direction is explicitly unfavorable.
 
@@ -51,7 +67,9 @@ def detect_target_misses(doc: dict[str, Any]) -> list[dict[str, Any]]:
     infer target logic unless the source brief has encoded it.
     """
 
-    insights: list[dict[str, Any]] = []
+    built: list[dict[str, Any]] = []
+    fingerprints: dict[tuple, dict[str, Any]] = {}
+
     for section, kpi, idx in iter_kpis(doc):
         if kpi.get("direction") != "unfavorable":
             continue
@@ -80,19 +98,61 @@ def detect_target_misses(doc: dict[str, Any]) -> list[dict[str, Any]]:
                 baseline = numeric(comparison_raw)
                 if actual is not None and baseline not in (None, 0):
                     magnitude_pct = min(abs(actual - baseline) / abs(baseline) * 100, 100)
-        insights.append(
-            _insight(
-                insight_id=f"kpi_unfavorable_{kpi.get('id', idx)}",
-                insight_type="finding",
-                priority=1,
-                headline=f"{ev.label} is unfavorable",
-                interpretation=f"{ev.label} reported {ev.value}{ev.unit}{comparison}, and is marked unfavorable in the validated brief.",
-                business_impact="Leadership should treat this as a performance exception requiring explanation, ownership and recovery tracking.",
-                evidence=[ev],
-                magnitude_pct=magnitude_pct,
-            )
+
+        # Two sections sometimes restate the exact same KPI -- e.g. a headline
+        # number repeated on both a dashboard page and a deep-dive page for a
+        # different audience. That's the same fact, not a new one, so fold
+        # this section's evidence into the finding already recorded for it
+        # instead of creating a second object that competes with it for
+        # placement.
+        fingerprint = (
+            kpi.get("label"), kpi.get("value"), kpi.get("unit"),
+            kpi.get("comparison_label"), kpi.get("comparison_value"), kpi.get("comparison_unit"),
         )
-    return insights
+        if fingerprint in fingerprints:
+            fingerprints[fingerprint]["insight"]["supporting_evidence"].append(ev.as_dict())
+            continue
+
+        insight = _insight(
+            insight_id=f"kpi_unfavorable_{kpi.get('id', idx)}",
+            insight_type="finding",
+            priority=1,
+            headline=f"{ev.label} is unfavorable",
+            interpretation=f"{ev.label} reported {ev.value}{ev.unit}{comparison}, and is marked unfavorable in the validated brief.",
+            business_impact="Leadership should treat this as a performance exception requiring explanation, ownership and recovery tracking.",
+            evidence=[ev],
+            magnitude_pct=magnitude_pct,
+        )
+        entry = {"insight": insight, "kpi": kpi, "section": section}
+        fingerprints[fingerprint] = entry
+        built.append(entry)
+
+    # A KPI's own label is often only unambiguous in the context of the page
+    # it's rendered on (e.g. "Region Margin" under a "Western Cape" page
+    # header) -- flattened into one global executive list, identical
+    # headlines from genuinely different findings become impossible to tell
+    # apart. Only disambiguate when a real collision exists in the output,
+    # and only with information that actually differs across the colliding
+    # group -- never a scope guessed and applied to every finding regardless
+    # of whether it was ever actually ambiguous.
+    by_headline: dict[str, list[dict[str, Any]]] = {}
+    for entry in built:
+        by_headline.setdefault(entry["insight"]["headline"], []).append(entry)
+
+    for headline, group in by_headline.items():
+        if len(group) < 2:
+            continue
+        comparison_labels = [e["kpi"].get("comparison_label") for e in group]
+        if all(comparison_labels) and len(set(comparison_labels)) == len(group):
+            for e, cl in zip(group, comparison_labels):
+                e["insight"]["headline"] = f"{headline} ({cl})"
+            continue
+        scopes = [_scope_from_title(e["section"].get("title", "")) for e in group]
+        if all(scopes) and len(set(scopes)) == len(group):
+            for e, scope in zip(group, scopes):
+                e["insight"]["headline"] = f"{scope} {headline}"
+
+    return [e["insight"] for e in built]
 
 
 def detect_concentration(doc: dict[str, Any]) -> list[dict[str, Any]]:

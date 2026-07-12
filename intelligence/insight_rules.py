@@ -21,8 +21,10 @@ def _insight(
     business_impact: str,
     evidence: list[Evidence],
     confidence: str = "high",
+    magnitude_pct: float | None = None,
+    derived_from_id: str | None = None,
 ) -> dict[str, Any]:
-    return {
+    insight = {
         "id": insight_id,
         "type": insight_type,
         "priority": priority,
@@ -32,6 +34,14 @@ def _insight(
         "confidence": confidence,
         "supporting_evidence": [e.as_dict() for e in evidence],
     }
+    # magnitude_pct is only set when a rule has a real computed severity signal
+    # (a target deviation, a concentration share, a peak share) -- it is never
+    # guessed, so scoring.py must treat a missing value as "no signal", not zero.
+    if magnitude_pct is not None:
+        insight["magnitude_pct"] = round(magnitude_pct, 2)
+    if derived_from_id is not None:
+        insight["derived_from_id"] = derived_from_id
+    return insight
 
 
 def detect_target_misses(doc: dict[str, Any]) -> list[dict[str, Any]]:
@@ -52,8 +62,24 @@ def detect_target_misses(doc: dict[str, Any]) -> list[dict[str, Any]]:
             unit=kpi.get("unit", ""),
         )
         comparison = ""
+        magnitude_pct = None
         if "comparison_value" in kpi:
             comparison = f" compared with {kpi.get('comparison_label', 'comparison')} {kpi['comparison_value']}{kpi.get('comparison_unit', '')}"
+            comparison_raw = kpi.get("comparison_value")
+            if isinstance(comparison_raw, str) and "%" in comparison_raw:
+                # comparison_value is already expressed as a delta percentage
+                # (e.g. "+8.5%" vs a prior period) -- that percentage *is* the
+                # magnitude. Diffing it against `value` would compare mismatched
+                # units (e.g. an order count against a percentage) and produce a
+                # number that looks precise but means nothing.
+                delta_pct = numeric(comparison_raw)
+                if delta_pct is not None:
+                    magnitude_pct = min(abs(delta_pct), 100)
+            else:
+                actual = numeric(kpi.get("value"))
+                baseline = numeric(comparison_raw)
+                if actual is not None and baseline not in (None, 0):
+                    magnitude_pct = min(abs(actual - baseline) / abs(baseline) * 100, 100)
         insights.append(
             _insight(
                 insight_id=f"kpi_unfavorable_{kpi.get('id', idx)}",
@@ -63,6 +89,7 @@ def detect_target_misses(doc: dict[str, Any]) -> list[dict[str, Any]]:
                 interpretation=f"{ev.label} reported {ev.value}{ev.unit}{comparison}, and is marked unfavorable in the validated brief.",
                 business_impact="Leadership should treat this as a performance exception requiring explanation, ownership and recovery tracking.",
                 evidence=[ev],
+                magnitude_pct=magnitude_pct,
             )
         )
     return insights
@@ -111,6 +138,7 @@ def detect_concentration(doc: dict[str, Any]) -> list[dict[str, Any]]:
                 interpretation=f"{ev_top.label} contributes {top_value:g} of {total:g} {bd.get('unit', '').strip()}, making it the largest driver in this breakdown.",
                 business_impact="A concentrated driver is easier to target, but it also creates risk if recovery actions do not directly address that area.",
                 evidence=[ev_top, ev_total],
+                magnitude_pct=share,
             )
         )
     return insights
@@ -127,25 +155,34 @@ def detect_peak_bars(doc: dict[str, Any]) -> list[dict[str, Any]]:
         if not values or len(values) != len(categories):
             continue
         max_idx = max(range(len(values)), key=lambda i: values[i])
+        # "Share of total" only means something when every bar is a magnitude
+        # (e.g. daily order counts). For a mixed-sign chart (e.g. variance vs
+        # plan), the total can be near zero or negative, which turns "share"
+        # into a meaningless, sometimes wildly out-of-range number (a real
+        # instance produced -412%) -- so it's only computed for non-negative
+        # charts, and treated as no signal (not fabricated) otherwise.
+        has_negative = any(isinstance(v, (int, float)) and v < 0 for v in values)
         total = sum(v for v in values if isinstance(v, (int, float)))
-        if not total:
+        if not has_negative and not total:
             continue
-        share = pct(values[max_idx], total)
+        share = pct(values[max_idx], total) if not has_negative and total else None
         ev = Evidence(
             data_ref=f"sections[{section['_index']}].bar_chart.values[{max_idx}]",
             label=categories[max_idx],
             value=values[max_idx],
             unit=chart.get("unit", ""),
         )
+        detail = f", representing {share:.2f}% of the chart total" if share is not None else ""
         insights.append(
             _insight(
                 insight_id=f"peak_{chart.get('id', section['id'])}_{max_idx}",
                 insight_type="finding",
                 priority=2 if (share or 0) >= 35 else 3,
                 headline=f"{categories[max_idx]} is the peak point in {chart.get('title', 'the chart')}",
-                interpretation=f"{categories[max_idx]} is the highest point at {values[max_idx]:g}{chart.get('unit', '')}, representing {share:.2f}% of the chart total.",
+                interpretation=f"{categories[max_idx]} is the highest point at {values[max_idx]:g}{chart.get('unit', '')}{detail}.",
                 business_impact="Leadership should test whether the peak is event-driven, operationally driven, or an early signal of a repeatable trend.",
                 evidence=[ev],
+                magnitude_pct=share,
             )
         )
     return insights
@@ -189,18 +226,24 @@ def build_action_recommendations(findings: list[dict[str, Any]], risks: list[dic
     actions: list[dict[str, Any]] = []
     source_items = sorted(findings + risks, key=lambda item: item["priority"])[:3]
     for idx, item in enumerate(source_items, start=1):
-        actions.append(
-            {
-                "id": f"action_{idx}_{item['id']}",
-                "type": "action",
-                "priority": min(item["priority"], 3),
-                "headline": f"Assign owner and recovery check for: {item['headline']}",
-                "interpretation": "The issue is material enough to be surfaced in the executive pack and should not remain a passive observation.",
-                "business_impact": "A named owner, date-bound recovery check and next-cycle measurement prevents the same issue from repeating without accountability.",
-                "confidence": item.get("confidence", "medium"),
-                "supporting_evidence": item.get("supporting_evidence", []),
-            }
-        )
+        action = {
+            "id": f"action_{idx}_{item['id']}",
+            "type": "action",
+            "priority": min(item["priority"], 3),
+            "headline": f"Assign owner and recovery check for: {item['headline']}",
+            "interpretation": "The issue is material enough to be surfaced in the executive pack and should not remain a passive observation.",
+            "business_impact": "A named owner, date-bound recovery check and next-cycle measurement prevents the same issue from repeating without accountability.",
+            "confidence": item.get("confidence", "medium"),
+            "supporting_evidence": item.get("supporting_evidence", []),
+            # Explicit lineage: this action is about the finding/risk it was built
+            # from, not a new independent fact -- prioritisation_engine.py uses
+            # this to fold the action into its parent's decision object instead
+            # of letting the same underlying issue compete twice for placement.
+            "derived_from_id": item["id"],
+        }
+        if item.get("magnitude_pct") is not None:
+            action["magnitude_pct"] = item["magnitude_pct"]
+        actions.append(action)
     return actions
 
 

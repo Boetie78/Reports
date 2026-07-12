@@ -26,17 +26,38 @@ def _text(item: dict[str, Any]) -> str:
     ).lower()
 
 
+def magnitude_component(item: dict[str, Any]) -> int:
+    """Score how big the underlying issue actually is, not just how it's worded.
+
+    magnitude_pct is only populated by insight_rules.py when a rule has a real
+    computed severity (target deviation, concentration share, peak share) --
+    it is intentionally None (not 0) when no such signal exists, so a missing
+    value contributes nothing rather than being scored as "no severity".
+    """
+    magnitude_pct = item.get("magnitude_pct")
+    if magnitude_pct is None:
+        return 0
+    return min(25, round(magnitude_pct / 4))
+
+
 def score_item(item: dict[str, Any]) -> dict[str, int]:
     text = _text(item)
     confidence = evidence_confidence(item)
 
-    kpi_threshold = 30 if any(term in text for term in TARGET_TERMS) else 0
-    customer_impact = 20 if any(term in text for term in CUSTOMER_TERMS) else 0
-    financial_impact = 15 if any(term in text for term in FINANCIAL_TERMS) else 0
-    executive_interest = 10 if any(term in text for term in EXECUTIVE_KPI_TERMS) else 3
-    trend_or_concentration = 10 if any(term in text for term in CONCENTRATION_TERMS) else 0
+    # Keyword buckets identify *what kind* of issue this is; magnitude_component
+    # (below) identifies *how severe* it is. Weights were rebalanced down from
+    # their original values (which summed to 100 on their own) to make room for
+    # magnitude, otherwise two items with the same wording but very different
+    # real-world severity would both clamp to the same total at min(100, ...)
+    # and magnitude would never actually move the ranking.
+    kpi_threshold = 20 if any(term in text for term in TARGET_TERMS) else 0
+    customer_impact = 15 if any(term in text for term in CUSTOMER_TERMS) else 0
+    financial_impact = 10 if any(term in text for term in FINANCIAL_TERMS) else 0
+    executive_interest = 8 if any(term in text for term in EXECUTIVE_KPI_TERMS) else 2
+    trend_or_concentration = 7 if any(term in text for term in CONCENTRATION_TERMS) else 0
     external_event = 5 if any(term in text for term in EXTERNAL_EVENT_TERMS) else 0
     evidence_component = evidence_score_component(confidence)
+    magnitude = magnitude_component(item)
 
     total = min(
         100,
@@ -46,7 +67,8 @@ def score_item(item: dict[str, Any]) -> dict[str, int]:
         + executive_interest
         + trend_or_concentration
         + external_event
-        + evidence_component,
+        + evidence_component
+        + magnitude,
     )
 
     return {
@@ -57,6 +79,7 @@ def score_item(item: dict[str, Any]) -> dict[str, int]:
         "trend_or_concentration": trend_or_concentration,
         "external_event": external_event,
         "evidence_confidence": evidence_component,
+        "magnitude": magnitude,
         "total": total,
     }
 

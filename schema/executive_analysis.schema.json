@@ -34,7 +34,17 @@
         "interpretation": {"type": "string"},
         "business_impact": {"type": "string"},
         "confidence": {"type": "string", "enum": ["high", "medium", "low"]},
-        "supporting_evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/definitions/evidence"}}
+        "supporting_evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/definitions/evidence"}},
+        "magnitude_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Real computed severity signal (target deviation, concentration share, or peak share), 0-100. Only present when a rule can compute it from validated source values -- absence means no signal, not zero severity, and scoring must not treat it as zero."
+        },
+        "derived_from_id": {
+          "type": "string",
+          "description": "For type=action: the id of the finding/risk this action addresses. Lets prioritisation fold the action into its parent's decision object instead of ranking the same underlying issue twice."
+        }
       }
     },
     "planItem": {

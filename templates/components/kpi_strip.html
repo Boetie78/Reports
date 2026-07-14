@@ -4,10 +4,10 @@
     {% for k in section.kpis %}
     <div class="kpi-tile">
       <div class="label">{{ k.label }}</div>
-      <div class="value {{ k.direction }}">{{ k.value }}{{ k.unit }}</div>
+      <div class="value {{ k.direction }}">{{ k.value | num }}{{ k.unit }}</div>
       {% if k.comparison_label %}
       <div class="compare">{{ k.comparison_label }}
-        <span class="delta {{ k.direction }}">{{ k.comparison_value }}{{ k.comparison_unit }}</span>
+        <span class="delta {{ k.direction }}">{{ k.comparison_value | num }}{{ k.comparison_unit }}</span>
       </div>
       {% endif %}
     </div>

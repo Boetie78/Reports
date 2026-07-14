@@ -1,0 +1,617 @@
+{
+  "report_meta": {
+    "title": "Makro Online \u2014 Cancellation & Fulfilment Review",
+    "subtitle": "June 2026 True Picture vs May 2026",
+    "organization": "Makro Ecommerce",
+    "period_label": "June 2026 (1\u201330 Jun) vs May 2026",
+    "report_type": "online_cancellation_review",
+    "generated_date": "2026-07-14"
+  },
+  "sections": [
+    {
+      "id": "exec_summary",
+      "type": "executive_summary",
+      "text": "June cancellations improved on every rate metric measured against May: total cancelled value fell to 4.10% of GMV (-0.90pp), driven almost entirely by store-side operational cancellations (2.69% of GMV, -0.56pp), which account for the large majority of all cancelled lines. True lost sales -- excluding the 961 lines that were simply reallocated to another store and still completed -- were R5.37m Ex VAT across 30,671 lines, 3.52% of GMV. The one metric moving the wrong way is First Time Pick Rate, down 5.20pp to 85.14%, with exception orders up 2,852 month-on-month despite fewer total order lines -- a leading indicator worth watching even though it hasn't yet shown up in the headline cancellation rate.",
+      "supporting_data_refs": [
+        "sections[6].kpis[0].value",
+        "sections[6].kpis[1].value",
+        "sections[1].kpis[3].value",
+        "sections[1].kpis[4].value",
+        "sections[8].kpis[0].value",
+        "sections[8].kpis[2].value"
+      ]
+    },
+    {
+      "id": "headline_kpi",
+      "type": "kpi_strip",
+      "kpis": [
+        {
+          "id": "total_lines",
+          "label": "Total Lines Processed",
+          "value": 615760,
+          "unit": "",
+          "comparison_label": "vs May",
+          "comparison_value": -6710,
+          "comparison_unit": "",
+          "direction": "neutral"
+        },
+        {
+          "id": "completed_pct",
+          "label": "Completed Lines",
+          "value": 94.86,
+          "unit": "%",
+          "comparison_label": "of lines",
+          "comparison_value": 584128,
+          "comparison_unit": " lines",
+          "direction": "favorable"
+        },
+        {
+          "id": "cancelled_value",
+          "label": "Total Cancelled Value",
+          "value": -6248217,
+          "unit": " Ex VAT",
+          "comparison_label": "vs May",
+          "comparison_value": 1370000,
+          "comparison_unit": " improvement",
+          "direction": "favorable"
+        },
+        {
+          "id": "true_lost",
+          "label": "True Lost Sales (excl. Realloc)",
+          "value": -5.37,
+          "unit": " Rm Ex VAT",
+          "comparison_label": "of GMV",
+          "comparison_value": -3.52,
+          "comparison_unit": "%",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "true_lost_lines",
+          "label": "True Lost Sales (Lines)",
+          "value": 30671,
+          "unit": "",
+          "comparison_label": "of total lines",
+          "comparison_value": 4.98,
+          "comparison_unit": "%",
+          "direction": "unfavorable"
+        }
+      ]
+    },
+    {
+      "id": "cancellation_breakdown",
+      "type": "breakdown_table",
+      "layout_width": "half",
+      "label_header": "Category",
+      "breakdown": {
+        "id": "cancel_composition",
+        "title": "June Cancelled Lines \u2014 Composition",
+        "unit": "lines",
+        "mode": "share",
+        "parent_total": {
+          "label": "Total Cancelled Lines",
+          "value": 31632
+        },
+        "components": [
+          {
+            "label": "Store Cancelled (picker present, OOS/damage/ops)",
+            "value": 28057
+          },
+          {
+            "label": "Customer Cancelled (before picking)",
+            "value": 2614
+          },
+          {
+            "label": "Reallocation (completed at another store \u2014 not lost)",
+            "value": 961
+          }
+        ]
+      }
+    },
+    {
+      "id": "cancellation_value_breakdown",
+      "type": "breakdown_table",
+      "layout_width": "half",
+      "label_header": "Category",
+      "breakdown": {
+        "id": "cancel_value_composition",
+        "title": "June Cancelled Value \u2014 Composition (R6,248,217 Ex VAT)",
+        "unit": "",
+        "mode": "share",
+        "parent_total": {
+          "label": "Total Cancelled Value",
+          "value": 6248217
+        },
+        "components": [
+          {
+            "label": "Store Cancelled",
+            "value": 4107802
+          },
+          {
+            "label": "Customer Cancelled",
+            "value": 1258200
+          },
+          {
+            "label": "Reallocation (not lost)",
+            "value": 882215
+          }
+        ]
+      }
+    },
+    {
+      "id": "dashboard_facts",
+      "type": "executive_facts",
+      "executive_facts": [
+        {
+          "statement": "Store-side cancellations (picker present, OOS/damage/ops failure) are 88.7% of all cancelled lines and 65.7% of cancelled value -- this is the controllable, operational driver, not a customer-behaviour or demand problem.",
+          "supporting_data_refs": [
+            "sections[2].breakdown.components[0].value",
+            "sections[3].breakdown.components[0].value"
+          ]
+        },
+        {
+          "statement": "Reallocation (961 lines, R882,215) is explicitly not a lost sale -- the order was completed at a different store -- and should stay reported separately from true lost sales rather than folded into the headline cancellation number.",
+          "supporting_data_refs": [
+            "sections[2].breakdown.components[2].value"
+          ]
+        },
+        {
+          "statement": "Customer-initiated cancellations before picking are the smallest category by both lines (2,614) and value (R1,258,200) -- the bulk of the opportunity sits inside the store's own fulfilment process, not with the customer.",
+          "supporting_data_refs": [
+            "sections[2].breakdown.components[1].value",
+            "sections[3].breakdown.components[1].value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dashboard_bottom",
+      "type": "bottom_insight",
+      "text": "The headline number is genuinely improving, but it's an operational (store-side) story, not a demand story -- recovery actions should target picking/stock processes, not customer-facing cancellation flows.",
+      "supporting_data_refs": [
+        "sections[2].breakdown.components[0].value"
+      ]
+    },
+    {
+      "id": "mom_kpi",
+      "type": "kpi_strip",
+      "new_page": true,
+      "kpis": [
+        {
+          "id": "cancel_rate_value",
+          "label": "Total Cancel % (of Value)",
+          "value": 4.1,
+          "unit": "%",
+          "comparison_label": "vs May",
+          "comparison_value": -0.9,
+          "comparison_unit": "pp",
+          "direction": "favorable"
+        },
+        {
+          "id": "ops_cancel_rate",
+          "label": "OPS Cancel % \u2014 Store Only",
+          "value": 2.69,
+          "unit": "%",
+          "comparison_label": "vs May",
+          "comparison_value": -0.56,
+          "comparison_unit": "pp",
+          "direction": "favorable"
+        },
+        {
+          "id": "cust_cancel_rate",
+          "label": "Customer Cancel % Only",
+          "value": 0.82,
+          "unit": "%",
+          "comparison_label": "vs May",
+          "comparison_value": -0.13,
+          "comparison_unit": "pp",
+          "direction": "favorable"
+        },
+        {
+          "id": "realloc_rate",
+          "label": "Reallocation % (not a loss)",
+          "value": 0.58,
+          "unit": "%",
+          "comparison_label": "vs May",
+          "comparison_value": -0.22,
+          "comparison_unit": "pp",
+          "direction": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "cancel_rate_bar",
+      "type": "bar_chart",
+      "layout_width": "full",
+      "bar_chart": {
+        "id": "rate_deltas",
+        "title": "Cancellation Rate Change, May \u2192 June (percentage points, negative = improvement)",
+        "unit": "pp",
+        "categories": [
+          "Total Cancel %",
+          "Cancel % excl. Customer",
+          "True Lost %",
+          "OPS Cancel % (Store)",
+          "Customer Cancel %",
+          "Reallocation %"
+        ],
+        "values": [
+          -0.9,
+          -0.78,
+          -0.69,
+          -0.56,
+          -0.13,
+          -0.22
+        ]
+      }
+    },
+    {
+      "id": "ftpr_kpi",
+      "type": "kpi_strip",
+      "kpis": [
+        {
+          "id": "ftpr",
+          "label": "First Time Pick Rate (zero exceptions)",
+          "value": 85.14,
+          "unit": "%",
+          "comparison_label": "vs May",
+          "comparison_value": -5.2,
+          "comparison_unit": "pp",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "exception_rate",
+          "label": "Exception Rate (orders blocked at 1st pick)",
+          "value": 14.86,
+          "unit": "%",
+          "comparison_label": "vs May",
+          "comparison_value": 5.2,
+          "comparison_unit": "pp",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "exception_orders",
+          "label": "Exception Orders (count)",
+          "value": 12846,
+          "unit": "",
+          "comparison_label": "vs May",
+          "comparison_value": 2852,
+          "comparison_unit": " orders",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "exception_value",
+          "label": "Total Exception Value",
+          "value": -4423808,
+          "unit": " Ex VAT",
+          "comparison_label": "vs May",
+          "comparison_value": 690000,
+          "comparison_unit": " lower",
+          "direction": "favorable"
+        }
+      ]
+    },
+    {
+      "id": "trend_facts",
+      "type": "executive_facts",
+      "executive_facts": [
+        {
+          "statement": "Every cancellation rate metric improved month-on-month, led by OPS Cancel % (Store), down 0.56pp -- consistent, broad-based improvement rather than one metric masking deterioration elsewhere.",
+          "supporting_data_refs": [
+            "sections[7].bar_chart.values[3]"
+          ]
+        },
+        {
+          "statement": "First Time Pick Rate falling 5.20pp while cancellation rates improve is a real tension worth investigating -- exception orders rose by 2,852 even as total order lines fell, suggesting more orders are hitting a picking problem before it becomes a cancellation, not that picking itself got easier.",
+          "supporting_data_refs": [
+            "sections[8].kpis[0].value",
+            "sections[8].kpis[2].value"
+          ]
+        },
+        {
+          "statement": "Exception value and lines per exception both fell even as exception order count rose, meaning individual exceptions are getting smaller and cheaper on average but more frequent -- worth confirming whether this reflects genuine process improvement on each exception or just a change in order mix.",
+          "supporting_data_refs": [
+            "sections[8].kpis[3].value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trend_bottom",
+      "type": "bottom_insight",
+      "text": "Don't let the improving cancellation headline hide the FTPR trend -- it's the earlier-stage signal, and it's moving the wrong way.",
+      "supporting_data_refs": [
+        "sections[8].kpis[0].value"
+      ]
+    },
+    {
+      "id": "top_value_ranking",
+      "type": "ranking",
+      "new_page": true,
+      "layout_width": "full",
+      "title": "Top 8 Articles by Cancelled Value (R, Ex VAT, June 2026)",
+      "rankings": [
+        {
+          "id": "top_value",
+          "scope_label": "June 2026",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Samsung 70\" Smart UHD TV",
+              "value": 173891,
+              "unit": ""
+            },
+            {
+              "rank": 2,
+              "label": "Acer Aspire Intel i3 Laptop",
+              "value": 111290,
+              "unit": ""
+            },
+            {
+              "rank": 3,
+              "label": "Samsung 85\" (215cm) QLED TV",
+              "value": 79996,
+              "unit": ""
+            },
+            {
+              "rank": 4,
+              "label": "Hisense 263L Combi Fridge",
+              "value": 76508,
+              "unit": ""
+            },
+            {
+              "rank": 5,
+              "label": "Hisense 222L Bottom Fridge/Freezer",
+              "value": 76505,
+              "unit": ""
+            },
+            {
+              "rank": 6,
+              "label": "Tastic Long Grain Parboiled Rice 2kg",
+              "value": 62715,
+              "unit": ""
+            },
+            {
+              "rank": 7,
+              "label": "Hisense Top Loader Washer 14kg",
+              "value": 56510,
+              "unit": ""
+            },
+            {
+              "rank": 8,
+              "label": "Defy Front Loader 6kg Washer",
+              "value": 48683,
+              "unit": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "top_qty_ranking",
+      "type": "ranking",
+      "layout_width": "full",
+      "title": "Top 8 Articles by Cancelled Quantity (June 2026)",
+      "rankings": [
+        {
+          "id": "top_qty",
+          "scope_label": "June 2026",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Tastic Long Grain Parboiled Rice 2kg",
+              "value": 2508,
+              "unit": " units"
+            },
+            {
+              "rank": 2,
+              "label": "Nola Original Mayonnaise 380g",
+              "value": 974,
+              "unit": " units"
+            },
+            {
+              "rank": 3,
+              "label": "Rhodes Long Life Nectar 200ml, Tropical",
+              "value": 338,
+              "unit": " units"
+            },
+            {
+              "rank": 4,
+              "label": "Yum Yum Smooth Peanut Butter 250g",
+              "value": 312,
+              "unit": " units"
+            },
+            {
+              "rank": 5,
+              "label": "Thirsti Still Water 500ml 10+2",
+              "value": 257,
+              "unit": " units"
+            },
+            {
+              "rank": 6,
+              "label": "Rhodes Long Life Nectar 200ml, Cranberry",
+              "value": 255,
+              "unit": " units"
+            },
+            {
+              "rank": 7,
+              "label": "Rhodes Long Life Nectar 200ml, Apple",
+              "value": 240,
+              "unit": " units"
+            },
+            {
+              "rank": 8,
+              "label": "Cadbury Chocolate Bar 12g, Dairy Milk",
+              "value": 239,
+              "unit": " units"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "article_facts",
+      "type": "executive_facts",
+      "executive_facts": [
+        {
+          "statement": "Big-ticket electronics and appliances filling 7 of the top 8 by value suggests the value-based cancellation risk should be managed through stock-availability and handling-damage controls on large items, not through generic cancellation-rate targets that treat every line the same.",
+          "supporting_data_refs": [
+            "sections[11].rankings[0].items[0].value"
+          ]
+        },
+        {
+          "statement": "Cancelled quantity tells a different story -- fast-moving grocery and beverage lines (rice, mayonnaise, fruit nectar, peanut butter) dominate by unit count, consistent with shelf-replenishment and stock-integrity issues rather than damage or high-value theft risk.",
+          "supporting_data_refs": [
+            "sections[12].rankings[0].items[0].value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reason_value_breakdown",
+      "type": "breakdown_table",
+      "new_page": true,
+      "layout_width": "half",
+      "label_header": "Reason Code",
+      "breakdown": {
+        "id": "reason_by_value",
+        "title": "Cancellation Reason Codes \u2014 Tagged Sample, Value-Weighted",
+        "unit": "lines",
+        "mode": "share",
+        "parent_total": {
+          "label": "Tagged Sample Total",
+          "value": 434
+        },
+        "components": [
+          {
+            "label": "Shelf Replenishment (SOH not on shelf at pick)",
+            "value": 126
+          },
+          {
+            "label": "Stock Integrity (Dispo / stock management)",
+            "value": 97
+          },
+          {
+            "label": "Customer Pre-Picking Cancellation",
+            "value": 72
+          },
+          {
+            "label": "Product Sold Out at time of pick",
+            "value": 65
+          },
+          {
+            "label": "Open Boxes (Non-adherence to S20 process)",
+            "value": 18
+          },
+          {
+            "label": "Display",
+            "value": 17
+          },
+          {
+            "label": "Non-adherence to Exception Management Process",
+            "value": 14
+          },
+          {
+            "label": "Fraudulent transaction",
+            "value": 8
+          },
+          {
+            "label": "Customer Cancelled (change of address)",
+            "value": 8
+          },
+          {
+            "label": "System Issues",
+            "value": 7
+          },
+          {
+            "label": "Pack Sizes Management (not sold in UOM received)",
+            "value": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "reason_qty_breakdown",
+      "type": "breakdown_table",
+      "layout_width": "half",
+      "label_header": "Reason Code",
+      "breakdown": {
+        "id": "reason_by_qty",
+        "title": "Cancellation Reason Codes \u2014 Tagged Sample, Quantity-Weighted",
+        "unit": "units",
+        "mode": "share",
+        "parent_total": {
+          "label": "Tagged Sample Total",
+          "value": 701
+        },
+        "components": [
+          {
+            "label": "Shelf Replenishment (SOH not on shelf at pick)",
+            "value": 333
+          },
+          {
+            "label": "Stock Integrity (Dispo / stock management)",
+            "value": 183
+          },
+          {
+            "label": "Product Sold Out at time of pick",
+            "value": 81
+          },
+          {
+            "label": "Customer Pre-Picking Cancellation",
+            "value": 43
+          },
+          {
+            "label": "Pack Sizes Management (not sold in UOM received)",
+            "value": 21
+          },
+          {
+            "label": "System Issues",
+            "value": 15
+          },
+          {
+            "label": "Non-adherence to Exception Management Process",
+            "value": 10
+          },
+          {
+            "label": "Web/Merchant (incorrect pricing/UOM)",
+            "value": 9
+          },
+          {
+            "label": "Open Boxes (Non-adherence to S20 process)",
+            "value": 5
+          },
+          {
+            "label": "Fraudulent transaction",
+            "value": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "data_quality",
+      "type": "custom_html",
+      "layout_width": "full",
+      "title": "Data Quality & Scope Notes",
+      "text": "<ul style=\"margin:0;padding-left:18px;font-size:13px;line-height:1.7;\"><li><strong>Reason-code tables are a smaller tagged sample, not the full population</strong> &mdash; 434 lines (value-weighted) and 701 units (quantity-weighted) were coded to a reason, against a true lost-sales population of 30,671 lines. The filter criteria behind this sample were not specified in the source data, so these percentages describe the tagged subset only and should not be read as explaining all cancellations.</li><li><strong>Two different cancellation-rate bases are in use and are not interchangeable</strong> &mdash; the source distinguishes a line-count basis (June Total Cancelled Lines = 5.14% of all lines) from a value basis (June Total Cancelled Value = 4.10% of GMV). This report uses the value basis throughout the trend page to match the source's own MEIP-style rate table; the line-count basis is shown separately on the dashboard breakdown.</li><li><strong>Top 20 tables truncated to Top 8</strong> &mdash; both cancelled-value and cancelled-quantity rankings were supplied as Top 20 lists; this report shows the top 8 of each for a high-level view. The full 20-line detail is available in the source workbook.</li><li><strong>Source is screenshots of Excel tables, not raw files</strong> &mdash; all figures were transcribed from image data rather than a machine-readable export; every reconciliation check in this report (cancelled-lines composition, cancelled-value composition, both reason-code samples) ties out exactly to its own stated total.</li></ul>"
+    },
+    {
+      "id": "dq_bottom",
+      "type": "bottom_insight",
+      "text": "All headline reconciliations tie out exactly; the two open items are the unspecified reason-code sample filter and confirming what's driving the FTPR decline.",
+      "supporting_data_refs": [
+        "sections[14].breakdown.parent_total.value"
+      ]
+    }
+  ],
+  "provenance": {
+    "source_files": [
+      "Makro Online Cancellation True Picture \u2014 June 2026 (screenshot)",
+      "Makro Online May vs June 2026 Month-on-Month Comparison (screenshot)",
+      "Top 20 by Cancelled Value \u2014 June 2026 (screenshot)",
+      "Top 20 by Cancelled Quantity \u2014 June 2026 (screenshot)",
+      "Cancellation Reason-Code Pivot Tables (screenshot)"
+    ],
+    "extraction_notes": "All figures transcribed from Excel screenshots pasted directly into chat, not machine-readable exports. Every reconciliation check ties out exactly to its own stated total: June cancelled-lines composition (961+28,057+2,614=31,632), June cancelled-value composition (882,215+4,107,802+1,258,200=6,248,217), May cancelled-lines/value totals, and both reason-code sample totals (434 lines, 701 units). Top 20 by Value and Top 20 by Quantity tables were truncated to Top 8 each for a high-level view -- full detail exists in the source workbook but was not reproduced here. The reason-code tagging sample (434 lines / 701 units) is a smaller, separately filtered subset of the 30,671-line true-lost-sales population; the exact filter criteria were not given in the source, so it is presented as directional context on common cancellation reasons, not a full attribution of all cancellations. Two cancellation-rate bases exist in the source (line-count vs value) and are labeled separately throughout rather than merged.",
+    "unresolved_flags": []
+  }
+}

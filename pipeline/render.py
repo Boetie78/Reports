@@ -35,10 +35,20 @@ def direction_of(value):
     return "neutral"
 
 
-def fmt(value, unit=""):
-    if isinstance(value, str):
+def format_number(value, signed=False):
+    """Jinja filter: comma-thousands numeric formatting for template display.
+
+    Whole numbers render with no decimals (615760 -> "615,760"); non-whole
+    numbers keep up to 2 decimals (28.6667 -> "28.67"). Strings and other
+    non-numeric values pass through unchanged so labels/units in the same
+    field never break this filter.
+    """
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
         return value
-    return f"{value:g}{unit}"
+    sign = "+" if signed else ""
+    if float(value).is_integer():
+        return f"{value:{sign},.0f}"
+    return f"{value:{sign},.2f}"
 
 
 def build_kpi_strip(section):
@@ -227,7 +237,7 @@ def build_bar_chart(section):
         bars.append({
             "x": x, "y": y, "width": bar_w, "height": max(h, 2),
             "color": color, "label": cat,
-            "value_label": f"{val:g}{bc.get('unit', '')}",
+            "value_label": f"{format_number(val)}{bc.get('unit', '')}",
             "value_y": value_y,
             "annotation": ann["label"] if ann else None,
         })
@@ -316,6 +326,7 @@ def paginate(sections):
 
 def render_html(doc):
     env = jinja2.Environment(loader=jinja2.FileSystemLoader(str(TEMPLATES)))
+    env.filters["num"] = format_number
     template = env.get_template("report.html")
     css = (TEMPLATES / "assets" / "style.css").read_text(encoding="utf-8")
     pages = paginate(doc["sections"])

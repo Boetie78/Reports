@@ -9,7 +9,7 @@
       <div class="rank-label">{{ item.label }}</div>
       {% if item.value is defined and item.value is not none %}
       <div class="rank-bar-track"><div class="rank-bar-fill {{ item.bar_class }}" style="width:{{ item.pct_width }}%;"></div></div>
-      <div class="rank-value">{{ item.value }}{{ item.unit }}</div>
+      <div class="rank-value">{{ item.value | num }}{{ item.unit }}</div>
       {% endif %}
     </div>
     {% endfor %}

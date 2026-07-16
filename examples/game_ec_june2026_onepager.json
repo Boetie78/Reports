@@ -1,0 +1,282 @@
+{
+  "report_meta": {
+    "title": "Game Eastern Cape \u2014 Monthly Performance One-Pager",
+    "subtitle": "Eastern Cape Regional Performance",
+    "organization": "Game \u2014 Eastern Cape",
+    "period_label": "June 2026",
+    "report_type": "regional_monthly_onepager",
+    "generated_date": "2026-07-14"
+  },
+  "sections": [
+    {
+      "id": "exec_summary",
+      "type": "executive_summary",
+      "text": "Game Jeffery's Bay is the standout concern this month -- 81.25% on-time, nearly double the regional late rate and the single worst-performing store across both banners. Unlike Makro, where courier SLA non-adherence dominates, Game's biggest late-order driver is Late Driver Assignment (25%), almost entirely Customer Request Date Changes, pointing to a promise-management issue rather than a courier failure. Cancellations are concentrated: Game Vincent East London accounts for 79% of the region's R14,544.28 cancelled value, but that's a single R10,433.91 fridge order, not a broad pattern -- Greenacres' higher-frequency, lower-value pattern is the more systemic issue to watch.",
+      "supporting_data_refs": [
+        "sections[2].rankings[0].items[0].value",
+        "sections[3].breakdown.components[0].value"
+      ]
+    },
+    {
+      "id": "headline_kpi",
+      "type": "kpi_strip",
+      "kpis": [
+        {
+          "id": "region_otd",
+          "label": "Region OTD",
+          "value": 91.04,
+          "unit": "%",
+          "comparison_label": "vs 95% Target",
+          "comparison_value": -3.96,
+          "comparison_unit": "pp",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "region_pick_sla",
+          "label": "Region Pick SLA",
+          "value": 94.78,
+          "unit": "%",
+          "comparison_label": "on-time",
+          "comparison_value": 5.22,
+          "comparison_unit": "% late",
+          "direction": "favorable"
+        },
+        {
+          "id": "region_csat",
+          "label": "Region CSAT",
+          "value": 96,
+          "unit": "%",
+          "comparison_label": "vs 90% band",
+          "comparison_value": 6,
+          "comparison_unit": "pp",
+          "direction": "favorable"
+        },
+        {
+          "id": "region_cancelled",
+          "label": "Region Cancelled Value",
+          "value": -14544.28,
+          "unit": " Ex VAT",
+          "comparison_label": "of value",
+          "comparison_value": 1.25,
+          "comparison_unit": "%",
+          "direction": "unfavorable"
+        }
+      ]
+    },
+    {
+      "id": "otd_ranking",
+      "type": "ranking",
+      "layout_width": "half",
+      "title": "Store OTD \u2014 On-Time % (Worst First)",
+      "rankings": [
+        {
+          "id": "otd_stores",
+          "scope_label": "June 2026",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Game Jeffery's Bay",
+              "value": 81.25,
+              "unit": "%"
+            },
+            {
+              "rank": 2,
+              "label": "Game Vincent East London",
+              "value": 88.37,
+              "unit": "%"
+            },
+            {
+              "rank": 3,
+              "label": "Greenacres",
+              "value": 91.06,
+              "unit": "%"
+            },
+            {
+              "rank": 4,
+              "label": "Beacon Bay",
+              "value": 91.67,
+              "unit": "%"
+            },
+            {
+              "rank": 5,
+              "label": "Game Queenstown",
+              "value": 92.5,
+              "unit": "%"
+            },
+            {
+              "rank": 6,
+              "label": "Game King Williams Town",
+              "value": 93.55,
+              "unit": "%"
+            },
+            {
+              "rank": 7,
+              "label": "Game Umtata",
+              "value": 93.75,
+              "unit": "%"
+            },
+            {
+              "rank": 8,
+              "label": "Game Circus Triangle",
+              "value": 100.0,
+              "unit": "%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cancel_by_store",
+      "type": "breakdown_table",
+      "layout_width": "half",
+      "label_header": "Store",
+      "breakdown": {
+        "id": "cancel_value_by_store",
+        "title": "Cancelled Value by Store (R14,544.28 Ex VAT)",
+        "unit": "",
+        "mode": "share",
+        "parent_total": {
+          "label": "Region Total",
+          "value": 14544.28
+        },
+        "components": [
+          {
+            "label": "Game Vincent East London",
+            "value": 11506.76
+          },
+          {
+            "label": "Game Greenacres P.E.",
+            "value": 2024.15
+          },
+          {
+            "label": "Game & Game Liquor Queenstown",
+            "value": 356.49
+          },
+          {
+            "label": "Game Circus Triangle",
+            "value": 311.29
+          },
+          {
+            "label": "Game Beacon Bay",
+            "value": 131.7
+          },
+          {
+            "label": "Game & Game Liquor Umtata",
+            "value": 128.69
+          },
+          {
+            "label": "Game Jeffery's Bay",
+            "value": 65.21
+          },
+          {
+            "label": "Game & Game Liquor King Williams Town",
+            "value": 19.99
+          }
+        ]
+      }
+    },
+    {
+      "id": "store_spotlight",
+      "type": "kpi_strip",
+      "title": "Store-Level Spotlights",
+      "kpis": [
+        {
+          "id": "beacon_bay_csat",
+          "label": "Beacon Bay CSAT",
+          "value": 70,
+          "unit": "%",
+          "comparison_label": "next-lowest store",
+          "comparison_value": 87,
+          "comparison_unit": "%",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "greenacres_pick_sla",
+          "label": "Greenacres Pick SLA",
+          "value": 90.13,
+          "unit": "%",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "late_driver_assignment",
+          "label": "Late Driver Assignment",
+          "value": 9,
+          "unit": " orders",
+          "comparison_label": "of 36 late orders",
+          "comparison_value": 25.0,
+          "comparison_unit": "%",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "vincent_fridge",
+          "label": "Vincent EL Single Fridge Cancellation",
+          "value": -10433.91,
+          "unit": " Ex VAT",
+          "comparison_label": "of Vincent EL total",
+          "comparison_value": 11506.76,
+          "comparison_unit": " Ex VAT",
+          "direction": "neutral"
+        },
+        {
+          "id": "greenacres_orders",
+          "label": "Greenacres Cancelled Orders",
+          "value": 24,
+          "unit": " orders",
+          "comparison_label": "across",
+          "comparison_value": 62,
+          "comparison_unit": " units",
+          "direction": "neutral"
+        }
+      ]
+    },
+    {
+      "id": "game_facts",
+      "type": "executive_facts",
+      "executive_facts": [
+        {
+          "statement": "Late Driver Assignment (25% of the region's 9 late orders in that category) being almost entirely Customer Request Date Changes suggests a promise-management or communication issue, not a courier capacity failure -- the fix here is different from Makro's courier-escalation lever.",
+          "supporting_data_refs": [
+            "sections[4].kpis[2].value",
+            "sections[4].kpis[2].comparison_value"
+          ]
+        },
+        {
+          "statement": "Beacon Bay's CSAT score of 70% is a standalone outlier -- every other Game store scores 87% or higher, and Beacon Bay's own delivery metrics don't explain the gap, pointing to an in-store or service experience issue distinct from delivery timing.",
+          "supporting_data_refs": [
+            "sections[4].kpis[0].value",
+            "sections[4].kpis[0].comparison_value"
+          ]
+        },
+        {
+          "statement": "Greenacres is the weakest store on Pick SLA (90.13%) despite not standing out badly on OTD -- worth checking whether pick delays there are being absorbed elsewhere in the chain rather than surfacing as late orders yet.",
+          "supporting_data_refs": [
+            "sections[4].kpis[1].value"
+          ]
+        },
+        {
+          "statement": "Vincent East London's R11,506.76 in cancelled value is 79% of the region's total, but confirming whether the R10,433.91 fridge cancellation within it is a one-off stock/logistics failure matters more than treating it as a trend -- Greenacres' 24-order, 62-unit pattern is the more systemic issue to address separately.",
+          "supporting_data_refs": [
+            "sections[3].breakdown.components[0].value",
+            "sections[4].kpis[3].value",
+            "sections[4].kpis[4].value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "game_bottom",
+      "type": "bottom_insight",
+      "text": "Prioritise Game Jeffery's Bay for OTD intervention and confirm the Vincent East London fridge cancellation is a one-off before treating cancellations as a trend -- Greenacres' order-frequency pattern is the real systemic risk there.",
+      "supporting_data_refs": [
+        "sections[2].rankings[0].items[0].value"
+      ]
+    }
+  ],
+  "provenance": {
+    "source_files": [
+      "Makro_EC_Monthly_Report_June2026.docx \u2014 Part B: Game"
+    ],
+    "extraction_notes": "One-page condensed view of Part B (Game) of the Eastern Cape monthly regional report. Cancelled-value-by-store breakdown reconciles exactly to the stated region total (R14,544.28 Ex VAT). The source also gives a General Merchandise (80%) vs Food (20%) division split of cancelled value, but only as rounded approximate figures (R11.7k / R2.9k) that don't sum precisely to the exact region total -- it was left out of this one-pager rather than presented as a reconciling breakdown it isn't. Late Order Deep Dive root cause is the Game-wide regional total (36 orders), not store-specific -- the source states a Jeffery's Bay-only extract has not yet been supplied, and this report preserves that caveat. Recommended Focus Areas from the source (5 items) were condensed to fit a one-page format.",
+    "unresolved_flags": []
+  }
+}

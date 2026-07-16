@@ -1,0 +1,181 @@
+{
+  "report_meta": {
+    "title": "Makro Eastern Cape \u2014 Monthly Performance One-Pager",
+    "subtitle": "Eastern Cape Regional Performance",
+    "organization": "Makro Ecommerce \u2014 Eastern Cape",
+    "period_label": "June 2026",
+    "report_type": "regional_monthly_onepager",
+    "generated_date": "2026-07-14"
+  },
+  "sections": [
+    {
+      "id": "exec_summary",
+      "type": "executive_summary",
+      "text": "Both Eastern Cape Makro stores tracked below target in June, with Gonubie the primary drag at 89.72% on-time against Gqeberha's 94.02%. Courier Delivery SLA Non-Adherence drives 41.53% of all late orders regionally, far more than Store Operations' combined 12.19% contribution, confirming this as a downstream delivery issue rather than a store readiness one -- Pick SLA is strong at both stores (96.92% regionally) and CSAT is stable at 91%. Gqeberha's cancellations are a separate concern worth tracking independently: R279,592 in True Lost value, the largest single financial exposure in this month's numbers.",
+      "supporting_data_refs": [
+        "sections[2].rankings[0].items[0].value",
+        "sections[3].breakdown.components[0].value",
+        "sections[1].kpis[1].value",
+        "sections[1].kpis[2].value",
+        "sections[1].kpis[3].value"
+      ]
+    },
+    {
+      "id": "headline_kpi",
+      "type": "kpi_strip",
+      "kpis": [
+        {
+          "id": "region_otd",
+          "label": "Region OTD",
+          "value": 92.65,
+          "unit": "%",
+          "comparison_label": "vs 95% Target",
+          "comparison_value": -2.35,
+          "comparison_unit": "pp",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "region_pick_sla",
+          "label": "Region Pick SLA",
+          "value": 96.92,
+          "unit": "%",
+          "comparison_label": "on-time",
+          "comparison_value": 3.08,
+          "comparison_unit": "% late",
+          "direction": "favorable"
+        },
+        {
+          "id": "region_csat",
+          "label": "Region CSAT",
+          "value": 91,
+          "unit": "%",
+          "comparison_label": "vs 90% band",
+          "comparison_value": 1,
+          "comparison_unit": "pp",
+          "direction": "favorable"
+        },
+        {
+          "id": "gqeberha_true_lost",
+          "label": "Gqeberha True Lost (Cancellations)",
+          "value": -279592,
+          "unit": " Ex VAT",
+          "comparison_label": "True Lost %",
+          "comparison_value": -4.79,
+          "comparison_unit": "%",
+          "direction": "unfavorable"
+        }
+      ]
+    },
+    {
+      "id": "otd_ranking",
+      "type": "ranking",
+      "layout_width": "half",
+      "title": "Store OTD \u2014 On-Time % (Worst First)",
+      "rankings": [
+        {
+          "id": "otd_stores",
+          "scope_label": "June 2026",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Gonubie",
+              "value": 89.72,
+              "unit": "%"
+            },
+            {
+              "rank": 2,
+              "label": "Gqeberha",
+              "value": 94.02,
+              "unit": "%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "root_cause_breakdown",
+      "type": "breakdown_table",
+      "layout_width": "half",
+      "label_header": "Category",
+      "breakdown": {
+        "id": "late_order_cause",
+        "title": "Late Order Root Cause (484 Orders, Regional)",
+        "unit": "orders",
+        "mode": "share",
+        "parent_total": {
+          "label": "Total Late Orders",
+          "value": 484
+        },
+        "components": [
+          {
+            "label": "Courier Delivery SLA Non-Adherence",
+            "value": 201
+          },
+          {
+            "label": "Promise Issue",
+            "value": 129
+          },
+          {
+            "label": "Drop-off Exception",
+            "value": 65
+          },
+          {
+            "label": "Late Driver Assignment",
+            "value": 30
+          },
+          {
+            "label": "Store Operations (all reasons)",
+            "value": 59
+          }
+        ]
+      }
+    },
+    {
+      "id": "makro_facts",
+      "type": "executive_facts",
+      "executive_facts": [
+        {
+          "statement": "Courier Delivery SLA Non-Adherence alone is 41.53% of all late orders -- more than the next two Omni-Digital categories combined -- making the courier partner relationship the single biggest lever for OTD recovery, not in-store execution.",
+          "supporting_data_refs": [
+            "sections[3].breakdown.components[0].value"
+          ]
+        },
+        {
+          "statement": "Gonubie's 89.72% on-time rate against Gqeberha's 94.02% makes it the main contributor to the region missing target, but no store-specific Late Order Deep Dive has been supplied for it yet -- the root-cause table reflects the combined regional total, not Gonubie in isolation, so its exact driver mix is still unconfirmed.",
+          "supporting_data_refs": [
+            "sections[2].rankings[0].items[0].value",
+            "sections[2].rankings[0].items[1].value"
+          ]
+        },
+        {
+          "statement": "Gqeberha's True Lost cancellation value (R279,592) is the largest single financial exposure in this month's numbers and materially exceeds Gonubie's -- this is a distinct issue stream from the OTD/courier problem and should be tracked separately, not folded into the same recovery plan.",
+          "supporting_data_refs": [
+            "sections[1].kpis[3].value"
+          ]
+        },
+        {
+          "statement": "Pick SLA and CSAT need no store-level operational intervention this month -- both are healthy at every store -- so recovery effort should concentrate entirely downstream of dispatch, on courier handling and delivery promise management.",
+          "supporting_data_refs": [
+            "sections[1].kpis[1].value",
+            "sections[1].kpis[2].value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "makro_bottom",
+      "type": "bottom_insight",
+      "text": "Escalate Courier Delivery SLA Non-Adherence with the courier partner first -- it's the single largest lever for regional OTD recovery, and everything else this month is a secondary, independently-tracked issue.",
+      "supporting_data_refs": [
+        "sections[3].breakdown.components[0].value"
+      ]
+    }
+  ],
+  "provenance": {
+    "source_files": [
+      "Makro_EC_Monthly_Report_June2026.docx \u2014 Part A: Makro"
+    ],
+    "extraction_notes": "One-page condensed view of Part A (Makro) of the Eastern Cape monthly regional report. Store-level OTD is shown as a ranking, not a reconciling breakdown, because the source gives each store's late/on-time rate as a percentage of that store's own volume, not a shared count that sums to the regional total -- there is no per-store late-order count in the source to build a true breakdown from. The late-order root-cause breakdown (484 orders) is the combined regional total (Gonubie + Gqeberha), not store-specific -- the source itself flags that a Gonubie-only Deep Dive has not yet been supplied, and this report preserves that same caveat rather than implying store-level attribution that isn't in the data. Recommended Focus Areas from the source (5 items) were condensed to the most material points to fit a one-page format; nothing was added beyond what the source states.",
+    "unresolved_flags": []
+  }
+}

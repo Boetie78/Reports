@@ -32,7 +32,7 @@ The repository includes:
 
 - schemas for report briefs, executive analysis, executive objects, executive QA, decision plans, and report metadata;
 - pipeline modules for validation, citation checks, narrative review, rendering, blueprint export, references, and run orchestration;
-- intelligence modules for analysis, audit, extraction helpers, confidence, ownership, urgency, prioritisation, decision support, scoring, and validation;
+- intelligence modules for analysis, audit, extraction helpers, confidence, ownership, urgency, prioritisation, decision support, scoring, validation, executive QA, and a human-in-the-loop learning log;
 - Jinja templates and CSS for deterministic report rendering;
 - example report briefs for exercising the pipeline.
 
@@ -58,6 +58,7 @@ The following capabilities are present in some form but should not be treated as
 
 - Executive decision support exists through current intelligence modules and schemas, but full decision governance remains broader than the implemented code.
 - Executive QA (`intelligence/executive_qa.py`) checks evidence confidence, causal overreach, impact hedging, ownership, and action timing, but does not yet check whether an interpretation considered and ruled out alternative explanations -- that specific challenge from the original planned scope is still open.
+- Learning loop (`intelligence/learning_log.py` / `intelligence/learning_report.py`, per MEIP_MASTER_CONTEXT.md Principle 5) exists as a human-in-the-loop decision log, not an automatic self-tuning system -- AGENTS.md's human-review requirement means insight_rules.py/executive_qa.py thresholds are never adjusted automatically from accumulated data. A human records accepted/challenged/effective/failed/missing decisions against real executive objects (looked up from prioritised_analysis.json, not typed freely, to keep the log itself evidence-grounded); `learning_report.py` aggregates by rule family and flags high challenge rates (>=40%, at 3+ samples) and repeated "missing" entries for a human to act on manually. Persisted to `learning/decisions.jsonl`, git-tracked (unlike `output/`, which is regenerable and gitignored).
 - Blueprint generation exists as Markdown export, and reconciliation/schema/citation-ref/event-incorporation validation is now a non-bypassable gate ahead of both render and blueprint export. Full validation against the approved page/section *evidence* checklist (evidence-status labelling per section) is not yet enforced, since evidence-status fields are not yet part of the schema -- see "Absent Capabilities" below.
 - Narrative review exists as heuristic linting, but it is not a complete semantic proof of executive quality or factual correctness.
 - Evidence auditing exists for analysis references, but the complete evidence-status model is newly documented and not yet fully embedded across all schemas and runtime checks.
@@ -71,7 +72,6 @@ The following capabilities are approved intended direction or described by archi
 - Observation engine for identifying tables, KPIs, entities, trends, and unresolved extraction questions from raw material.
 - Normalisation engine that converts observations into governed report briefs with explicit provenance.
 - Dedicated blueprint validation gate enforcing required page/section fields before rendering.
-- Learning loop that records accepted, challenged, missing, effective, and failed report elements for future profile updates.
 
 ## Absent Capabilities and Current Gaps
 

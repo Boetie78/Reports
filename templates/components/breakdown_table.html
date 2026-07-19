@@ -1,5 +1,6 @@
 <div class="card {{ section.layout_class }}">
-  <div class="card-title">{{ section.title }}{% if section.unit %} <span style="color:#9aa1ac;font-weight:400;text-transform:none;">({{ section.unit }})</span>{% endif %}</div>
+  {% import "_evidence_flag.html" as ev %}
+  <div class="card-title">{{ section.title }}{% if section.unit %} <span style="color:#9aa1ac;font-weight:400;text-transform:none;">({{ section.unit }})</span>{% endif %}{{ ev.flag(section.evidence_status) }}</div>
   <table class="breakdown">
     <thead>
       <tr>
@@ -12,7 +13,7 @@
     <tbody>
       {% for c in section.components %}
       <tr>
-        <td>{{ c.label }}</td>
+        <td>{{ c.label }}{{ ev.flag(c.evidence_status) }}</td>
         <td>{{ c.value | num }}</td>
         {% if section.mode == "variance" %}<td class="val {{ c.direction }}">{{ c.value | num(signed=True) }}</td>{% endif %}
         <td class="pct {{ c.direction }}">

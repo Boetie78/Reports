@@ -20,10 +20,26 @@ ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(Path(__file__).parent))
 
 
+def _evidence_suffix(evidence_status):
+    """Return a Markdown suffix for a non-VERIFIED/DERIVED evidence_status, or
+    "" when there's nothing to flag. Unlike the HTML report (where the note
+    is a hover tooltip), the blueprint has no hover affordance, so the note
+    text itself is shown inline -- the blueprint's whole purpose is being an
+    exact spec a human designer works from, so the caveat needs to be visible
+    without an extra click."""
+    if not evidence_status or evidence_status.get("status") in ("VERIFIED", "DERIVED"):
+        return ""
+    suffix = f" `[{evidence_status['status']}]`"
+    note = evidence_status.get("note")
+    if note:
+        suffix += f" — {note}"
+    return suffix
+
+
 def render_kpi_strip(section, out):
-    out.append(f"### KPI Strip — {section.get('title', '')}".rstrip())
+    out.append(f"### KPI Strip — {section.get('title', '')}{_evidence_suffix(section.get('evidence_status'))}".rstrip())
     for k in section["kpis"]:
-        line = f"- **{k['label']}**: {k['value']}{k.get('unit', '')}"
+        line = f"- **{k['label']}**: {k['value']}{k.get('unit', '')}{_evidence_suffix(k.get('evidence_status'))}"
         if k.get("comparison_label"):
             line += f"  ({k['comparison_label']}: {k.get('comparison_value', '')})"
         out.append(line)
@@ -33,7 +49,7 @@ def render_kpi_strip(section, out):
 def render_breakdown_table(section, out):
     bd = section["breakdown"]
     mode = bd.get("mode", "share")
-    out.append(f"### Table — {bd['title']} ({bd['unit']})")
+    out.append(f"### Table — {bd['title']} ({bd['unit']}){_evidence_suffix(section.get('evidence_status'))}")
     header = f"| {section.get('label_header', 'Item')} | Value |"
     sep = "|---|---|"
     if mode == "variance":
@@ -50,7 +66,7 @@ def render_breakdown_table(section, out):
         # check_reconciliation for why that ratio is meaningless in variance mode.
         if pct is None and parent_value and mode == "share":
             pct = c["value"] / parent_value * 100
-        row = f"| {c['label']} | {c['value']:g} {bd['unit']} |"
+        row = f"| {c['label']}{_evidence_suffix(c.get('evidence_status'))} | {c['value']:g} {bd['unit']} |"
         if mode == "variance":
             row += f" {c['value']:+g} {bd['unit']} |"
         row += f" {pct:.2f}% |" if pct is not None else " — |"
@@ -109,22 +125,22 @@ def render_ranking(section, out):
 
 
 def render_external_events(section, out):
-    out.append(f"### External Events — {section.get('title', '')}".rstrip())
+    out.append(f"### External Events — {section.get('title', '')}{_evidence_suffix(section.get('evidence_status'))}".rstrip())
     for e in section["external_events"]:
-        out.append(f"- **{e['name']}** ({e['type']}{', ' + e['date_or_period'] if e.get('date_or_period') else ''}): {e['description']}")
+        out.append(f"- **{e['name']}**{_evidence_suffix(e.get('evidence_status'))} ({e['type']}{', ' + e['date_or_period'] if e.get('date_or_period') else ''}): {e['description']}")
     out.append("")
 
 
 def render_executive_facts(section, out):
-    out.append(f"### Executive Facts — {section.get('title', '')}".rstrip())
+    out.append(f"### Executive Facts — {section.get('title', '')}{_evidence_suffix(section.get('evidence_status'))}".rstrip())
     for f in section["executive_facts"]:
-        out.append(f"- {f['statement']}")
+        out.append(f"- {f['statement']}{_evidence_suffix(f.get('evidence_status'))}")
     out.append("")
 
 
 def render_text_block(label):
     def render(section, out):
-        out.append(f"### {label} — {section.get('title', '')}".rstrip())
+        out.append(f"### {label} — {section.get('title', '')}{_evidence_suffix(section.get('evidence_status'))}".rstrip())
         out.append(section["text"])
         out.append("")
     return render

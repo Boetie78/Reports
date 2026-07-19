@@ -1,8 +1,9 @@
 <div class="card {{ section.layout_class }}">
-  <div class="card-title">{{ section.title or "Executive Facts" }}</div>
+  {% import "_evidence_flag.html" as ev %}
+  <div class="card-title">{{ section.title or "Executive Facts" }}{{ ev.flag(section.evidence_status) }}</div>
   <ul class="fact-list">
     {% for f in section.facts %}
-    <li>{{ f }}</li>
+    <li>{{ f.statement }}{{ ev.flag(f.evidence_status) }}</li>
     {% endfor %}
   </ul>
 </div>

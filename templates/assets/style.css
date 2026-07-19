@@ -5,6 +5,7 @@
   --favorable: #2e9e6d;
   --unfavorable: #d6455a;
   --neutral: #6b7280;
+  --evidence-caution: #b8860b;
   --bg: #f4f5f7;
   --card-shadow: 0 2px 14px rgba(15, 23, 42, 0.08);
   --radius: 14px;
@@ -135,3 +136,22 @@ table.breakdown tr.total td { font-weight: 800; color: var(--navy); border-top: 
 .bottom-insight .icon { font-size: 22px; }
 .bottom-insight p { margin: 0; font-size: 15px; line-height: 1.5; }
 .bottom-insight strong { color: var(--orange); }
+
+/* evidence-status flag -- only rendered for statuses weaker than VERIFIED/
+   DERIVED (see templates/_evidence_flag.html); VERIFIED/DERIVED show nothing
+   so a clean report stays clean and only real caveats get visual weight. */
+.evidence-flag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  padding: 2px 6px;
+  border-radius: 8px;
+  margin-left: 6px;
+  vertical-align: middle;
+  cursor: help;
+}
+.evidence-flag.caution { background: #fdf3e0; color: var(--evidence-caution); }
+.evidence-flag.blocked { background: #fbe4e8; color: var(--unfavorable); }

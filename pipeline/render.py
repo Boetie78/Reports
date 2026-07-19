@@ -290,8 +290,7 @@ def build_external_events(section):
 
 
 def build_executive_facts(section):
-    facts = [f["statement"] for f in section["executive_facts"]]
-    return {**section, "layout_class": section.get("layout_width", "half"), "facts": facts}
+    return {**section, "layout_class": section.get("layout_width", "half"), "facts": section["executive_facts"]}
 
 
 def build_executive_summary(section):

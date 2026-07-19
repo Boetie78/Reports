@@ -1,4 +1,5 @@
 <div class="exec-summary {{ section.layout_class }}">
-  <div class="card-title">{{ section.title or "Executive Summary" }}</div>
+  {% import "_evidence_flag.html" as ev %}
+  <div class="card-title">{{ section.title or "Executive Summary" }}{{ ev.flag(section.evidence_status) }}</div>
   <p>{{ section.text }}</p>
 </div>

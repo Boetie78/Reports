@@ -1,0 +1,6 @@
+{% macro flag(evidence_status) %}
+{%- if evidence_status and evidence_status.status not in ["VERIFIED", "DERIVED"] -%}
+  {%- set blocked = evidence_status.status in ["CONFLICTING", "MISSING"] -%}
+  <span class="evidence-flag {{ 'blocked' if blocked else 'caution' }}" title="{{ evidence_status.note or '' }}">{{ evidence_status.status }}</span>
+{%- endif -%}
+{% endmacro %}

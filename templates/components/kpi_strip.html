@@ -1,10 +1,11 @@
 <div class="card {{ section.layout_class }}">
-  <div class="card-title">{{ section.title or "Key Metrics" }}</div>
+  {% import "_evidence_flag.html" as ev %}
+  <div class="card-title">{{ section.title or "Key Metrics" }}{{ ev.flag(section.evidence_status) }}</div>
   <div class="kpi-strip">
     {% for k in section.kpis %}
     <div class="kpi-tile">
       <div class="label">{{ k.label }}</div>
-      <div class="value {{ k.direction }}">{{ k.value | num }}{{ k.unit }}</div>
+      <div class="value {{ k.direction }}">{{ k.value | num }}{{ k.unit }}{{ ev.flag(k.evidence_status) }}</div>
       {% if k.comparison_label %}
       <div class="compare">{{ k.comparison_label }}
         <span class="delta {{ k.direction }}">{{ k.comparison_value | num }}{{ k.comparison_unit }}</span>

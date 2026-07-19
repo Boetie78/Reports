@@ -16,7 +16,8 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).parent.parent
 TEMPLATES = ROOT / "templates"
-CHROMIUM_PATH = "/opt/pw-browsers/chromium"
+import os
+CHROMIUM_PATH = os.environ.get("CHROMIUM_PATH", "/opt/pw-browsers/chromium")
 
 FAVORABLE = "#2e9e6d"
 UNFAVORABLE = "#d6455a"
@@ -339,7 +340,8 @@ def export(html, out_dir, base_name):
     html_path.write_text(html, encoding="utf-8")
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(executable_path=CHROMIUM_PATH)
+        launch_path = CHROMIUM_PATH if os.path.exists(CHROMIUM_PATH) else None
+        browser = p.chromium.launch(executable_path=launch_path)
         page = browser.new_page(viewport={"width": PAGE_W, "height": PAGE_H})
         page.goto(html_path.as_uri())
         pdf_path = out_dir / f"{base_name}.pdf"

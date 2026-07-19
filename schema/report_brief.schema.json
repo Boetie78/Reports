@@ -11,6 +11,22 @@
       "type": "string",
       "description": "A JSONPath-like pointer into this same document, e.g. 'sections[0].breakdown.components[2].value'. Every number quoted in narrative text must resolve to one of these."
     },
+    "evidenceStatus": {
+      "type": "object",
+      "description": "Optional evidence-status label per docs/DATA_INTEGRITY_STANDARD.md. Omitting this on an object is not the same as claiming VERIFIED -- it just means this object predates evidence-status adoption and pipeline/validate.py will not challenge it. Attach it explicitly to make a status claim.",
+      "required": ["status"],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["VERIFIED", "DERIVED", "USER_CONFIRMED", "PARTIALLY_VERIFIED", "CONFLICTING", "MISSING", "NOT_APPLICABLE"]
+        },
+        "note": {
+          "type": "string",
+          "description": "Required for every status except VERIFIED/DERIVED (see docs/DATA_INTEGRITY_STANDARD.md for what each status's note must contain -- e.g. USER_CONFIRMED needs who/when/what; PARTIALLY_VERIFIED needs which part is/isn't verified; CONFLICTING needs the conflicting sources; MISSING needs what's missing; NOT_APPLICABLE needs why)."
+        }
+      }
+    },
     "kpi": {
       "type": "object",
       "required": ["id", "label", "value"],
@@ -23,7 +39,8 @@
         "comparison_label": {"type": "string", "description": "e.g. 'vs Plan', 'vs LY', 'vs Week 25'"},
         "comparison_value": {"type": ["number", "string"]},
         "comparison_unit": {"type": "string", "description": "Suffix for comparison_value, e.g. '%'. Keep comparison_value a real number (not a formatted string) whenever it's quoted in narrative text, so citation_check.py can trace it."},
-        "direction": {"type": "string", "enum": ["favorable", "unfavorable", "neutral"]}
+        "direction": {"type": "string", "enum": ["favorable", "unfavorable", "neutral"]},
+        "evidence_status": {"$ref": "#/definitions/evidenceStatus"}
       }
     },
     "breakdownComponent": {
@@ -33,7 +50,8 @@
       "properties": {
         "label": {"type": "string"},
         "value": {"type": "number"},
-        "pct_of_parent": {"type": "number", "description": "Optional. If present, validate.py checks value/parent_total*100 matches within tolerance."}
+        "pct_of_parent": {"type": "number", "description": "Optional. If present, validate.py checks value/parent_total*100 matches within tolerance."},
+        "evidence_status": {"$ref": "#/definitions/evidenceStatus"}
       }
     },
     "breakdown": {
@@ -167,7 +185,8 @@
           "minItems": 1,
           "items": {"$ref": "#/definitions/dataRef"},
           "description": "The event must be linked to concrete data points it affected, not asserted in the abstract. validate.py additionally requires at least one of these refs to also be cited by the narrative (executive_summary, an executive_fact, or bottom_insight) -- an event tagged to data but never mentioned in the story hasn't actually been incorporated."
-        }
+        },
+        "evidence_status": {"$ref": "#/definitions/evidenceStatus"}
       }
     },
     "executiveFact": {
@@ -180,7 +199,8 @@
           "type": "array",
           "minItems": 1,
           "items": {"$ref": "#/definitions/dataRef"}
-        }
+        },
+        "evidence_status": {"$ref": "#/definitions/evidenceStatus"}
       }
     },
     "section": {
@@ -222,7 +242,8 @@
         "bar_chart": {"$ref": "#/definitions/barChart"},
         "rankings": {"type": "array", "items": {"$ref": "#/definitions/ranking"}},
         "external_events": {"type": "array", "items": {"$ref": "#/definitions/externalEvent"}},
-        "executive_facts": {"type": "array", "items": {"$ref": "#/definitions/executiveFact"}, "maxItems": 5}
+        "executive_facts": {"type": "array", "items": {"$ref": "#/definitions/executiveFact"}, "maxItems": 5},
+        "evidence_status": {"$ref": "#/definitions/evidenceStatus"}
       }
     }
   },

@@ -61,6 +61,7 @@ The following capabilities are present in some form but should not be treated as
 - Blueprint generation exists as Markdown export, and reconciliation/schema/citation-ref/event-incorporation validation is now a non-bypassable gate ahead of both render and blueprint export. Full validation against the approved page/section *evidence* checklist (evidence-status labelling per section) is not yet enforced, since evidence-status fields are not yet part of the schema -- see "Absent Capabilities" below.
 - Narrative review exists as heuristic linting, but it is not a complete semantic proof of executive quality or factual correctness.
 - Evidence auditing exists for analysis references, but the complete evidence-status model is newly documented and not yet fully embedded across all schemas and runtime checks.
+- Evidence-status is now a real, optional field (`schema/report_brief.schema.json`'s `evidenceStatus` definition, attached to kpi/breakdown-component/executive_fact/external_event/section) with real enforcement in `pipeline/validate.py`: USER_CONFIRMED/PARTIALLY_VERIFIED/CONFLICTING/MISSING/NOT_APPLICABLE all require a note, and CONFLICTING/MISSING block rendering (same `--allow-flags` override as `provenance.unresolved_flags`). This covers the report_brief tier only -- `intelligence/executive_object.schema.json` and the executive-analysis/blueprint/rendered-output tiers do not carry evidence-status yet, and no existing example report has been retrofitted with it beyond one real demonstration case (`examples/makro_online_cancellation_june2026.json`'s two reason-code breakdowns, genuinely PARTIALLY_VERIFIED per their own provenance notes).
 - Raw extraction helper code exists, but it does not constitute a complete raw-file ingestion platform.
 
 ## Planned Capabilities
@@ -70,7 +71,7 @@ The following capabilities are approved intended direction or described by archi
 - Observation engine for identifying tables, KPIs, entities, trends, and unresolved extraction questions from raw material.
 - Normalisation engine that converts observations into governed report briefs with explicit provenance.
 - Dedicated blueprint validation gate enforcing required page/section fields before rendering.
-- Full evidence-status propagation across source material, briefs, analysis, blueprints, and rendered outputs.
+- Full evidence-status propagation into `intelligence/executive_object.schema.json`, `schema/executive_analysis.schema.json`, and rendered output -- currently only `schema/report_brief.schema.json` (the brief/source tier) carries it.
 - Learning loop that records accepted, challenged, missing, effective, and failed report elements for future profile updates.
 
 ## Absent Capabilities and Current Gaps

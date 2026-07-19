@@ -472,6 +472,10 @@
       "new_page": true,
       "layout_width": "half",
       "label_header": "Reason Code",
+      "evidence_status": {
+        "status": "PARTIALLY_VERIFIED",
+        "note": "The 434-line tagged sample and its composition are VERIFIED (transcribed from source, reconciles exactly), but its filter criteria against the 30,671-line true-lost-sales population were not specified in the source, so this breakdown is a directional sample, not a full attribution of all cancellation reasons."
+      },
       "breakdown": {
         "id": "reason_by_value",
         "title": "Cancellation Reason Codes \u2014 Tagged Sample, Value-Weighted",
@@ -534,6 +538,10 @@
       "type": "breakdown_table",
       "layout_width": "half",
       "label_header": "Reason Code",
+      "evidence_status": {
+        "status": "PARTIALLY_VERIFIED",
+        "note": "The 701-unit tagged sample and its composition are VERIFIED (transcribed from source, reconciles exactly), but its filter criteria against the true-lost-sales population were not specified in the source, so this breakdown is a directional sample, not a full attribution of all cancellation reasons."
+      },
       "breakdown": {
         "id": "reason_by_qty",
         "title": "Cancellation Reason Codes \u2014 Tagged Sample, Quantity-Weighted",

@@ -10,7 +10,12 @@ Checks, in order:
   5. every external_event is actually incorporated into the narrative, not just
      tagged to data and left silent (MEIP rule: "these must be linked directly
      to the data" -- linked to data AND surfaced in the story, not one or the other)
-  6. provenance.unresolved_flags is empty, unless --allow-flags is passed
+  6. every evidence_status (kpi/breakdown component/executive_fact/external_event/
+     section) with status USER_CONFIRMED, PARTIALLY_VERIFIED, CONFLICTING, MISSING,
+     or NOT_APPLICABLE carries a note explaining itself; CONFLICTING/MISSING
+     additionally block rendering unless --allow-flags is passed
+     (docs/DATA_INTEGRITY_STANDARD.md Rendering Rule)
+  7. provenance.unresolved_flags is empty, unless --allow-flags is passed
 
 Exits 0 only if every check passes. Exits 1 and prints every failure found
 (not just the first) otherwise -- nothing downstream should ever run against
@@ -127,6 +132,60 @@ def check_flags(doc, errors, allow_flags):
             errors.append(f"[unresolved] {f}")
 
 
+# Statuses that must never carry final numeric/narrative claims without an
+# explicit, human-reviewed override -- see docs/DATA_INTEGRITY_STANDARD.md
+# "Rendering Rule": CONFLICTING and MISSING "block affected claims or visuals
+# until resolved or explicitly excluded."
+BLOCKING_STATUSES = {"CONFLICTING", "MISSING"}
+
+# Every status except VERIFIED/DERIVED requires a note explaining itself --
+# see docs/DATA_INTEGRITY_STANDARD.md, "Required evidence" per status.
+NOTE_REQUIRED_STATUSES = {"USER_CONFIRMED", "PARTIALLY_VERIFIED", "CONFLICTING", "MISSING", "NOT_APPLICABLE"}
+
+
+def _check_one_evidence_status(where, evidence_status, errors, allow_flags):
+    status = evidence_status.get("status")
+    note = evidence_status.get("note", "").strip()
+
+    if status in NOTE_REQUIRED_STATUSES and not note:
+        errors.append(
+            f"[evidence-status] {where}: status '{status}' requires a note explaining what's missing/"
+            f"conflicting/confirmed/partial/not-applicable (see docs/DATA_INTEGRITY_STANDARD.md), but none was given."
+        )
+
+    if status in BLOCKING_STATUSES and not allow_flags:
+        errors.append(
+            f"[evidence-status] {where}: status '{status}' blocks this claim from rendering until resolved "
+            f"or explicitly excluded (docs/DATA_INTEGRITY_STANDARD.md Rendering Rule). Pass --allow-flags "
+            f"once you've reviewed it by hand, same as provenance.unresolved_flags."
+        )
+
+
+def check_evidence_status(doc, errors, allow_flags):
+    for section in doc.get("sections", []):
+        sec_where = f"section '{section['id']}'"
+        if "evidence_status" in section:
+            _check_one_evidence_status(sec_where, section["evidence_status"], errors, allow_flags)
+
+        for i, kpi in enumerate(section.get("kpis", [])):
+            if "evidence_status" in kpi:
+                _check_one_evidence_status(f"{sec_where} kpi[{i}] '{kpi.get('label', kpi.get('id'))}'", kpi["evidence_status"], errors, allow_flags)
+
+        bd = section.get("breakdown")
+        if bd:
+            for i, c in enumerate(bd.get("components", [])):
+                if "evidence_status" in c:
+                    _check_one_evidence_status(f"{sec_where} breakdown component[{i}] '{c.get('label')}'", c["evidence_status"], errors, allow_flags)
+
+        for i, fact in enumerate(section.get("executive_facts", [])):
+            if "evidence_status" in fact:
+                _check_one_evidence_status(f"{sec_where} executive_fact[{i}]", fact["evidence_status"], errors, allow_flags)
+
+        for i, ev in enumerate(section.get("external_events", [])):
+            if "evidence_status" in ev:
+                _check_one_evidence_status(f"{sec_where} external_event[{i}] '{ev.get('name')}'", ev["evidence_status"], errors, allow_flags)
+
+
 def validate_document(doc, allow_flags=False):
     """Run every check and return the list of error strings (empty = passed).
 
@@ -143,6 +202,7 @@ def validate_document(doc, allow_flags=False):
         check_reconciliation(doc, errors)
         check_refs(doc, errors)
         check_events_incorporated(doc, errors)
+        check_evidence_status(doc, errors, allow_flags)
     check_flags(doc, errors, allow_flags)
     return errors
 

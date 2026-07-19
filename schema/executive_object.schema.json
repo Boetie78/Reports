@@ -57,7 +57,20 @@
           "data_ref": {"type": "string"},
           "label": {"type": "string"},
           "value": {"type": ["number", "string", "null"]},
-          "unit": {"type": "string"}
+          "unit": {"type": "string"},
+          "evidence_status": {
+            "type": "object",
+            "description": "Carried forward from the source report_brief.json object, when present there. See docs/DATA_INTEGRITY_STANDARD.md.",
+            "required": ["status"],
+            "additionalProperties": false,
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": ["VERIFIED", "DERIVED", "USER_CONFIRMED", "PARTIALLY_VERIFIED", "CONFLICTING", "MISSING", "NOT_APPLICABLE"]
+              },
+              "note": {"type": "string"}
+            }
+          }
         }
       }
     }

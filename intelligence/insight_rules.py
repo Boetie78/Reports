@@ -78,6 +78,7 @@ def detect_target_misses(doc: dict[str, Any]) -> list[dict[str, Any]]:
             label=kpi.get("label", kpi.get("id", "KPI")),
             value=kpi.get("value"),
             unit=kpi.get("unit", ""),
+            evidence_status=kpi.get("evidence_status"),
         )
         comparison = ""
         magnitude_pct = None
@@ -192,6 +193,7 @@ def detect_concentration(doc: dict[str, Any]) -> list[dict[str, Any]]:
             label=top_component.get("label", "Top component"),
             value=top_component.get("value"),
             unit=bd.get("unit", ""),
+            evidence_status=top_component.get("evidence_status"),
         )
         ev_total = Evidence(
             data_ref=f"sections[{section['_index']}].breakdown.parent_total.value",
@@ -272,6 +274,7 @@ def detect_external_event_risks(doc: dict[str, Any]) -> list[dict[str, Any]]:
                         data_ref=ref,
                         label=f"{event.get('name', 'External event')} linked value {ref_idx + 1}",
                         value=None,
+                        evidence_status=event.get("evidence_status"),
                     )
                 )
             if not evidence:

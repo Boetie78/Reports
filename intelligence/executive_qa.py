@@ -23,13 +23,25 @@ Checks, each mapped to a specific Executive Intelligence Model rule:
     own gate -- that's the point of a separate QA step: it has to hold even
     if the decision plan was hand-edited or the upstream gate has a bug.
 
+  evidence_status
+    Where the underlying report_brief.json actually carries a real
+    evidence_status (schema/report_brief.schema.json's evidenceStatus,
+    propagated through supporting_evidence by analyse.py/insight_rules.py),
+    this checks the real thing instead of guessing from wording:
+    CONFLICTING/MISSING evidence blocks the item outright (escalates to
+    Hold, same severity as failing evidence_confidence); PARTIALLY_VERIFIED/
+    USER_CONFIRMED evidence requires hedged wording. Objects with no
+    propagated evidence_status fall through to the wording-heuristic checks
+    below unchanged -- propagation is not yet retrofitted onto every report.
+
   causal_overreach (Stage 4: "must distinguish correlation from causation")
     Flags causal language in the interpretation when confidence isn't high
-    enough to support asserting causation.
+    enough to support asserting causation. A confidence-based proxy for
+    when real evidence_status isn't available.
 
   impact_hedging (Stage 5: "potential impacts must be labelled as potential")
     Flags business_impact text that reads as unqualified certainty when
-    confidence is not high.
+    confidence is not high. Same proxy role as causal_overreach.
 
   ownership (Stage 7: "should identify an owner ... where possible")
     Flags the literal decision_engine.py fallback default ("Executive
@@ -40,9 +52,9 @@ Checks, each mapped to a specific Executive Intelligence Model rule:
     where possible")
     Flags a recommended_action with no timing/trigger signal at all.
 
-Status: Hold if evidence_confidence itself fails (nothing else can
-compensate for weak evidence). Revise if any other check fails. Approved if
-everything passes.
+Status: Hold if evidence_confidence fails, or if evidence_status is
+CONFLICTING/MISSING (nothing else can compensate for either). Revise if any
+other check fails. Approved if everything passes.
 
 Risk level: High for Hold, Medium for Revise, Low for Approved.
 
@@ -196,12 +208,77 @@ def check_action_timing(obj: dict[str, Any], checks: list[dict[str, Any]]) -> bo
     return passed
 
 
+# Statuses too weak to support a Page 1/2 claim outright -- same severity
+# tier as failing evidence_confidence, not a wording nitpick.
+BLOCKING_EVIDENCE_STATUSES = {"CONFLICTING", "MISSING"}
+# Statuses that are usable but must be reflected in hedged wording.
+HEDGE_REQUIRED_EVIDENCE_STATUSES = {"PARTIALLY_VERIFIED", "USER_CONFIRMED"}
+
+
+def check_evidence_status(obj: dict[str, Any], checks: list[dict[str, Any]]) -> bool:
+    """Real evidence-status check, not a text-pattern guess -- supersedes
+    causal_overreach/impact_hedging's confidence-based heuristic whenever the
+    underlying report_brief.json actually carries an evidence_status, since
+    that's ground truth and confidence-as-proxy no longer has to guess.
+    """
+    statuses = [
+        ev["evidence_status"]["status"]
+        for ev in obj.get("supporting_evidence", [])
+        if "evidence_status" in ev
+    ]
+    if not statuses:
+        checks.append({
+            "name": "evidence_status",
+            "passed": True,
+            "message": "no evidence_status present on supporting_evidence -- not yet propagated for this object, "
+            "falling back to confidence-based heuristics for causal_overreach/impact_hedging.",
+        })
+        return True
+
+    blocking = [s for s in statuses if s in BLOCKING_EVIDENCE_STATUSES]
+    if blocking:
+        checks.append({
+            "name": "evidence_status",
+            "passed": False,
+            "message": f"supporting_evidence carries {', '.join(sorted(set(blocking)))} evidence_status -- "
+            f"per docs/DATA_INTEGRITY_STANDARD.md this must not support a Page 1/2 claim until resolved.",
+        })
+        return False
+
+    needs_hedge = any(s in HEDGE_REQUIRED_EVIDENCE_STATUSES for s in statuses)
+    if needs_hedge:
+        impact = obj.get("business_impact", "")
+        interpretation = obj.get("interpretation", "")
+        hedged = _text_has_any(impact, HEDGE_MARKERS) or _text_has_any(interpretation, HEDGE_MARKERS)
+        checks.append({
+            "name": "evidence_status",
+            "passed": hedged,
+            "message": (
+                f"supporting_evidence carries {', '.join(sorted(set(statuses)))} evidence but wording is "
+                f"unhedged -- Stage 5: \"potential impacts must be labelled as potential\"."
+                if not hedged else
+                f"supporting_evidence carries {', '.join(sorted(set(statuses)))} evidence and wording is "
+                f"appropriately hedged."
+            ),
+        })
+        return hedged
+
+    checks.append({
+        "name": "evidence_status",
+        "passed": True,
+        "message": f"all supporting_evidence is {', '.join(sorted(set(statuses)))} -- no hedging required.",
+    })
+    return True
+
+
 def review_object(decision: dict[str, Any], obj: dict[str, Any] | None) -> dict[str, Any]:
     checks: list[dict[str, Any]] = []
     confidence = decision.get("confidence", 0)
 
     confidence_ok = check_evidence_confidence(decision, checks)
+    evidence_status_ok = True
     if obj is not None:
+        evidence_status_ok = check_evidence_status(obj, checks)
         check_causal_overreach(obj, confidence, checks)
         check_impact_hedging(obj, confidence, checks)
         check_ownership(obj, checks)
@@ -215,7 +292,10 @@ def review_object(decision: dict[str, Any], obj: dict[str, Any] | None) -> dict[
         })
 
     all_passed = all(c["passed"] for c in checks)
-    if not confidence_ok:
+    evidence_status_blocking = not evidence_status_ok and any(
+        "must not support a Page 1/2 claim" in c["message"] for c in checks if c["name"] == "evidence_status"
+    )
+    if not confidence_ok or evidence_status_blocking:
         status, risk = "Hold", "High"
     elif not all_passed:
         status, risk = "Revise", "Medium"

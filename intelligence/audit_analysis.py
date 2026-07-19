@@ -3,8 +3,10 @@
 
 Schema validation proves the analysis has the right shape. This audit proves the
 analysis is traceable: every evidence data_ref must resolve inside the original
-validated report_brief.json, and every evidence value must match the value at
-that reference when the value is explicitly supplied.
+validated report_brief.json, every evidence value must match the value at that
+reference when the value is explicitly supplied, and any evidence_status the
+analysis claims must actually match what the source report_brief.json carries
+at that location (or be flagged as unverifiable, never invented).
 """
 from __future__ import annotations
 
@@ -36,6 +38,21 @@ def _normalise(value: Any) -> Any:
     return value
 
 
+def _source_evidence_status(report_brief: dict[str, Any], data_ref: str) -> dict[str, Any] | None:
+    """Best-effort lookup of the evidence_status sibling of the value data_ref
+    points at. Only resolves refs ending in '.value' (kpi/breakdown-component
+    shape) or external_event refs whose own evidence_status lives on the event
+    dict itself -- not every dataRef shape has a defined evidence_status home,
+    so returning None here means 'not checkable', not 'confirmed absent'."""
+    if data_ref.endswith(".value"):
+        try:
+            parent = resolve_ref(report_brief, data_ref[: -len(".value")])
+        except ValueError:
+            return None
+        return parent.get("evidence_status") if isinstance(parent, dict) else None
+    return None
+
+
 def audit(report_brief: dict[str, Any], executive_analysis: dict[str, Any]) -> list[str]:
     errors: list[str] = []
     seen_refs: set[str] = set()
@@ -58,6 +75,23 @@ def audit(report_brief: dict[str, Any], executive_analysis: dict[str, Any]) -> l
                     f"[{group_name}[{idx}]] evidence value mismatch for {data_ref}: "
                     f"analysis has {supplied_value!r}, source has {resolved!r}"
                 )
+
+            claimed_status = evidence.get("evidence_status")
+            if claimed_status is not None:
+                source_status = _source_evidence_status(report_brief, data_ref)
+                if source_status is None:
+                    errors.append(
+                        f"[{group_name}[{idx}]] evidence_status '{claimed_status.get('status')}' claimed for "
+                        f"{data_ref}, but the source report_brief.json has no evidence_status there -- "
+                        f"cannot verify, must not be fabricated by the analysis layer"
+                    )
+                elif claimed_status.get("status") != source_status.get("status"):
+                    errors.append(
+                        f"[{group_name}[{idx}]] evidence_status mismatch for {data_ref}: analysis claims "
+                        f"'{claimed_status.get('status')}', source report_brief.json has "
+                        f"'{source_status.get('status')}'"
+                    )
+
             seen_refs.add(data_ref)
 
     if not seen_refs:

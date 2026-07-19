@@ -18,11 +18,14 @@ class Evidence:
     label: str
     value: Any
     unit: str = ""
+    evidence_status: dict[str, Any] | None = None
 
     def as_dict(self) -> dict[str, Any]:
         data = {"data_ref": self.data_ref, "label": self.label, "value": self.value}
         if self.unit:
             data["unit"] = self.unit
+        if self.evidence_status is not None:
+            data["evidence_status"] = self.evidence_status
         return data
 
 
@@ -63,6 +66,7 @@ def kpi_evidence(section: dict[str, Any], kpi: dict[str, Any], idx: int) -> Evid
         label=label,
         value=kpi.get("value"),
         unit=kpi.get("unit", ""),
+        evidence_status=kpi.get("evidence_status"),
     )
 
 

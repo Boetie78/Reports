@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 """Render a validated report_brief.json to PDF + one PNG per page.
 
-Only run this after validate.py (and ideally citation_check.py) have passed.
+Runs pipeline/validate.py's checks in-process before rendering anything -- this
+is a real gate, not a convention: an unvalidated or reconciliation-failing
+document cannot reach the template/chart code no matter how this script is
+invoked. Citation and narrative checks are still separate steps you should run
+yourself (pipeline/citation_check.py, pipeline/narrative_review.py); they are
+not part of this gate.
 All chart geometry (bar heights, line points, axis scales) is computed here in
 plain Python, not in the template -- one place where numbers turn into pixels,
 so what's drawn always matches what's in the data.
@@ -362,9 +367,18 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("report_brief", type=Path)
     parser.add_argument("--out", type=Path, default=ROOT / "output")
+    parser.add_argument(
+        "--allow-flags",
+        action="store_true",
+        help="Don't fail the validation gate on provenance.unresolved_flags (use only when reviewed by hand)",
+    )
     args = parser.parse_args()
 
     doc = json.loads(args.report_brief.read_text(encoding="utf-8"))
+    sys.path.insert(0, str(Path(__file__).parent))
+    from validate import enforce_gate
+    enforce_gate(doc, f"render.py ({args.report_brief})", allow_flags=args.allow_flags)
+
     html = render_html(doc)
     base_name = args.report_brief.stem
     pdf_path, png_paths = export(html, args.out, base_name)

@@ -127,6 +127,43 @@ def check_flags(doc, errors, allow_flags):
             errors.append(f"[unresolved] {f}")
 
 
+def validate_document(doc, allow_flags=False):
+    """Run every check and return the list of error strings (empty = passed).
+
+    This is the single source of truth for "is this document safe to render or
+    export." main() below uses it for the standalone `validate.py` CLI, and
+    render.py / blueprint.py import it directly to enforce the same gate
+    in-process -- so the gate can't be skipped by calling those tools without
+    having run validate.py first.
+    """
+    errors = []
+    check_schema(doc, errors)
+    if not errors:
+        # reconciliation/ref checks assume schema-valid shape; skip if schema failed
+        check_reconciliation(doc, errors)
+        check_refs(doc, errors)
+        check_events_incorporated(doc, errors)
+    check_flags(doc, errors, allow_flags)
+    return errors
+
+
+def enforce_gate(doc, source_label, allow_flags=False):
+    """Validate `doc` and exit(1) with a printed report if it fails.
+
+    Call this at the top of any tool (render, blueprint, or future export
+    formats) that must never run against an unvalidated document. There is
+    intentionally no bypass flag here beyond allow_flags, which only relaxes
+    the unresolved-flags check and still requires every other check to pass.
+    """
+    errors = validate_document(doc, allow_flags=allow_flags)
+    if errors:
+        print(f"VALIDATION GATE FAILED — {source_label} cannot proceed. {len(errors)} issue(s) in the source document:\n")
+        for e in errors:
+            print(f"  - {e}")
+        print("\nRun pipeline/validate.py on this report_brief.json directly for the same report, then fix the source data or extraction before retrying.")
+        sys.exit(1)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("report_brief", type=Path)
@@ -138,15 +175,7 @@ def main():
     args = parser.parse_args()
 
     doc = json.loads(args.report_brief.read_text(encoding="utf-8"))
-    errors = []
-
-    check_schema(doc, errors)
-    if not errors:
-        # reconciliation/ref checks assume schema-valid shape; skip if schema failed
-        check_reconciliation(doc, errors)
-        check_refs(doc, errors)
-        check_events_incorporated(doc, errors)
-    check_flags(doc, errors, args.allow_flags)
+    errors = validate_document(doc, allow_flags=args.allow_flags)
 
     if errors:
         print(f"VALIDATION FAILED — {len(errors)} issue(s) in {args.report_brief}:\n")

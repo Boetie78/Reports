@@ -7,7 +7,9 @@ in addition to) rendering with pipeline/render.py. The point of the
 blueprint is that whoever draws the final page is working from an exact
 spec, not a vague prompt, so they have nothing left to invent.
 
-Only run this after validate.py has passed.
+Runs pipeline/validate.py's checks in-process before building anything -- this
+is a real gate, not a convention: an unvalidated or reconciliation-failing
+document cannot produce a blueprint no matter how this script is invoked.
 """
 import argparse
 import json
@@ -15,6 +17,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
+sys.path.insert(0, str(Path(__file__).parent))
 
 
 def render_kpi_strip(section, out):
@@ -186,9 +189,17 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("report_brief", type=Path)
     parser.add_argument("--out", type=Path, default=None)
+    parser.add_argument(
+        "--allow-flags",
+        action="store_true",
+        help="Don't fail the validation gate on provenance.unresolved_flags (use only when reviewed by hand)",
+    )
     args = parser.parse_args()
 
     doc = json.loads(args.report_brief.read_text(encoding="utf-8"))
+    from validate import enforce_gate
+    enforce_gate(doc, f"blueprint.py ({args.report_brief})", allow_flags=args.allow_flags)
+
     blueprint = build_blueprint(doc)
 
     out_path = args.out or (ROOT / "output" / f"{args.report_brief.stem}_blueprint.md")

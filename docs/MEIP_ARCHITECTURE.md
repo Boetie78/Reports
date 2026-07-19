@@ -48,6 +48,7 @@ The following capabilities are implemented in the repository now:
 - Markdown export of executive analysis for human review.
 - Deterministic report rendering from validated report briefs.
 - Markdown blueprint export from validated report briefs.
+- Non-bypassable validation gate: `pipeline/render.py` and `pipeline/blueprint.py` both run the full `pipeline/validate.py` check set in-process before producing any output, regardless of how they are invoked (standalone or via `pipeline/run_report.py`).
 - Example report briefs demonstrating supported section types.
 
 ## Partially Implemented Capabilities
@@ -55,7 +56,7 @@ The following capabilities are implemented in the repository now:
 The following capabilities are present in some form but should not be treated as complete platform capability without qualification:
 
 - Executive decision support exists through current intelligence modules and schemas, but full decision governance remains broader than the implemented code.
-- Blueprint generation exists as Markdown export, but full blueprint validation against the approved page/section evidence checklist is not yet fully enforced as a dedicated non-bypassable gate.
+- Blueprint generation exists as Markdown export, and reconciliation/schema/citation-ref/event-incorporation validation is now a non-bypassable gate ahead of both render and blueprint export. Full validation against the approved page/section *evidence* checklist (evidence-status labelling per section) is not yet enforced, since evidence-status fields are not yet part of the schema -- see "Absent Capabilities" below.
 - Narrative review exists as heuristic linting, but it is not a complete semantic proof of executive quality or factual correctness.
 - Evidence auditing exists for analysis references, but the complete evidence-status model is newly documented and not yet fully embedded across all schemas and runtime checks.
 - Raw extraction helper code exists, but it does not constitute a complete raw-file ingestion platform.

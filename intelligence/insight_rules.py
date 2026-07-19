@@ -82,7 +82,18 @@ def detect_target_misses(doc: dict[str, Any]) -> list[dict[str, Any]]:
         comparison = ""
         magnitude_pct = None
         if "comparison_value" in kpi:
-            comparison = f" compared with {kpi.get('comparison_label', 'comparison')} {kpi['comparison_value']}{kpi.get('comparison_unit', '')}"
+            comparison_label = kpi.get("comparison_label", "comparison")
+            # comparison_label sometimes names a comparator to measure against
+            # ("May", "Target", "Budget" -> "compared with May 4.98%") and
+            # sometimes describes what the number itself represents ("of total
+            # lines", "of GMV" -> "4.98% of total lines"). Prepositional labels
+            # are the second shape; forcing them through "compared with X Y"
+            # reads as "compared with of total lines 4.98%", which is broken
+            # English, not a real comparison. Render each shape correctly.
+            if comparison_label.strip().lower().startswith(("of ", "vs ", "versus ", "against ")):
+                comparison = f" ({kpi['comparison_value']}{kpi.get('comparison_unit', '')} {comparison_label})"
+            else:
+                comparison = f" compared with {comparison_label} {kpi['comparison_value']}{kpi.get('comparison_unit', '')}"
             comparison_raw = kpi.get("comparison_value")
             if isinstance(comparison_raw, str) and "%" in comparison_raw:
                 # comparison_value is already expressed as a delta percentage

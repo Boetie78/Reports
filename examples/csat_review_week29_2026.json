@@ -1,0 +1,592 @@
+{
+  "report_meta": {
+    "title": "CSAT Performance Review",
+    "subtitle": "Makro, Builders & Game -- Customer Satisfaction Summary and Store-Level Detail",
+    "organization": "Massmart",
+    "period_label": "Week 29 2026 (12-18 July)",
+    "report_type": "csat_review",
+    "generated_date": "2026-07-19"
+  },
+  "sections": [
+    {
+      "id": "exec_summary",
+      "type": "executive_summary",
+      "text": "Game leads CSAT this week at 94.16%, clear of its 90% target, while Makro (85.68%) and Builders (85.27%) both sit just below target -- close enough that the gap is about consistency, not a systemic failure. Delivery-promise misses are the single largest concern across all three banners. Marketplace accounts for 941 of Makro's 1767 responses and sits at 4.33/5, among the lowest of any Makro segment -- the most material improvement opportunity by weight of responses, not just by rate.",
+      "supporting_data_refs": [
+        "sections[1].kpis[0].value",
+        "sections[1].kpis[1].value",
+        "sections[1].kpis[2].value",
+        "sections[3].breakdown.components[0].value",
+        "sections[3].breakdown.parent_total.value"
+      ]
+    },
+    {
+      "id": "csat_scores",
+      "type": "kpi_strip",
+      "title": "CSAT Score by Banner",
+      "kpis": [
+        {
+          "id": "makro_csat",
+          "label": "Makro CSAT Score",
+          "value": 85.68,
+          "unit": "%",
+          "comparison_label": "vs Target",
+          "comparison_value": 90,
+          "comparison_unit": "%",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "builders_csat",
+          "label": "Builders CSAT Score",
+          "value": 85.27,
+          "unit": "%",
+          "comparison_label": "vs Target",
+          "comparison_value": 90,
+          "comparison_unit": "%",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "game_csat",
+          "label": "Game CSAT Score",
+          "value": 94.16,
+          "unit": "%",
+          "comparison_label": "vs Target",
+          "comparison_value": 90,
+          "comparison_unit": "%",
+          "direction": "favorable"
+        }
+      ]
+    },
+    {
+      "id": "response_rates",
+      "type": "kpi_strip",
+      "title": "Response Rate by Banner",
+      "new_page": false,
+      "kpis": [
+        {
+          "id": "makro_resp",
+          "label": "Makro Response Rate",
+          "value": 5.41,
+          "unit": "%",
+          "comparison_label": "vs Target",
+          "comparison_value": 10,
+          "comparison_unit": "%",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "builders_resp",
+          "label": "Builders Response Rate",
+          "value": 6.34,
+          "unit": "%",
+          "comparison_label": "vs Target",
+          "comparison_value": 10,
+          "comparison_unit": "%",
+          "direction": "unfavorable"
+        },
+        {
+          "id": "game_resp",
+          "label": "Game Response Rate",
+          "value": 14.06,
+          "unit": "%",
+          "comparison_label": "vs Target",
+          "comparison_value": 10,
+          "comparison_unit": "%",
+          "direction": "favorable"
+        }
+      ]
+    },
+    {
+      "id": "makro_response_volume",
+      "type": "breakdown_table",
+      "title": "Makro Response Volume by Segment",
+      "label_header": "Segment",
+      "layout_width": "half",
+      "breakdown": {
+        "id": "makro_response_volume_bd",
+        "title": "Makro Response Volume by Segment",
+        "unit": "responses",
+        "mode": "share",
+        "parent_total": {
+          "label": "Total Makro Responses",
+          "value": 1767
+        },
+        "components": [
+          {
+            "label": "Marketplace",
+            "value": 941
+          },
+          {
+            "label": "All other Makro stores (27 locations)",
+            "value": 826
+          }
+        ]
+      }
+    },
+    {
+      "id": "top_aoc",
+      "type": "ranking",
+      "title": "Top 3 Areas of Concern by Banner",
+      "new_page": true,
+      "rankings": [
+        {
+          "id": "makro_aoc",
+          "scope_label": "Makro",
+          "items": [
+            {
+              "rank": 1,
+              "label": "My order was not delivered within the promised time (73 of 1767)",
+              "value": 4.13,
+              "unit": "%"
+            },
+            {
+              "rank": 2,
+              "label": "I received the wrong product (35 of 1767)",
+              "value": 1.98,
+              "unit": "%"
+            },
+            {
+              "rank": 3,
+              "label": "I was unaware that items would be delivered separately (33 of 1767)",
+              "value": 1.87,
+              "unit": "%"
+            }
+          ]
+        },
+        {
+          "id": "builders_aoc",
+          "scope_label": "Builders",
+          "items": [
+            {
+              "rank": 1,
+              "label": "My order was not delivered within the promised time (5 of 129)",
+              "value": 3.88,
+              "unit": "%"
+            },
+            {
+              "rank": 2,
+              "label": "The product I ordered was not available (3 of 129)",
+              "value": 2.33,
+              "unit": "%"
+            },
+            {
+              "rank": 3,
+              "label": "The Pickup staff were unprofessional (3 of 129)",
+              "value": 2.33,
+              "unit": "%"
+            }
+          ]
+        },
+        {
+          "id": "game_aoc",
+          "scope_label": "Game",
+          "items": [
+            {
+              "rank": 1,
+              "label": "The product or packaging was damaged (4 of 308)",
+              "value": 1.3,
+              "unit": "%"
+            },
+            {
+              "rank": 2,
+              "label": "My order was not delivered within the promised time (3 of 308)",
+              "value": 0.97,
+              "unit": "%"
+            },
+            {
+              "rank": 3,
+              "label": "The courier was not friendly and helpful (3 of 308)",
+              "value": 0.97,
+              "unit": "%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "top_aoe",
+      "type": "ranking",
+      "title": "Top 3 Areas of Excellence by Banner",
+      "rankings": [
+        {
+          "id": "makro_aoe",
+          "scope_label": "Makro",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Excellent overall experience (243 of 1767)",
+              "value": 13.75,
+              "unit": "%"
+            },
+            {
+              "rank": 2,
+              "label": "My order was delivered as promised (234 of 1767)",
+              "value": 13.24,
+              "unit": "%"
+            },
+            {
+              "rank": 3,
+              "label": "My order was delivered sooner than promised (134 of 1767)",
+              "value": 7.58,
+              "unit": "%"
+            }
+          ]
+        },
+        {
+          "id": "builders_aoe",
+          "scope_label": "Builders",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Excellent overall experience (15 of 129)",
+              "value": 11.63,
+              "unit": "%"
+            },
+            {
+              "rank": 2,
+              "label": "My order was delivered as promised (15 of 129)",
+              "value": 11.63,
+              "unit": "%"
+            },
+            {
+              "rank": 3,
+              "label": "My order was delivered sooner than promised (13 of 129)",
+              "value": 10.08,
+              "unit": "%"
+            }
+          ]
+        },
+        {
+          "id": "game_aoe",
+          "scope_label": "Game",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Excellent overall experience (50 of 308)",
+              "value": 16.23,
+              "unit": "%"
+            },
+            {
+              "rank": 2,
+              "label": "My order was delivered as promised (50 of 308)",
+              "value": 16.23,
+              "unit": "%"
+            },
+            {
+              "rank": 3,
+              "label": "My order was delivered sooner than promised (28 of 308)",
+              "value": 9.09,
+              "unit": "%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "makro_province",
+      "type": "bar_chart",
+      "title": "Makro CSAT Score by Province",
+      "layout_width": "third",
+      "new_page": true,
+      "bar_chart": {
+        "id": "makro_province_chart",
+        "title": "Makro CSAT Score by Province",
+        "unit": "",
+        "categories": [
+          "Gauteng",
+          "Free State",
+          "Mpumalanga",
+          "Limpopo",
+          "Marketplace",
+          "KZN",
+          "Western Cape",
+          "Eastern Cape"
+        ],
+        "values": [
+          4.53,
+          4.67,
+          4.93,
+          4.33,
+          4.33,
+          4.62,
+          4.58,
+          4.45
+        ],
+        "annotations": [
+          {
+            "category": "Mpumalanga",
+            "label": "High Performance",
+            "emphasis": "peak"
+          },
+          {
+            "category": "Limpopo",
+            "label": "Low Performance",
+            "emphasis": "note"
+          },
+          {
+            "category": "Marketplace",
+            "label": "Low Performance",
+            "emphasis": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": "builders_province",
+      "type": "bar_chart",
+      "title": "Builders CSAT Score by Province",
+      "layout_width": "third",
+      "new_page": false,
+      "bar_chart": {
+        "id": "builders_province_chart",
+        "title": "Builders CSAT Score by Province",
+        "unit": "",
+        "categories": [
+          "Eastern Cape",
+          "Gauteng",
+          "KZN",
+          "Limpopo",
+          "Mpumalanga",
+          "North West",
+          "Western Cape"
+        ],
+        "values": [
+          4.62,
+          4.4,
+          4.56,
+          4.75,
+          4.67,
+          1.0,
+          4.51
+        ],
+        "annotations": [
+          {
+            "category": "Limpopo",
+            "label": "High Performance",
+            "emphasis": "peak"
+          },
+          {
+            "category": "North West",
+            "label": "Low Performance",
+            "emphasis": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": "game_province",
+      "type": "bar_chart",
+      "title": "Game CSAT Score by Province",
+      "layout_width": "third",
+      "new_page": false,
+      "bar_chart": {
+        "id": "game_province_chart",
+        "title": "Game CSAT Score by Province",
+        "unit": "",
+        "categories": [
+          "Gauteng",
+          "Free State",
+          "Eastern Cape",
+          "KZN",
+          "Limpopo",
+          "Mpumalanga",
+          "North West",
+          "Western Cape"
+        ],
+        "values": [
+          4.74,
+          5.0,
+          4.57,
+          4.67,
+          4.69,
+          5.0,
+          5.0,
+          4.96
+        ],
+        "annotations": [
+          {
+            "category": "Free State",
+            "label": "High Performance",
+            "emphasis": "peak"
+          },
+          {
+            "category": "Eastern Cape",
+            "label": "Low Performance",
+            "emphasis": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": "bottom_stores",
+      "type": "ranking",
+      "new_page": true,
+      "title": "Lowest CSAT Stores by Banner (n≥3 responses only, for statistical reliability)",
+      "rankings": [
+        {
+          "id": "makro_bottom",
+          "scope_label": "Makro",
+          "items": [
+            {
+              "rank": 1,
+              "label": "Northfield DC (n=3)",
+              "value": 4.0,
+              "unit": "/5"
+            },
+            {
+              "rank": 2,
+              "label": "Makro Germiston (n=29)",
+              "value": 4.1,
+              "unit": "/5"
+            },
+            {
+              "rank": 3,
+              "label": "Makro Springfield (n=42)",
+              "value": 4.31,
+              "unit": "/5"
+            },
+            {
+              "rank": 4,
+              "label": "Marketplace (n=941)",
+              "value": 4.33,
+              "unit": "/5"
+            },
+            {
+              "rank": 5,
+              "label": "Makro Polokwane (n=36)",
+              "value": 4.33,
+              "unit": "/5"
+            },
+            {
+              "rank": 6,
+              "label": "Makro Gonubie (n=14)",
+              "value": 4.43,
+              "unit": "/5"
+            }
+          ]
+        },
+        {
+          "id": "builders_bottom",
+          "scope_label": "Builders",
+          "items": [
+            {
+              "rank": 1,
+              "label": "BWH Digital Sales (n=10)",
+              "value": 3.6,
+              "unit": "/5"
+            },
+            {
+              "rank": 2,
+              "label": "BWH Centurion (n=4)",
+              "value": 4.0,
+              "unit": "/5"
+            },
+            {
+              "rank": 3,
+              "label": "BWH Constantia (n=7)",
+              "value": 4.14,
+              "unit": "/5"
+            },
+            {
+              "rank": 4,
+              "label": "BWH George (n=6)",
+              "value": 4.33,
+              "unit": "/5"
+            },
+            {
+              "rank": 5,
+              "label": "BWH Haasendal (n=8)",
+              "value": 4.62,
+              "unit": "/5"
+            },
+            {
+              "rank": 6,
+              "label": "BWH Port Elizabeth (n=4)",
+              "value": 4.75,
+              "unit": "/5"
+            }
+          ]
+        },
+        {
+          "id": "game_bottom",
+          "scope_label": "Game",
+          "items": [
+            {
+              "rank": 1,
+              "label": "GAME CENTURION (n=4)",
+              "value": 3.75,
+              "unit": "/5"
+            },
+            {
+              "rank": 2,
+              "label": "GAME PAVILION (n=6)",
+              "value": 4.0,
+              "unit": "/5"
+            },
+            {
+              "rank": 3,
+              "label": "GAME WONDERPARK (n=5)",
+              "value": 4.0,
+              "unit": "/5"
+            },
+            {
+              "rank": 4,
+              "label": "GAME THOHOYANDOU (n=5)",
+              "value": 4.2,
+              "unit": "/5"
+            },
+            {
+              "rank": 5,
+              "label": "GAME AMANZIMTOTI (n=8)",
+              "value": 4.25,
+              "unit": "/5"
+            },
+            {
+              "rank": 6,
+              "label": "Game Springs (n=3)",
+              "value": 4.33,
+              "unit": "/5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exec_facts",
+      "type": "executive_facts",
+      "title": "Executive Facts",
+      "executive_facts": [
+        {
+          "statement": "Delivery-not-within-promised-time is the #1 Area of Concern for both Makro and Builders this week, and #2 for Game -- pointing to a shared courier/delivery-promise issue rather than a banner-specific one, which suggests a single cross-banner fix could move all three AOC lists at once.",
+          "supporting_data_refs": [
+            "sections[4].rankings[0].items[0].value",
+            "sections[4].rankings[1].items[0].value",
+            "sections[4].rankings[2].items[1].value"
+          ]
+        },
+        {
+          "statement": "Marketplace is Makro's single largest response segment (941 of 1767 responses, 53.3% of all Makro responses) and its average (4.33/5) sits among the lowest of any Makro segment -- a concentration risk on its own, independent of any single store.",
+          "supporting_data_refs": [
+            "sections[3].breakdown.components[0].value",
+            "sections[3].breakdown.parent_total.value",
+            "sections[9].rankings[0].items[3].value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bottom_insight",
+      "type": "bottom_insight",
+      "text": "Across all three banners, the delivery promise is the recurring theme -- fixing on-time delivery communication and execution would move more of the AOC list than any single-store intervention."
+    }
+  ],
+  "provenance": {
+    "source_files": [
+      "Makro CSAT Dashboard export (screenshot), 12-18 July 2026",
+      "Builders CSAT Dashboard export (screenshot), 12-18 July 2026",
+      "Game CSAT Dashboard export (screenshot), 12-18 July 2026",
+      "CSAT_Details.xlsx -- Makro, Builders, Game tabs (raw survey response-level data)"
+    ],
+    "extraction_notes": "CSAT Score %, Top 3 AOC, Top 3 AOE, and response counts were independently recomputed from CSAT_Details.xlsx and reconcile exactly against the dashboard screenshots for all three banners (confirmed CSAT Score % = share of responses rated 4-5, not a simple average of the 1-5 rating). Province-level breakdown has no corresponding column in CSAT_Details.xlsx, so those figures are screenshot transcriptions, not independently recomputed. Response rate % and total order volume (32647 / 2035 / 2190) are also screenshot-only, since CSAT_Details.xlsx has no order-volume denominator. Store-level rankings and the Eastern Cape region cut are computed fresh from the raw per-response data, grouped by the Store column.",
+    "unresolved_flags": []
+  }
+}

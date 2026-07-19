@@ -2,3 +2,5 @@ jsonschema
 jinja2
 playwright
 python-pptx
+pandas
+openpyxl

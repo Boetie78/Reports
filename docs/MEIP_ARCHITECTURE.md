@@ -49,6 +49,7 @@ The following capabilities are implemented in the repository now:
 - Deterministic report rendering from validated report briefs.
 - Markdown blueprint export from validated report briefs.
 - Non-bypassable validation gate: `pipeline/render.py` and `pipeline/blueprint.py` both run the full `pipeline/validate.py` check set in-process before producing any output, regardless of how they are invoked (standalone or via `pipeline/run_report.py`).
+- Executive QA challenge of Page 1/Page 2 decision-plan placements (`intelligence/executive_qa.py`): independently re-verifies evidence confidence per placement tier, and checks causal-language overreach, business-impact hedging, ownership assignment, and action timing against the rules in `docs/EXECUTIVE_INTELLIGENCE_MODEL.md`. Monitor/Appendix/Ignore items are out of scope, since they are not shown to executives. Like narrative review, this is a challenge/lint layer (prints findings, exits 0 by default, `--strict-qa` available) -- it does not gate rendering the way `pipeline/validate.py` does.
 - Example report briefs demonstrating supported section types.
 
 ## Partially Implemented Capabilities
@@ -56,6 +57,7 @@ The following capabilities are implemented in the repository now:
 The following capabilities are present in some form but should not be treated as complete platform capability without qualification:
 
 - Executive decision support exists through current intelligence modules and schemas, but full decision governance remains broader than the implemented code.
+- Executive QA (`intelligence/executive_qa.py`) checks evidence confidence, causal overreach, impact hedging, ownership, and action timing, but does not yet check whether an interpretation considered and ruled out alternative explanations -- that specific challenge from the original planned scope is still open.
 - Blueprint generation exists as Markdown export, and reconciliation/schema/citation-ref/event-incorporation validation is now a non-bypassable gate ahead of both render and blueprint export. Full validation against the approved page/section *evidence* checklist (evidence-status labelling per section) is not yet enforced, since evidence-status fields are not yet part of the schema -- see "Absent Capabilities" below.
 - Narrative review exists as heuristic linting, but it is not a complete semantic proof of executive quality or factual correctness.
 - Evidence auditing exists for analysis references, but the complete evidence-status model is newly documented and not yet fully embedded across all schemas and runtime checks.
@@ -68,9 +70,8 @@ The following capabilities are approved intended direction or described by archi
 - Observation engine for identifying tables, KPIs, entities, trends, and unresolved extraction questions from raw material.
 - Normalisation engine that converts observations into governed report briefs with explicit provenance.
 - Dedicated blueprint validation gate enforcing required page/section fields before rendering.
-- Broader executive QA that challenges causality, confidence, wording strength, alternative explanations, and action specificity.
-- Learning loop that records accepted, challenged, missing, effective, and failed report elements for future profile updates.
 - Full evidence-status propagation across source material, briefs, analysis, blueprints, and rendered outputs.
+- Learning loop that records accepted, challenged, missing, effective, and failed report elements for future profile updates.
 
 ## Absent Capabilities and Current Gaps
 

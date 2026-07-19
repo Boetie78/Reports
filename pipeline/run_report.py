@@ -14,6 +14,7 @@ Default flow:
   7. intelligence/export_analysis.py
   8. intelligence/prioritisation_engine.py
   9. intelligence/decision_engine.py
+  10. intelligence/executive_qa.py
 
 Optional flags can also render and/or export a Markdown blueprint after all gates
 pass.
@@ -45,6 +46,8 @@ def main() -> int:
     parser.add_argument("--no-analysis-md", action="store_true", help="Skip human-readable executive analysis Markdown export")
     parser.add_argument("--no-prioritisation", action="store_true", help="Skip executive object prioritisation")
     parser.add_argument("--no-decision", action="store_true", help="Skip decision plan generation")
+    parser.add_argument("--no-qa", action="store_true", help="Skip executive QA challenge of Page 1/2 placements")
+    parser.add_argument("--strict-qa", action="store_true", help="Make executive_qa.py fail the run on any non-Approved review")
     parser.add_argument("--strict-narrative", action="store_true", help="Make narrative_review.py warnings fail the run")
     args = parser.parse_args()
 
@@ -75,6 +78,11 @@ def main() -> int:
         run_step("Prioritise executive decision objects", [py, "intelligence/prioritisation_engine.py", str(analysis_path), "--output", str(prioritised_path)])
         if not args.no_decision:
             run_step("Create executive decision plan", [py, "intelligence/decision_engine.py", str(prioritised_path), "--output", str(decision_path)])
+            if not args.no_qa:
+                qa_cmd = [py, "intelligence/executive_qa.py", str(decision_path)]
+                if args.strict_qa:
+                    qa_cmd.append("--strict")
+                run_step("Challenge executive QA", qa_cmd)
     if args.render:
         run_step("Render report", [py, "pipeline/render.py", str(report_brief)])
     if args.blueprint:
